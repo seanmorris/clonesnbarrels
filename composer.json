@@ -1,0 +1,15 @@
+{
+	"name": "seanmorris/clonesnbarrels"
+	, "authors": [
+		{
+			"name": "Sean Morris",
+			"email": "sean@sean-morris.com"
+		}
+	]
+	, "autoload": {
+		"psr-4": {
+			"SeanMorris\\ClonesNBarrels\\Test\\": "test/",
+			"SeanMorris\\ClonesNBarrels\\": "source/"
+		}
+	}
+}
