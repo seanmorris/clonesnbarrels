@@ -72,6 +72,8 @@ function PauseMenu(game)
 		);
 	};
 
+	/*
+
 	this.options['help']		= function()
 	{
 		//console.log('unimplemented');
@@ -118,8 +120,10 @@ function PauseMenu(game)
 		);
 	};
 
+	*/
+
 	this.options['exit']		= function()
 	{
-		window.location.refresh();
+		window.location.back();
 	};
 }

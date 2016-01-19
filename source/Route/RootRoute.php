@@ -3,11 +3,12 @@ namespace SeanMorris\ClonesNBarrels\Route;
 class RootRoute extends \SeanMorris\PressKit\Controller
 {
 	public $routes = [
-		'saveState' => 'SeanMorris\ClonesNBarrels\Route\SaveStateRoute'
+		'map' => 'SeanMorris\ClonesNBarrels\Route\MapRoute'
+		, 'saveState' => 'SeanMorris\ClonesNBarrels\Route\SaveStateRoute'
 	];
 
 	protected 
-		$title = 'CnB'
+		$title = 'Clones N Barrels'
 	;
 	
 	public function index($router)

@@ -35,6 +35,19 @@ var Editor = Class.extend({
 
 		var _this = this;
 
+		var splitPathname = window.location.pathname.split('/');
+		splitPathname.shift();
+
+		console.log(splitPathname);
+
+		if(splitPathname[1] == 'map')
+		{
+			console.log(splitPathname[2] + ' -- LOAD THAT MAP');
+		}
+
+		// this.game.currentState.world.map.setData();
+		console.log();
+
 		this.mapResizeButton.click(
 			function()
 			{
@@ -87,6 +100,15 @@ var Editor = Class.extend({
 		$('button#saveMap').click(
 			function()
 			{
+				var map = new MapStorable();
+
+				map.title = _this.game.currentState.world.map.title;
+				map.mapdata = _this.game.currentState.world.map.getData();
+
+				map.save(_this.game.currentState.world);
+
+				return;
+
 				saveAs(
 					new Blob(
 						[_this.game.currentState.world.map.getData()]
@@ -97,7 +119,7 @@ var Editor = Class.extend({
 			}
 		);
 
-		 $('input#loadMap').change(function(e)
+		$('input#loadMap').change(function(e)
 		{
             var files = event.target.files; //FileList object
             var output = document.getElementById("result");
@@ -116,7 +138,6 @@ var Editor = Class.extend({
 					}
 				);
 
-                 //Read the image
                 mapReader.readAsText(file);
             }
 
@@ -174,11 +195,14 @@ var Editor = Class.extend({
 		for(var i in tilePallet)
 		{
 			console.log(tilePallet[i]);
+
+			console.log(imageCache.loadImage(tilePallet[i]));
+
 			this.tilePalletBox.append(
 				$('<img />')
 					.attr('id', 'pallet_' + i)
 					.attr('class', 'palletImg')
-					.attr('src', tilePallet[i])
+					.attr('src', imageCache.loadImage(tilePallet[i]))
 					.attr('data-i', i)
 					.click(
 						function(e)
@@ -277,7 +301,9 @@ var Editor = Class.extend({
 			
 			if(testObj.sprite)
 			{
-				var spriteSrc = testObj.sprite.standard()[0];
+				var spriteSrc = imageCache.loadImage(testObj.sprite.standard()[0]).src;
+
+				console.log(spriteSrc);
 			}
 
 			//console.log(testObj.name);

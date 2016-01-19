@@ -9,8 +9,9 @@ function TitleState(game)
 
 	this.onEnter = function(params)
 	{
+		bgmPlayer().play();
 		this.titleScreen = new TitleScreen(game);
-		this.titleBGM = new Audio('/SeanMorris/ClonesNBarrels/Sound/530471_Coins-8Bit.mp3');
+		// this.titleBGM = new Audio('/SeanMorris/ClonesNBarrels/Sound/530471_Coins-8Bit.mp3');
 		//this.titleBGM.play();
 	}
 
@@ -33,6 +34,6 @@ function TitleState(game)
 
 	this.onExit = function()
 	{
-		this.titleBGM.pause();
+		//this.titleBGM.pause();
 	}
 }

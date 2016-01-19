@@ -55,6 +55,9 @@ Js/Game/TitleScreen.js
 Js/Game/MainState.js
 Js/Game/Editor.js
 Js/Game/DialogState.js
+Js/Game/Storable.js
+Js/Game/SaveState.js
+Js/Game/Map.js
 Js/Game/SaveState.js
 Js/Game/Game.js
 Js/Support/ImageCache.js
