@@ -6,7 +6,8 @@ class Package extends \SeanMorris\Ids\Package
 		$assetManager = 'SeanMorris\Rhino\AssetManager'
 		, $tables = [
 			'main' => [
-				'ClonesNBarrelsSaveState'
+				'ClonesNBarrelsMap'
+				, 'ClonesNBarrelsSaveState'
 			]
 		]
 	;

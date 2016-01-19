@@ -233,6 +233,13 @@ function Menu(game)
 				+ (this.margins * (j-this.selected+1))
 			;
 
+			var showText = i;
+
+			if(this.options[i].name)
+			{
+				showText = this.options[i].name;
+			}
+
 			if(j == this.selected)
 			{
 				this.context.fillStyle = this.selectedBoxColor;
@@ -246,7 +253,7 @@ function Menu(game)
 				this.context.fillStyle = this.selectedTextColor;
 
 				this.context.fillText(
-					i
+					showText
 					, center[0]+this.leftTextMargin+this.leftMargin
 					,  offset + this.topMargin + (this.margins + this.selectedMargins)
 				);
@@ -264,7 +271,7 @@ function Menu(game)
 				this.context.fillStyle = this.textColor;
 
 				this.context.fillText(
-					i
+					showText
 					, center[0]+this.leftTextMargin+this.leftMargin
 					, offset + this.topMargin + (this.margins + this.selectedMargins)
 				);
@@ -282,7 +289,7 @@ function Menu(game)
 				this.context.fillStyle = this.textColor;
 
 				this.context.fillText(
-					i
+					showText
 					, center[0]+this.leftTextMargin+this.leftMargin
 					, offset + this.topMargin + (this.selectedMargins - this.margins)
 				);

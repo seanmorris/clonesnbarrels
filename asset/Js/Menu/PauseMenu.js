@@ -40,7 +40,37 @@ function PauseMenu(game)
 		JSON.stringify(game.stateStack[0].world.getState());
 		
 		game.restoreState();
-	}
+	};
+
+	this.options['music']		= function()
+	{
+		var dynMenu = new Menu(game);
+
+		dynMenu.options['play/pause'] = function()
+		{
+			bgmPlayer().play()
+		};
+		
+		dynMenu.options['next'] = function()
+		{
+			bgmPlayer().next()
+		};
+		
+		dynMenu.options['previous'] = function()
+		{
+			bgmPlayer().previous()
+		};
+		
+		dynMenu.options['back'] = function(){
+			game.restoreState();
+		};
+
+		game.stackState(
+			'menu'
+			, {menu: dynMenu}
+			, true
+		);
+	};
 
 	this.options['help']		= function()
 	{
