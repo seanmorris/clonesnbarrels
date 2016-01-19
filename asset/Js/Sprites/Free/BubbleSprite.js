@@ -2,7 +2,7 @@ function BubbleSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/bubble.png'
+			'sprite:bubble.png'
 		]
 	};
 

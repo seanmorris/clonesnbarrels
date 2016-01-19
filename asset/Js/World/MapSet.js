@@ -121,25 +121,27 @@ var MapSet = Class.extend({
 					this.mapStates[map][object].constructor
 				];
 
-				console.log(this.mapStates[map][object]);
+				// console.log(this.mapStates[map][object]);
 
 				if(newObject)
 				{
 					newObject.loadedData = this.mapStates[map][object];
-
+					
 					addedObjects.push(newObject);
 
 					for(var p in newObject.loadedData.data)
 					{
-						console.log(p, newObject[p], newObject.loadedData.data[p]);
+						// console.log(p, newObject[p], newObject.loadedData.data[p]);
 						newObject[p] = newObject.loadedData.data[p];
 					}
-
+					
+					/*
 					console.log(
 						newObject.name
 						, this.mapStates[map][object].position.x
 						, this.mapStates[map][object].position.y
 					);
+					*/
 
 					newObject.reinit();
 
@@ -148,6 +150,8 @@ var MapSet = Class.extend({
 						, this.mapStates[map][object].position.x
 						, this.mapStates[map][object].position.y
 					);
+
+					newObject.loadedData = this.mapStates[map][object];
 				}
 			}
 
@@ -161,20 +165,17 @@ var MapSet = Class.extend({
 						//console.log(addedObjects[o]);
 					}
 
+					if(addedObjects[o].loadedData.refs.triggers[0])
+					{
+						console.log(addedObjects[o].loadedData.refs.triggers[0]);
+					}
+
 					for(var t in addedObjects[o].loadedData.refs.triggers)
 					{
 						var trigger = this.world.getObjects(
 							addedObjects[o].loadedData.refs.triggers[t].x
 							, addedObjects[o].loadedData.refs.triggers[t].y
 						)[addedObjects[o].loadedData.refs.triggers[t].i];
-
-						console.log(
-							this.world.getObjects(
-								addedObjects[o].loadedData.refs.triggers[t].x
-								, addedObjects[o].loadedData.refs.triggers[t].y
-							),
-							addedObjects[o].loadedData.refs.triggers[t]
-						);
 
 						//if(addedObjects[o].triggers && trigger)
 						if(trigger)
@@ -190,8 +191,6 @@ var MapSet = Class.extend({
 	{
 		var mainActor = this.world.viewport.actor;
 
-		console.log(this.mapStates);
-
 		if(!ignoreState)
 		{
 			this.storeState();
@@ -199,16 +198,13 @@ var MapSet = Class.extend({
 
 		this.world.map.setData(
 			JSON.stringify(this.maps[map])
+			//, ignoreState	
 		);
-
-		console.log(this.mapStates);
 
 		if(ignoreState)
 		{
 			this.world.flushObjects();
 		}
-
-		console.log(this.mapStates);
 
 		if(mainActor)
 		{
@@ -219,15 +215,9 @@ var MapSet = Class.extend({
 			);
 		}
 
-		console.log(this.mapStates);
-
 		this.world.flushAddedTiles();
 
-		console.log(this.mapStates);
-
 		this.loadState(map);
-
-		console.log(this.mapStates);
 
 		if(x === undefined)
 		{
@@ -253,7 +243,6 @@ var MapSet = Class.extend({
 				, x
 				, y
 			);
-
 		}
 
 		if(mainActor)

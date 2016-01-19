@@ -2,7 +2,7 @@ function BlastMarkSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/blast_mark.png'
+			'sprite:blast_mark.png'
 		]
 	};
 

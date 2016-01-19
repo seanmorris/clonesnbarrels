@@ -2,16 +2,16 @@ function AngleSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/angle_south.png'
+			'sprite:angle_south.png'
 		]
 		, 'west': [
-			'/SeanMorris/ClonesNBarrels/Img/free/angle_west.png'
+			'sprite:angle_west.png'
 		]
 		, 'north': [
-			'/SeanMorris/ClonesNBarrels/Img/free/angle_north.png'
+			'sprite:angle_north.png'
 		]
 		, 'east': [
-			'/SeanMorris/ClonesNBarrels/Img/free/angle_east.png'
+			'sprite:angle_east.png'
 		]
 	};
 

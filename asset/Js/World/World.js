@@ -41,11 +41,12 @@ var World = Class.extend({
 
 		this.objects[x][y].push(object);
 
-		object.bindWorld(this);
-
-		var i = this.objects[x][y].length - 1;
-
-		object.setPosition(x, y, i);
+		if(object)
+		{
+			object.bindWorld(this);	
+			var i = this.objects[x][y].length - 1;
+			object.setPosition(x, y, i);
+		}
 
 		return i;
 	}

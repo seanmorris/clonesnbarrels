@@ -2,16 +2,16 @@ function LaserBeamSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/laser_vert.png'
+			'sprite:laser_vert.png'
 		]
 		, 'west': [
-			'/SeanMorris/ClonesNBarrels/Img/free/laser.png'
+			'sprite:laser.png'
 		]
 		, 'north': [
-			'/SeanMorris/ClonesNBarrels/Img/free/laser_vert.png'
+			'sprite:laser_vert.png'
 		]
 		, 'east': [
-			'/SeanMorris/ClonesNBarrels/Img/free/laser.png'
+			'sprite:laser.png'
 		]
 	};
 

@@ -2,7 +2,7 @@ function SandbagSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/sandbag.png'
+			'sprite:sandbag.png'
 		]
 	};
 

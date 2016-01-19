@@ -82,6 +82,11 @@ function Viewport(game, x, y, size)
 
 	this.bindCamera				= function(actor)
 	{
+		if(!actor)
+		{
+			return;
+		}
+		
 		this.actor				= actor;
 
 		this.warp(

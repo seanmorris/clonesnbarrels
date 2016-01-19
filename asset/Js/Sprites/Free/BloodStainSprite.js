@@ -2,7 +2,7 @@ function BloodStainSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/blood_stain.png'
+			'sprite:blood_stain.png'
 		]
 	};
 

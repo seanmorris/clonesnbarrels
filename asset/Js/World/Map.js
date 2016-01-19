@@ -149,7 +149,7 @@ var Map = Class.extend({
 			, objectTriggers: this.objectTriggers
 		});
 	}
-	, setData: function(string)
+	, setData: function(string, preventReset)
 	{
 		var obj = JSON.parse(string);
 
@@ -165,7 +165,36 @@ var Map = Class.extend({
 
 		this.world.worldWidth = this.width;
 		this.world.worldHeight = this.height;
-		this.refreshObjects();
+		
+		/*
+		if(preventReset)
+		{
+			for(var i in obj.objects)
+			{
+				if(!obj.objects[i])
+				{
+					continue;
+				}
+
+				for(var j in obj.objects[i])
+				{
+					if(!obj.objects[i][j])
+					{
+						continue;
+					}
+
+					this.world.addObject(
+						obj.objects[i][j]
+						, obj.objects[i][j].x
+						, obj.objects[i][j].y
+					);
+				}
+			}
+			return;
+		}
+		*/
+		
+		this.refreshObjects(preventReset);
 	}
 	, isTileOnMap: function(x, y)
 	{
@@ -179,7 +208,7 @@ var Map = Class.extend({
 
 		return true;
 	}
-	, refreshObjects: function()
+	, refreshObjects: function(preventReset)
 	{
 		var mainActor = this.world.viewport.actor;
 

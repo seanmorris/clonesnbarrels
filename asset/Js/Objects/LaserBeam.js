@@ -1,9 +1,10 @@
 var LaserBeam = Triggerable.extend({
-	init: function(isntRoot)
+	init: function(root)
 	{
 		this.damage = 200;
 		this.child = null;
-		this.isRoot = !isntRoot;
+		this.isRoot = !root;
+		this.rootObj = root
 		this.reinit();
 		this._super(new LaserBeamSprite());
 	}
@@ -59,7 +60,7 @@ var LaserBeam = Triggerable.extend({
 
 		if(this.world.canSpawn(spawnX, spawnY) && !this.child)
 		{
-			newBeam = new LaserBeam(true);
+			newBeam = new LaserBeam(this);
 
 			this.child = newBeam;
 

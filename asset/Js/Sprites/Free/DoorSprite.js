@@ -2,13 +2,13 @@ function DoorSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/door_closed.png'
+			'sprite:door_closed.png'
 		]
 	};
 
 	this.open = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/door_opened.png'
+			'sprite:door_opened.png'
 		]
 	};
 

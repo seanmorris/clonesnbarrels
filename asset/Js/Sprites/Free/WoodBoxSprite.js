@@ -2,7 +2,7 @@ function WoodBoxSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/wood_box.png'
+			'sprite:wood_box.png'
 		]
 	};
 

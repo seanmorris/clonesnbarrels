@@ -3,7 +3,19 @@ function ImageCache()
 	this.images = [];
 	this.loadImage = function(src, onLoad, reCallOnLoad)
 	{
-		if(
+		if(!this.spritesheet)
+		{
+			this.spritesheet = new Spritesheet;
+		}
+		
+		var name;
+
+		if(name = src.match(/^sprite\:(.+)/))
+		{
+			src = this.spritesheet.getFrame(name[1]);
+		}
+
+		if(	
 		   this.images[src]
 		   && this.images[src].complete
 		   && reCallOnLoad

@@ -2,7 +2,7 @@ function WarpSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/warp.png'
+			'sprite:warp.png'
 		]
 	};
 

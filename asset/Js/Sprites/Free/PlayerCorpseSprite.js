@@ -2,7 +2,7 @@ function PlayerCorpseSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/player_corpse.png'
+			'sprite:player_corpse.png'
 		]
 	};
 

@@ -7,6 +7,7 @@ var Portal = FloorBindable.extend({
 	, reinit: function()
 	{
 		this.name = 'Portal';
+		this.orange = false;
 		this.suppress = false;
 		this.sticky = false;
 		this.recieved = null;
@@ -103,14 +104,15 @@ var Portal = FloorBindable.extend({
 				}
 			}
 
-			console.log(
-				this.triggers[i].x
-				, this.triggers[i].y
-			);
+			if(stepper.dontPortal)
+			{
+				return;
+			}
 
 			this.triggers[i].recieved = stepper;
 
-			if(stepper.holding == this.triggers[i])
+			if(stepper.holding)
+			//if(stepper.holding == this.triggers[i])
 			{
 				stepper.stopHolding();
 			}
@@ -125,8 +127,8 @@ var Portal = FloorBindable.extend({
 				, this.triggers[i].y
 			);
 
-			//this.world.viewport.overlay('#FFF', 1);
-			//this.world.viewport.fadeOverlay(4);
+			this.world.viewport.overlay('#000', 1);
+			this.world.viewport.fadeOverlay(4);
 
 			break;
 		}
@@ -137,7 +139,7 @@ var Portal = FloorBindable.extend({
 	{
 		this._super();
 
-		if(this.direction)
+		if(this.orange)
 		{
 			this.frames = this.sprite.standing.east;
 		}

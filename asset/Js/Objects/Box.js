@@ -3,7 +3,7 @@ var Box = Actor.extend({
 	{
 		this.reinit();
 		this._super(new BoxSprite());
-		console.log('NEW BOX');
+		// console.log('NEW BOX');
 	}
 	, reinit: function()
 	{

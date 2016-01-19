@@ -2,7 +2,7 @@ function CheeseSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/cheese.png'
+			'sprite:cheese.png'
 		]
 	};
 

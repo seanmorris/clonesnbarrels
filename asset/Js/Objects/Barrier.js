@@ -1,4 +1,4 @@
-var Barrier = Trigger.extend({
+var Barrier = FloorTrigger.extend({
 	init: function()
 	{
 		this._super(new BarrierSprite());
@@ -8,19 +8,58 @@ var Barrier = Trigger.extend({
 	{
 		this.name = 'Barrier';
 		this._super(new BarrierSprite());
+		this.dontPortal = true;
 		this.ignoreTypes = [
 			Player
 			, LaserBeam
 			, FloorActor
 		];
+		this.dontIgnoreTypes = [
+			Portal
+		];
 	}
 	, update: function()
 	{
 		this.triggered = false;
+
 		var coObjs = this.world.getObjects(this.x, this.y);
 
+		coObjs:
 		for(var i in coObjs)
 		{
+			if(coObjs[i] === this)
+			{
+				continue;
+			}
+			
+			ignore:
+			for(var j in this.ignoreTypes)
+			{
+				if(coObjs[i] instanceof this.ignoreTypes[j])
+				{
+					for(var k in this.dontIgnoreTypes)
+					{
+						if(coObjs[i] instanceof this.dontIgnoreTypes[k])
+						{
+							continue ignore;
+						}
+					}
+
+					if(
+						coObjs[i].stepping
+						|| !coObjs[i].holding
+						|| coObjs[i].holding instanceof this.ignoreTypes[j]
+					){
+						continue coObjs;
+					}
+				}
+			}
+
+			console.log(coObjs[i].name);
+
+			this.trigger();
+
+			/*
 			var skip = false;
 
 			for(var j in this.ignoreTypes)
@@ -38,6 +77,7 @@ var Barrier = Trigger.extend({
 				//console.log(coObjs[i]);
 				this.trigger();
 			}
+			*/
 		}
 
 		this._super();

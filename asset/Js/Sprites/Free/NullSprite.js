@@ -2,7 +2,7 @@ function NullSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/null.png'
+			'sprite:null.png'
 		]
 	};
 

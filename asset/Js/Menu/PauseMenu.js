@@ -52,9 +52,44 @@ function PauseMenu(game)
 		//console.log('unimplemented');
 	};
 
+	this.options['dynamic'] = function()
+	{
+		var dynMenu = new Menu(game);
+
+		dynMenu.options['a'] = function()
+		{
+			var dynMenu = new Menu(game);
+
+			dynMenu.options['1'] = function(){};
+			dynMenu.options['2'] = function(){};
+			dynMenu.options['3'] = function(){};
+
+			dynMenu.options['back'] = function(){
+				game.restoreState();
+			};
+
+			game.stackState(
+				'menu'
+				, {menu: dynMenu}
+				, true
+			);
+		};
+		dynMenu.options['b'] = function(){};
+		dynMenu.options['c'] = function(){};
+
+		dynMenu.options['back'] = function(){
+			game.restoreState();
+		};
+
+		game.stackState(
+			'menu'
+			, {menu: dynMenu}
+			, true
+		);
+	};
+
 	this.options['exit']		= function()
 	{
 		window.location.refresh();
 	};
-
 }

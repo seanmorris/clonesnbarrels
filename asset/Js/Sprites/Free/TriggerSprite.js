@@ -2,7 +2,7 @@ function TriggerSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/trigger.png'
+			'sprite:trigger.png'
 		]
 	};
 

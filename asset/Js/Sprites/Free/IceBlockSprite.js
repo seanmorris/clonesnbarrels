@@ -2,7 +2,7 @@ function IceBlockSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/ice.png'
+			'sprite:ice.png'
 		]
 	};
 

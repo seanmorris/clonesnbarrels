@@ -2,7 +2,7 @@ function ButtonActivatedSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/button_activated.png'
+			'sprite:button_activated.png'
 		]
 	};
 

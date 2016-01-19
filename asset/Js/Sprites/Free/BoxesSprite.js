@@ -2,7 +2,7 @@ function BoxesSprite()
 {
 	this.standing = {
 		'south': [
-			'/SeanMorris/ClonesNBarrels/Img/free/boxes.png'
+			'sprite:boxes.png'
 		]
 	};
 
