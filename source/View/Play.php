@@ -74,6 +74,7 @@ __halt_compiler(); ?>
 										Map Title: <input id = "mapTitle" type = "text" />
 										<button id = "setMapTitle">Set</button><br />
 										<button id = "saveMap">Save Map</button><br /><br /><br />
+										<button id = "downloadMap">Download Map</button><br /><br /><br />
 										Load Map: <input id = "loadMap" type = "file"/><br />
 									</td>
 									<td>

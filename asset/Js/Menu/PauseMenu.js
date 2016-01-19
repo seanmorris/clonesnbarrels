@@ -60,6 +60,37 @@ function PauseMenu(game)
 		{
 			bgmPlayer().previous()
 		};
+
+		dynMenu.options['deeper'] = function()
+		{
+			var dynMenu = new Menu(game);
+
+			dynMenu.options['..'] = function(){
+				game.restoreState();
+			};
+
+			dynMenu.options['next'] = function(){
+				game.restoreState();
+
+				var dynMenu = new Menu(game);
+
+				dynMenu.options['.. lol'] = function(){
+					game.restoreState();
+				};
+
+				game.stackState(
+					'menu'
+					, {menu: dynMenu}
+					, true
+				);
+			};
+
+			game.stackState(
+				'menu'
+				, {menu: dynMenu}
+				, true
+			);	
+		};
 		
 		dynMenu.options['back'] = function(){
 			game.restoreState();

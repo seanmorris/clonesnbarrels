@@ -15,6 +15,11 @@ class MapRoute extends \SeanMorris\PressKit\Controller
 
 	public function _dynamic($router)
 	{
+		if(array_key_exists('api', $_GET) || $router->path()->remaining() > 1)
+		{
+			return parent::_dynamic($router);
+		}
+
 		echo new \SeanMorris\ClonesNBarrels\View\Play;
 		die();
 	}

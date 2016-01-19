@@ -70,6 +70,26 @@ function MainState(game)
 			Math.ceil(-vXSize / 2)
 			, Math.ceil(-vYSize / 2)
 		);
+
+		var splitPathname = window.location.pathname.split('/');
+		splitPathname.shift();
+
+		console.log(splitPathname);
+
+		if(splitPathname[1] == 'map')
+		{
+			console.log(splitPathname[2] + ' -- LOAD THAT MAP');
+			var loadMap = new MapStorable;
+
+			loadMap.publicId = splitPathname[2];
+			loadMap.load();
+
+			this.mapStorable = loadMap;
+
+			console.log(loadMap);
+
+			this.world.map.setData(loadMap.mapdata);
+		}
 	}
 
 	this.update = function()

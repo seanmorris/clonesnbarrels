@@ -35,16 +35,6 @@ var Editor = Class.extend({
 
 		var _this = this;
 
-		var splitPathname = window.location.pathname.split('/');
-		splitPathname.shift();
-
-		console.log(splitPathname);
-
-		if(splitPathname[1] == 'map')
-		{
-			console.log(splitPathname[2] + ' -- LOAD THAT MAP');
-		}
-
 		// this.game.currentState.world.map.setData();
 		console.log();
 
@@ -102,13 +92,21 @@ var Editor = Class.extend({
 			{
 				var map = new MapStorable();
 
+				if(_this.game.currentState.mapStorable)
+				{
+					map = _this.game.currentState.mapStorable;
+				}
+
 				map.title = _this.game.currentState.world.map.title;
 				map.mapdata = _this.game.currentState.world.map.getData();
 
 				map.save(_this.game.currentState.world);
+			}
+		);
 
-				return;
-
+		$('button#downloadMap').click(
+			function()
+			{
 				saveAs(
 					new Blob(
 						[_this.game.currentState.world.map.getData()]
