@@ -2,6 +2,7 @@ Js/ThirdParty/Class.js
 Js/ThirdParty/FileSaver.js
 Js/ThirdParty/Cookie.js
 Js/Menu/Menu.js
+Js/Menu/MusicSubmenu.js
 Js/Menu/MainMenu.js
 Js/Menu/Dialog.js
 Js/Menu/PauseMenu.js
@@ -16,7 +17,7 @@ Js/Primitives/Triggerable.js
 Js/Primitives/Projectile.js
 Js/Primitives/Bullet.js
 Js/Primitives/FloorActor.js
-Js/Primitives/Sprite.js
+Js/Primitives/Spritesheet.js
 Js/Sprites/Free/PortalSprite.js
 Js/Sprites/Free/FireSprite.js
 Js/Sprites/Free/ButtonSprite.js

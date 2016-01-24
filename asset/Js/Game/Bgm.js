@@ -20,15 +20,15 @@ var Bgm = Class.extend({
 
 		this.audio = null;
 	}
-	, play: function()
+	, play: function(antiToggle)
 	{
 		if(this.audio)
 		{
-			if(this.audio.paused)
+			if(this.audio.paused && (antiToggle === undefined || antiToggle == true))
 			{
 				this.audio.play();
 			}
-			else
+			else if(!antiToggle)
 			{
 				this.audio.pause();
 			}

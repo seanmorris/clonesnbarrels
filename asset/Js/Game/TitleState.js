@@ -9,7 +9,9 @@ function TitleState(game)
 
 	this.onEnter = function(params)
 	{
-		bgmPlayer().play();
+		var muted = localStorage.getItem('muted');
+
+		muted || bgmPlayer().play();
 		this.titleScreen = new TitleScreen(game);
 		// this.titleBGM = new Audio('/SeanMorris/ClonesNBarrels/Sound/530471_Coins-8Bit.mp3');
 		//this.titleBGM.play();

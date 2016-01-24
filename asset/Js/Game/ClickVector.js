@@ -134,7 +134,8 @@ function ClickVector(mouseState, deadZone)
 		else
 		{
 			context.beginPath();
-/*			context.moveTo(
+/*			
+			context.moveTo(
 				this.endX - $(context.canvas).offset().left
 				, this.endY - $(context.canvas).offset().top
 			);
@@ -150,7 +151,9 @@ function ClickVector(mouseState, deadZone)
 			context.lineWidth = 3;
 			context.strokeStyle = '#CA0';
 			context.stroke();
- */			this.renderQuads(context);
+ /*/
+ //*/			
+ 			this.renderQuads(context);
 		}
 
 		context.globalAlpha = 1;

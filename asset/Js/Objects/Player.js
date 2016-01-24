@@ -19,6 +19,18 @@ var Player = DamageableCharacter.extend({
 		this.doNotStore = true;
 		this.inventory = [];
 		this.stepSpeed = 6;
+		this.ghost = false;
+	}
+	, canStep: function(testCall)
+	{
+		console.log(this.ghost);
+
+		if(this.ghost)
+		{
+			return true;
+		}
+
+		return this._super(testCall);
 	}
 	, acquire: function(item)
 	{
@@ -77,8 +89,27 @@ var Player = DamageableCharacter.extend({
 	, toggleInvincible: function()
 	{
 		this.invincible = !this.invincible;
+
 		this.alterSprite(this.invertColors());
+
 		this.preloadSprite();
+	}
+	, toggleGhost: function()
+	{
+		this.ghost = !this.ghost;
+		
+		if(this.ghost)
+		{
+			this.alterSprite(this.whiteColors());
+		}
+		else
+		{
+			this.resetSprite();
+		}
+
+		this.preloadSprite();
+
+		console.log(this.ghost);
 	}
 	, turn: function(direction)
 	{
@@ -247,7 +278,7 @@ var Player = DamageableCharacter.extend({
 				|| !input.clickVectors
 				|| !input.clickVectors[0]
 			){
-				console.log('STEP', this.stepSpeed);
+				// console.log('STEP', this.stepSpeed);
 				this.step(this.stepSpeed);
 
 				for(var i in this.party)
@@ -272,6 +303,11 @@ var Player = DamageableCharacter.extend({
 		if(input.keyStates[71] === 0)
 		{
 			this.toggleInvincible();
+		}
+
+		if(input.keyStates[72] === 0)
+		{
+			this.toggleGhost();
 		}
 
 		this._super();

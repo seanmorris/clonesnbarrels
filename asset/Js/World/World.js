@@ -357,6 +357,16 @@ var World = Class.extend({
 				canStep = false;
 			}
 
+			if(this.stepMatrix[xI][yI][iI].stepper.ghost)
+			{
+				canStep = true;
+			}
+
+			if(!canStep)
+			{
+				continue;
+			}
+
 			var obj = this.removeObject(
 				this.stepMatrix[xI][yI][iI].stepper.x
 				, this.stepMatrix[xI][yI][iI].stepper.y
@@ -602,5 +612,11 @@ var World = Class.extend({
 		{
 			this.mapSet.loadState(map);
 		}
+
+		this.addObject(
+			this.viewport.actor
+			, this.viewport.actor.x
+			, this.viewport.actor.y
+		);
 	}
 });

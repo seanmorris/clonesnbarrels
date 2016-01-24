@@ -336,12 +336,22 @@ function Game(canvas)
 			{
 				_this.keyStates[ e.keyCode || e.which ] = 1;
 			}
+
+			if(document.activeElement === _this.canvas[0])
+			{
+				e.preventDefault();
+			}
 		}
 	);
 
 	$(document).keyup(
 		function(e)
 		{
+			if(document.activeElement === _this.canvas[0])
+			{
+				e.preventDefault();
+			}
+
 			_this.keyStates[ e.keyCode || e.which] = 0;
 		}
 	);
@@ -437,6 +447,11 @@ function Game(canvas)
 		function(e)
 		{
 			_this.mouseStates[ e.button ] = [e.pageX, e.pageY, 0];
+
+			if(document.activeElement === _this.canvas[0])
+			{
+				e.preventDefault();
+			}
 		}
 	);
 
@@ -499,6 +514,17 @@ function Game(canvas)
 					+ window.mouseY + ")"
 				);
 				_this.scrollStates[0] = true;
+			}
+
+			console.log(
+				document.activeElement
+				, _this.canvas[0]
+				, document.activeElement === _this.canvas[0]
+			);
+
+			if(document.activeElement === _this.canvas[0])
+			{
+				e.preventDefault();
 			}
 		}
 	);

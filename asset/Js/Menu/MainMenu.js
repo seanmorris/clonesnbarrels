@@ -16,24 +16,17 @@ function MainMenu(game)
 
 	this.options['load game']	= function()
 	{
-		//console.log('unimplemented');
+		game.changeState('main', {}, true);
+
+		var saveState = new SaveState();
+		var world = game.currentState.world;
+
+		console.log(world);
+		
+		saveState.load(world);
 	};
 
-	this.options['help']		= function()
-	{
-		//console.log('unimplemented');
-	};
-
-	this.options['credits']		= function()
-	{
-		console.log(
-
-		);
-	};
+	this.options['music']		= MusicSubmenu;
+	this.options['mute']		= MuteSubmenu;
 	
-	this.options['exit']		= function()
-	{
-		window.location.href = '/';
-	};
-
 }

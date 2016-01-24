@@ -200,7 +200,7 @@ var Editor = Class.extend({
 				$('<img />')
 					.attr('id', 'pallet_' + i)
 					.attr('class', 'palletImg')
-					.attr('src', imageCache.loadImage(tilePallet[i]))
+					.attr('src', imageCache.loadImage(tilePallet[i]).src)
 					.attr('data-i', i)
 					.click(
 						function(e)
@@ -300,8 +300,6 @@ var Editor = Class.extend({
 			if(testObj.sprite)
 			{
 				var spriteSrc = imageCache.loadImage(testObj.sprite.standard()[0]).src;
-
-				console.log(spriteSrc);
 			}
 
 			//console.log(testObj.name);

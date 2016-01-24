@@ -197,7 +197,7 @@ function Viewport(game, x, y, size)
 
 		if(!(this.panesXY[x] && this.panesXY[x][y]))
 		{
-			console.log('RENDER PANE', x, y);
+			// console.log('RENDER PANE', x, y);
 			virtualCanvas.width = this.paneSize * this.size;
 			virtualCanvas.height = this.paneSize * this.size;
 

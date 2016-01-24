@@ -16,8 +16,8 @@ __halt_compiler(); ?>
 	</head>
 	<body>
 		<div id = "outer">
-			<div id = inner>
-				<canvas>Oops.</canvas>
+			<div id = "inner">
+				<canvas tabindex="0">Oops.</canvas>
 				<table id = "editor">
 					<tr>
 						<td id = "modeSwapper" colspan = "2">

@@ -42,66 +42,8 @@ function PauseMenu(game)
 		game.restoreState();
 	};
 
-	this.options['music']		= function()
-	{
-		var dynMenu = new Menu(game);
-
-		dynMenu.options['play/pause'] = function()
-		{
-			bgmPlayer().play()
-		};
-		
-		dynMenu.options['next'] = function()
-		{
-			bgmPlayer().next()
-		};
-		
-		dynMenu.options['previous'] = function()
-		{
-			bgmPlayer().previous()
-		};
-
-		dynMenu.options['deeper'] = function()
-		{
-			var dynMenu = new Menu(game);
-
-			dynMenu.options['..'] = function(){
-				game.restoreState();
-			};
-
-			dynMenu.options['next'] = function(){
-				game.restoreState();
-
-				var dynMenu = new Menu(game);
-
-				dynMenu.options['.. lol'] = function(){
-					game.restoreState();
-				};
-
-				game.stackState(
-					'menu'
-					, {menu: dynMenu}
-					, true
-				);
-			};
-
-			game.stackState(
-				'menu'
-				, {menu: dynMenu}
-				, true
-			);	
-		};
-		
-		dynMenu.options['back'] = function(){
-			game.restoreState();
-		};
-
-		game.stackState(
-			'menu'
-			, {menu: dynMenu}
-			, true
-		);
-	};
+	this.options['music']		= MusicSubmenu;
+	this.options['mute']		= MuteSubmenu;
 
 	/*
 
@@ -152,9 +94,4 @@ function PauseMenu(game)
 	};
 
 	*/
-
-	this.options['exit']		= function()
-	{
-		window.location.back();
-	};
 }

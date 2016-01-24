@@ -20,7 +20,7 @@ class MapRoute extends \SeanMorris\PressKit\Controller
 			return parent::_dynamic($router);
 		}
 
-		echo new \SeanMorris\ClonesNBarrels\View\Play;
+		return new \SeanMorris\ClonesNBarrels\View\Play;
 		die();
 	}
 }

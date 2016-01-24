@@ -53,7 +53,7 @@ var Storable = Class.extend({
 			}
 		});
 	}
-	, load: function(world, ignore, id)
+	, load: function(id)
 	{
 		if(id)
 		{

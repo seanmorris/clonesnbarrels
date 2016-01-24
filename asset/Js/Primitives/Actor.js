@@ -3,6 +3,7 @@ var Actor = Class.extend({
 	init: function(sprite)
 	{
 		this.sprite = sprite;
+		this.originalSprite = sprite.extend({});
 
 		this.preloadSprite();
 
@@ -71,6 +72,8 @@ var Actor = Class.extend({
 			'direction', 
 			'name'
 		];
+
+		this.ghost = false;
 	}
 	, reinit: function(sprite)
 	{
@@ -103,6 +106,10 @@ var Actor = Class.extend({
 		}
 	}
 
+	, resetSprite: function()
+	{
+		this.sprite = this.originalSprite.extend({});
+	}
 	, preloadSprite: function()
 	{
 		for(var animation in this.sprite)
@@ -376,6 +383,11 @@ var Actor = Class.extend({
 	}
 	, canStep: function(testCall)
 	{
+		if(this.ghost)
+		{
+			return true;
+		}
+
 		var stepX   = 0;
 		var stepY   = 0;
 		var direction = this.direction;
@@ -518,6 +530,17 @@ var Actor = Class.extend({
 			this.world.removeObject(this.x, this.y, this.i);
 
 			this.i = null;
+		}
+	}
+	, whiteColors: function()
+	{
+		return function(r,g,b)
+		{
+			return [
+				240
+				, 245
+				, 250
+			];
 		}
 	}
 	, invertColors: function()
