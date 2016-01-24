@@ -8,7 +8,7 @@ function Viewport(game, x, y, size)
 	this.y          = y     || 5;
 	this.size       = size  || 16;
 
-	this.updateRadius = 10;
+	this.updateRadius = 40;
 
 	this.paused		= false;
 

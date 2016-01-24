@@ -10,6 +10,11 @@ function ImageCache()
 		
 		var name;
 
+		if(!src.match)
+		{
+			console.log(src);
+		}
+
 		if(name = src.match(/^sprite\:(.+)/))
 		{
 			src = this.spritesheet.getFrame(name[1]);

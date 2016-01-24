@@ -3,9 +3,10 @@ var MapSet = Class.extend({
 	{
 		this.world = world;
 		this.maps = {
-			basement: Basement001
-			, subBasement: Basement002
-			, surface: Surface001
+			//basement: Basement001
+			basement: '8B962905BE7511E5AAAA40167E9DAEB6'
+			, subBasement: '764C62D2C2C711E5B97E40167E9DAEB6'
+			, surface: '291E1412C2C711E5B97E40167E9DAEB6'
 		};
 
 		this.mapStates = {};
@@ -101,6 +102,8 @@ var MapSet = Class.extend({
 				});
 			}
 
+			console.log(this.currentMap);
+
 			this.mapStates[this.currentMap].push(objectCopy);
 		}}}
 
@@ -110,10 +113,19 @@ var MapSet = Class.extend({
 	{
 		var addedObjects = [];
 
-		console.log(1234, map, 5678, this.mapStates[map]);
-
 		if(this.mapStates[map])
 		{
+			console.log(this.mapStates[map].publicId);
+
+			if(this.mapStates[map].publicId)
+			{
+				window.history.replaceState({} ,null, '/clonesNBarrels/map/' + this.mapStates[map].publicId);
+			}
+			else
+			{
+				window.history.replaceState({} ,null, '/clonesNBarrels');
+			}
+
 			this.world.flushObjects();
 			for(var object in this.mapStates[map])
 			{
@@ -196,10 +208,38 @@ var MapSet = Class.extend({
 			this.storeState();
 		}
 
+		var mapData = this.maps[map];
+		
+		if(typeof mapData !== 'object')
+		{
+			var loadMap = new MapStorable();
+			loadMap.load(mapData);
+			var publicId = mapData;
+			mapData = JSON.parse(loadMap.mapdata);
+			mapData.publicId = publicId;
+			this.world.game.currentState.mapStorable = loadMap;
+			this.maps[publicId] = mapData
+		}
+		else
+		{
+			this.world.game.currentState.mapStorable = null;
+		}
+
 		this.world.map.setData(
-			JSON.stringify(this.maps[map])
+			JSON.stringify(mapData)
 			//, ignoreState	
 		);
+
+		console.log(mapData.publicId);
+
+		if(mapData.publicId)
+		{
+			window.history.replaceState({} ,null, '/clonesNBarrels/map/' + mapData.publicId);
+		}
+		else
+		{
+			window.history.replaceState({} ,null, '/clonesNBarrels');
+		}
 
 		if(ignoreState)
 		{
@@ -221,12 +261,12 @@ var MapSet = Class.extend({
 
 		if(x === undefined)
 		{
-			x = this.maps[map].start[0];
+			x = mapData.start[0];
 		}
 
 		if(y === undefined)
 		{
-			y = this.maps[map].start[1];
+			y = mapData.start[1];
 		}
 
 		this.world.refreshStepMatrix();
@@ -251,5 +291,10 @@ var MapSet = Class.extend({
 		}
 
 		this.currentMap = map;
+	}
+	, addMap: function(mapStorable)
+	{
+		this.maps[mapStorable.publicId] = JSON.parse(mapStorable.mapdata);
+		this.maps[mapStorable.publicId].publicId = mapStorable.publicId;
 	}
 });

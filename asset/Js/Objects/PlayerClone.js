@@ -25,6 +25,10 @@ var PlayerClone = Player.extend({
 		this.alterSprite(scaleColorFunc);
 		this.preloadSprite();
 
+		this.originalSprite = this.sprite.clone();
+
+		console.log(this.originalSprite);
+
 		var corpse = this.corpse;
 
 		while(corpse)

@@ -8,13 +8,24 @@ var SaveState = Storable.extend({
 	}
 	, save: function(world)
 	{
+		if(!this.publicId)
+		{
+			this.publicId = localStorage.getItem(this._key);
+		}
+
 		this.savedata = JSON.stringify(world.getState());
 
 		this._super();
 	}
 	, load: function(world)
 	{
+		if(!this.publicId)
+		{
+			this.publicId = localStorage.getItem(this._key);
+		}
+
 		this._super();
+
 		this.savedata = JSON.parse(this.savedata);
 
 		world.setState(this.savedata);
@@ -30,9 +41,6 @@ var SaveState = Storable.extend({
 			, this.savedata.playerState.y
 			, true
 		);
-
-		console.log('ABCDE', this.savedata.playerState);
-
 	}
 	, update: function(world, ignore, id)
 	{

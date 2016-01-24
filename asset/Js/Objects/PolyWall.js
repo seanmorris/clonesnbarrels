@@ -158,7 +158,7 @@ var PolyWall = Triggerable.extend({
 							}
 						}
 
-						if(blockers[i].name == 'Box' || blockers[i].name == 'Boxes')
+						if(blockers[i] && (blockers[i].name == 'Box' || blockers[i].name == 'Boxes'))
 						{
 							hitWall = true;
 						}

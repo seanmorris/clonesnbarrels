@@ -95,11 +95,16 @@ var Editor = Class.extend({
 				if(_this.game.currentState.mapStorable)
 				{
 					map = _this.game.currentState.mapStorable;
+					map.publicId = _this.game.currentState.mapStorable.publicId;
+				}
+				else
+				{
+					map.publicId = _this.game.currentState.world.mapSet.currentMap;
 				}
 
 				map.title = _this.game.currentState.world.map.title;
 				map.mapdata = _this.game.currentState.world.map.getData();
-
+				
 				map.save(_this.game.currentState.world);
 			}
 		);

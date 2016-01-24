@@ -108,8 +108,9 @@ var Actor = Class.extend({
 
 	, resetSprite: function()
 	{
-		console.log(this.originalSprite);
-		this.sprite = new (Class.extend(this.originalSprite));
+		console.log(this.sprite);
+		this.sprite = this.originalSprite.clone();
+		console.log(this.sprite);
 	}
 	, preloadSprite: function()
 	{
@@ -538,9 +539,9 @@ var Actor = Class.extend({
 		return function(r,g,b)
 		{
 			return [
-				240
-				, 245
-				, 250
+				255
+				, 255
+				, 255
 			];
 		}
 	}
@@ -601,7 +602,7 @@ var Actor = Class.extend({
 					if(animation !== 'standard')
 					{
 						imageCache.loadImage(
-						this.sprite[animation][direction][frame]
+							this.sprite[animation][direction][frame]
 							, function()
 							{
 								virtualCanvas.width = this.width;
@@ -643,6 +644,8 @@ var Actor = Class.extend({
 				}
 			}
 		}
+
+		return this.sprite;
 	}
 	, collide: function(other)
 	{

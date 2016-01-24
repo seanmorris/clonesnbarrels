@@ -39,6 +39,21 @@ class MapForm extends \SeanMorris\Form\Form
 			, 'type' => 'text'
 		];
 
+		$skeleton['saveContinue'] = [
+			'_title' => 'Save & Continue'
+			, 'type' => 'submit'
+		];
+
+		$skeleton['saveView'] = [
+			'_title' => 'Save & Play'
+			, 'type' => 'submit'
+		];
+
+		$skeleton['saveExit'] = [
+			'_title' => 'Save & Exit'
+			, 'type' => 'submit'
+		];
+
 		parent::__construct($skeleton);
 	}
 };

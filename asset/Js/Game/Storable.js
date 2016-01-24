@@ -9,16 +9,7 @@ var Storable = Class.extend({
 	}
 	, save: function()
 	{
-		var data = {}, id;
-
-		if(!id)
-		{
-			this.publicId = localStorage.getItem(this._key);
-		}
-		else
-		{
-			this.publicId = id;
-		}
+		var data = {};
 
 		for(var i in this)
 		{
@@ -26,8 +17,10 @@ var Storable = Class.extend({
 			{
 				data[i] = this[i];
 			}
-		}
 
+			console.log(i, data);
+
+		}
 		var endpoint = this._endpoint
 			+ '/'
 			+ this.publicId
@@ -58,11 +51,7 @@ var Storable = Class.extend({
 		if(id)
 		{
 			this.publicId = id;
-		}
-		else
-		{
-			this.publicId = localStorage.getItem(this._key);
-		}
+		}		
 
 		var endpoint = this._endpoint
 			+ '/'

@@ -4,6 +4,7 @@ function MainState(game)
 	this.world;
 
 	this.inst = ++MainState.instanceCount;
+	this.mapStorable = null;
 
 	//*
 	//1767 tiles
@@ -64,8 +65,6 @@ function MainState(game)
 
 		this.player.turn(1);
 
-		this.world.mapSet.switchMap(this.world.mapSet.startingMap);
-
 		this.viewport.warp(
 			Math.ceil(-vXSize / 2)
 			, Math.ceil(-vYSize / 2)
@@ -80,15 +79,19 @@ function MainState(game)
 		{
 			console.log(splitPathname[2] + ' -- LOAD THAT MAP');
 			var loadMap = new MapStorable;
-
-			loadMap.publicId = splitPathname[2];
-			loadMap.load();
+			console.log(loadMap);
+			loadMap.load(splitPathname[2]);
 
 			this.mapStorable = loadMap;
 
 			console.log(loadMap);
 
-			this.world.map.setData(loadMap.mapdata);
+			this.world.mapSet.addMap(loadMap);
+			this.world.mapSet.switchMap(loadMap.publicId);
+		}
+		else
+		{
+			this.world.mapSet.switchMap(this.world.mapSet.startingMap);
 		}
 	}
 
