@@ -1,13 +1,10 @@
-function BloodStainSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:blood_stain.png'
-		]
-	};
-
-	this.standard = function()
+var BloodStainSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:blood_stain.png'
+			]
+		};
 	}
-}
+});

@@ -1,13 +1,10 @@
-function WoodBoxSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:wood_box.png'
-		]
-	};
-
-	this.standard = function()
+var WoodBoxSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:wood_box.png'
+			]
+		};
 	}
-}
+});

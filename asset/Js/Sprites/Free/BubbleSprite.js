@@ -1,13 +1,10 @@
-function BubbleSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:bubble.png'
-		]
-	};
-
-	this.standard = function()
+var BubbleSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:bubble.png'
+			]
+		};
 	}
-}
+});

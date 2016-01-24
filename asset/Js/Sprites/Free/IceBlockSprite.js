@@ -1,13 +1,10 @@
-function IceBlockSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:ice.png'
-		]
-	};
-
-	this.standard = function()
+var IceBlockSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:ice.png'
+			]
+		};
 	}
-}
+});

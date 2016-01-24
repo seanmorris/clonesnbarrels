@@ -4,7 +4,7 @@ var Player = DamageableCharacter.extend({
 		this.name 			= 'Player';
 		this.moveThreshold	= 3;
 		this.moveAccs		= [];
-		this._super(new PlayerSprite, 100);
+		this._super(new PlayerSprite(), 100);
 		this.corpse = new Corpse(
 			new PlayerCorpseSprite()
 			, 1

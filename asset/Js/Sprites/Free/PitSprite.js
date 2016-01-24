@@ -1,13 +1,10 @@
-function PitSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:pit.png'
-		]
-	};
-
-	this.standard = function()
+var PitSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:pit.png'
+			]
+		};
 	}
-}
+});

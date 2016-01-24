@@ -1,13 +1,10 @@
-function SandbagSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:sandbag.png'
-		]
-	};
-
-	this.standard = function()
+var SandbagSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:sandbag.png'
+			]
+		};
 	}
-}
+});

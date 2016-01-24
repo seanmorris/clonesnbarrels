@@ -1,13 +1,10 @@
-function BoxesSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:boxes.png'
-		]
-	};
-
-	this.standard = function()
+var BoxesSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:boxes.png'
+			]
+		};
 	}
-}
+});

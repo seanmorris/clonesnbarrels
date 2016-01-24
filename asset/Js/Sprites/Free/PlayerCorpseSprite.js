@@ -1,13 +1,10 @@
-function PlayerCorpseSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:player_corpse.png'
-		]
-	};
-
-	this.standard = function()
+var PlayerCorpseSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:player_corpse.png'
+			]
+		};
 	}
-}
+});

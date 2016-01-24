@@ -1,22 +1,24 @@
-function LaserBeamSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:laser_vert.png'
-		]
-		, 'west': [
-			'sprite:laser.png'
-		]
-		, 'north': [
-			'sprite:laser_vert.png'
-		]
-		, 'east': [
-			'sprite:laser.png'
-		]
-	};
-
-	this.standard = function()
+var LaserBeamSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.west;
+		this.standing = {
+			'south': [
+				'sprite:laser_vert.png'
+			]
+			, 'west': [
+				'sprite:laser.png'
+			]
+			, 'north': [
+				'sprite:laser_vert.png'
+			]
+			, 'east': [
+				'sprite:laser.png'
+			]
+		};
+
+		this.standard = function()
+		{
+			return this.standing.west;
+		}
 	}
-}
+});

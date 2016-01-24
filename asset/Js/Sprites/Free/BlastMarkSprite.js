@@ -1,13 +1,10 @@
-function BlastMarkSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:blast_mark.png'
-		]
-	};
-
-	this.standard = function()
+var BlastMarkSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:blast_mark.png'
+			]
+		};
 	}
-}
+});

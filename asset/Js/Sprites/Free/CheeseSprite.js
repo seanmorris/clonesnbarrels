@@ -1,13 +1,10 @@
-function CheeseSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:cheese.png'
-		]
-	};
-
-	this.standard = function()
+var CheeseSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:cheese.png'
+			]
+		};
 	}
-}
+});

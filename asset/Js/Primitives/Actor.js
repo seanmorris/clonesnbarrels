@@ -3,7 +3,7 @@ var Actor = Class.extend({
 	init: function(sprite)
 	{
 		this.sprite = sprite;
-		this.originalSprite = sprite.extend({});
+		this.originalSprite = new (Class.extend(sprite));
 
 		this.preloadSprite();
 
@@ -108,7 +108,8 @@ var Actor = Class.extend({
 
 	, resetSprite: function()
 	{
-		this.sprite = this.originalSprite.extend({});
+		console.log(this.originalSprite);
+		this.sprite = new (Class.extend(this.originalSprite));
 	}
 	, preloadSprite: function()
 	{

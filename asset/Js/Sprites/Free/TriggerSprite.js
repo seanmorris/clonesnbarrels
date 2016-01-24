@@ -1,13 +1,10 @@
-function TriggerSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:trigger.png'
-		]
-	};
-
-	this.standard = function()
+var TriggerSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:trigger.png'
+			]
+		};
 	}
-}
+});

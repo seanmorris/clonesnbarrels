@@ -1,13 +1,10 @@
-function BoxSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:box.png'
-		]
-	};
-
-	this.standard = function()
+var BoxSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:box.png'
+			]
+		};
 	}
-}
+});

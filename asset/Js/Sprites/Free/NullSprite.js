@@ -1,13 +1,10 @@
-function NullSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:null.png'
-		]
-	};
-
-	this.standard = function()
+var NullSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:null.png'
+			]
+		};
 	}
-}
+});

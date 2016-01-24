@@ -1,13 +1,10 @@
-function ButtonSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:button.png'
-		]
-	};
-
-	this.standard = function()
+var ButtonSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:button.png'
+			]
+		};
 	}
-}
+});

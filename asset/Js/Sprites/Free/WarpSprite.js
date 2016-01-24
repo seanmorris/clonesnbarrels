@@ -1,13 +1,10 @@
-function WarpSprite()
-{
-	this.standing = {
-		'south': [
-			'sprite:warp.png'
-		]
-	};
-
-	this.standard = function()
+var WarpSprite = Sprite.extend({
+	init: function()
 	{
-		return this.standing.south;
+		this.standing = {
+			'south': [
+				'sprite:warp.png'
+			]
+		};
 	}
-}
+});
