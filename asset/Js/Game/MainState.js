@@ -10,12 +10,12 @@ function MainState(game)
 	//1767 tiles
 	var vXSize	= 57;
 	var vYSize	= 31;
-	/*/
+	//*/
 	//1025 tiles
 	var vXSize	= 41;
 	var vYSize	= 25;
 	//*/
-	/*/
+	//*/
 	/*/
 	var vXSize	= 25;
 	var vYSize	= 19;
@@ -86,6 +86,7 @@ function MainState(game)
 
 			console.log(loadMap);
 
+			this.world.map.setData(loadMap.mapdata);
 			this.world.mapSet.addMap(loadMap);
 			this.world.mapSet.switchMap(loadMap.publicId);
 		}

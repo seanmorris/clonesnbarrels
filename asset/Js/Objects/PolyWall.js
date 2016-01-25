@@ -113,7 +113,7 @@ var PolyWall = Triggerable.extend({
 			var spawnY = parseInt(this.y) + parseInt(stepY);
 			var hitWall = false;
 
-			while(this.world.canSpawn(spawnX, spawnY) || !hitWall)
+			while(this.world && (this.world.canSpawn(spawnX, spawnY) || !hitWall))
 			{
 				var newBox;
 

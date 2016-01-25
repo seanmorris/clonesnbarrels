@@ -95,7 +95,7 @@ var Barrel = DamageableBindable.extend({
 	{
 		//console.log('crush', other);
 		this._super(other);
-		this.damage(5);
+		this.damage(25);
 	}
 	, onStep: function()
 	{

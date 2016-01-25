@@ -88,11 +88,14 @@ var Player = DamageableCharacter.extend({
 	}
 	, toggleInvincible: function()
 	{
-		this.invincible = !this.invincible;
+		this.resetSprite();
 
-		this.alterSprite(this.invertColors());
+		if(this.invincible = !this.invincible)
+		{
+			this.alterSprite(this.invertColors());
 
-		this.preloadSprite();
+			this.preloadSprite();
+		}
 	}
 	, toggleGhost: function()
 	{

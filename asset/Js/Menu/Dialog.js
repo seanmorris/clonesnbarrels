@@ -12,12 +12,19 @@ function Dialog(game, text)
 
 	this.leftMargin = 0;
 
-	this.topMargin  = 8;
+	this.topMargin  = -15;
 
 	this.beepNoise = BeepNoise;
 
 	var width   = game.canvas.width();
 	var height  = game.canvas.height();
+
+	if(text)
+	{
+		this.lines = text.split(/\n/);
+		this.lineCount = this.lines.length;
+		console.log(this.lines);
+	}
 
 	this.render = function()
 	{
@@ -51,7 +58,7 @@ function Dialog(game, text)
 			0
 			, (height/8)*3
 			, width
-			, (height/8)*2
+			, (height/8)*2 + this.lineCount * 35 
 		);
 
 		context.globalAlpha = 1;
@@ -60,22 +67,14 @@ function Dialog(game, text)
 		context.font = '18pt monospace';
 		context.textAlign = 'center';
 
-		context.fillText(
-			text
-			, center[0] + this.leftMargin
-			, center[1] + this.topMargin
-		);
-	}
-
-	this.rect = function()
-	{
-		var context     = game.canvas[0].getContext('2d');
-		context.rect(
-			0
-			, (height/8)*3
-			, width
-			, (height/8)*2
-		);
+		for(var i in this.lines)
+		{
+			context.fillText(
+				this.lines[i]
+				, center[0] + this.leftMargin
+				, center[1] + (this.topMargin) + i * 35
+			);
+		}
 	}
 
 	this.exit = 0;

@@ -197,9 +197,9 @@ var Editor = Class.extend({
 
 		for(var i in tilePallet)
 		{
-			console.log(tilePallet[i]);
+			// console.log(tilePallet[i]);
 
-			console.log(imageCache.loadImage(tilePallet[i]));
+			// console.log(imageCache.loadImage(tilePallet[i]));
 
 			this.tilePalletBox.append(
 				$('<img />')

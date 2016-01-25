@@ -8,7 +8,7 @@ function Viewport(game, x, y, size)
 	this.y          = y     || 5;
 	this.size       = size  || 16;
 
-	this.updateRadius = 40;
+	this.updateRadius = 5;
 
 	this.paused		= false;
 
@@ -623,6 +623,23 @@ function Viewport(game, x, y, size)
 		var yStart	= -this.y + this.yPosition - this.updateRadius;
 		var yEnd	= 1 + this.y + this.yPosition + this.updateRadius;
 		var yInc	= 1;
+		var earlyList = {};
+
+		for(var eI in this.updateObjectsEarly)
+		{
+			if(!this.updateObjectsEarly[eI] || this.game.dev)
+			{
+				continue;
+			}
+
+			this.updateObjectsEarly[eI].update(input);
+
+			earlyList[
+				this.updateObjectsEarly[eI].x
+				+ '' + this.updateObjectsEarly[eI].y
+				+ '' + this.updateObjectsEarly[eI].i
+			] = true;
+		}
 
 		for(
 			var xI = xStart;

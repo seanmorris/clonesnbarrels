@@ -27,7 +27,7 @@ var PlayerClone = Player.extend({
 
 		this.originalSprite = this.sprite.clone();
 
-		console.log(this.originalSprite);
+		// console.log(this.originalSprite);
 
 		var corpse = this.corpse;
 
@@ -70,9 +70,11 @@ var PlayerClone = Player.extend({
 	}
 	, step: function(speed, masterStep)
 	{
-		if(masterStep && !this.ignoreControl)
+		// console.log(masterStep);
+
+		if(!this.ignoreControl)
 		{
-			this._super(speed);
+			return this._super(speed);
 		}
 	}
 	, turn: function(direction)

@@ -2,7 +2,7 @@ function Menu(game)
 {
 	this.cacheBg				= null;
 	this.ignoreInput			= 0;
-	this.ignoreInputTime		= 5;
+	this.ignoreInputTime		= 2;
 	this.options				= [];
 
 	this.selected = 0;
@@ -80,7 +80,7 @@ function Menu(game)
 				)
 			){
 				this.selected--;
-				this.ignoreInput = this.ignoreInputTime + tickDelay;
+				this.ignoreInput = this.ignoreInputTime;
 			}
 			else if(
 				game.keyStates[40]
@@ -93,7 +93,7 @@ function Menu(game)
 				)
 			){
 				this.selected++;
-				this.ignoreInput = this.ignoreInputTime + tickDelay;
+				this.ignoreInput = this.ignoreInputTime;
 			}
 			else if(
 				game.keyStates[32] === 0
@@ -244,7 +244,7 @@ function Menu(game)
 			{
 				this.context.fillStyle = this.selectedBoxColor;
 				this.context.fillRect(
-					center[0] - this.selectedBoxSize+this.leftMargin
+					center[0] - this.selectedBoxSize + this.leftMargin
 					, offset + this.topMargin
 					, this.selectedBoxSize
 					, this.selectedBoxSize
@@ -255,7 +255,7 @@ function Menu(game)
 				this.context.fillText(
 					showText
 					, center[0]+this.leftTextMargin+this.leftMargin
-					,  offset + this.topMargin + (this.margins + this.selectedMargins)
+					,  offset + this.topMargin + this.selectedMargins
 				);
 			}
 			else if(j > this.selected)

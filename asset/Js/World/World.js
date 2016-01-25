@@ -48,6 +48,11 @@ var World = Class.extend({
 			object.setPosition(x, y, i);
 		}
 
+		if(object instanceof PolyWall)
+		{
+			this.viewport.updateEarly(object);
+		}
+
 		return i;
 	}
 
@@ -601,6 +606,7 @@ var World = Class.extend({
 		return {
 			state: this.mapSet.storeState()
 			, playerState: this.mapSet.playerState
+			, partyState: this.mapSet.partyState
 		};
 	}
 	, setState: function(state)
@@ -611,6 +617,13 @@ var World = Class.extend({
 		for(var map in this.mapSet.maps)
 		{
 			this.mapSet.loadState(map);
+		}
+
+		if(!this.viewport.actor)
+		{
+			this.viewport.actor;
+
+			this.viewport.actor = new Player();
 		}
 
 		this.addObject(

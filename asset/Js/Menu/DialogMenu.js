@@ -17,19 +17,20 @@ function DialogMenu()
 		//this.context.save();
 
 		this.context.strokeStyle = '#FF0';
-		this.context.strokeRect(
+		/*this.context.strokeRect(
 			0
-			, (height/8)*3
+			, (height/8)*3 - (this.dialog.lineCount * 25)
 			, width
-			, (height/8)*2
+			, (height/8)*2 + (this.dialog.lineCount * 50)
 		);
+		*/
 
 		//this.context.clip();
 
 		this.menu.context = this.context;
 
-		this.menu.leftMargin = 250;
-		this.menu.topMargin = 200;
+		//this.menu.leftMargin = 250;
+		this.menu.topMargin = 250 + this.dialog.lineCount * 35;
 		this.menu.render(true);
 
 		//this.context.restore();
@@ -37,7 +38,7 @@ function DialogMenu()
 
 	this.update = function(input)
 	{
-		this.menu.update(input);
-		this.dialog.update({});
+		this.menu   && this.menu.update(input);
+		this.dialog && this.dialog.update({});
 	}
 }

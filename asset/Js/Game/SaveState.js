@@ -28,7 +28,7 @@ var SaveState = Storable.extend({
 
 		this.savedata = JSON.parse(this.savedata);
 
-		world.setState(this.savedata);
+		console.log(this.savedata);
 
 		for(var map in this.savedata.state)
 		{
@@ -39,8 +39,25 @@ var SaveState = Storable.extend({
 			this.savedata.playerState.map
 			, this.savedata.playerState.x
 			, this.savedata.playerState.y
-			, true
 		);
+
+		console.log(this.savedata.partyState);
+
+		if(this.savedata.partyState)
+		{
+			for(var i in this.savedata.partyState)
+			{
+				var clone = new PlayerClone();
+
+				world.addObject(
+					clone
+					, this.savedata.partyState[i].x
+					, this.savedata.partyState[i].y
+				);
+
+				world.viewport.actor.addParty(clone);
+			}
+		}
 	}
 	, update: function(world, ignore, id)
 	{
@@ -60,7 +77,6 @@ var SaveState = Storable.extend({
 			savedata.playerState.map
 			, savedata.playerState.x
 			, savedata.playerState.y
-			, true
 		);
 	}
 });

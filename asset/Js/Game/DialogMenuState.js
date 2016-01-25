@@ -22,6 +22,8 @@ function DialogMenuState(game)
 		{
 			this.dialogMenu.menu = params.menu;
 		}
+
+		console.log(this.dialogMenu.menu.topMargin);
 	}
 
 	this._update = this.update;

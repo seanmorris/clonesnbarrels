@@ -2,7 +2,7 @@ var CloningNoise = new Audio('/SeanMorris/ClonesNBarrels/Sound/cloning.wav');
 var CloneMachine = Actor.extend({
 	init: function()
 	{
-		this.coolDownTime	= 50;
+		this.coolDownTime	= 15;
 		this.coolDown		= 0;
 		this.cloneCount		= 0;
 		this.maxClones		= 3;
@@ -38,7 +38,7 @@ var CloneMachine = Actor.extend({
 
 			this.world.game.stackState(
 				'dialogMenu', {
-					text: 'Clone dispensed.'
+					text: "Clone dispensed."
 					, menu: new ContinueMenu(this.world.game)
 				}, true
 			);
@@ -68,7 +68,7 @@ var CloneMachine = Actor.extend({
 			{
 				var rootUser = this.user;
 
-				while(rootUser.master)
+				while(rootUser && rootUser.master)
 				{
 					rootUser = rootUser.master;
 				}

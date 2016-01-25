@@ -20,7 +20,7 @@ var MapSet = Class.extend({
 		console.log('STORING STATE');
 		var mainActor = this.world.viewport.actor;
 
-		if(!mainActor)
+		if(!mainActor || !mainActor instanceof Player)
 		{
 			mainActor = new Player();
 
@@ -32,6 +32,20 @@ var MapSet = Class.extend({
 		this.playerState.map = this.currentMap;
 		this.playerState.x = mainActor.x;
 		this.playerState.y = mainActor.y;
+
+		this.partyState = {};
+
+		if(mainActor.party)
+		{
+			for(var i in mainActor.party)
+			{
+				this.partyState[i] = {
+					x: mainActor.party[i].x
+					, y: mainActor.party[i].y
+					, i: mainActor.party[i].i
+				};
+			}
+		}
 
 		if(this.currentMap)
 		{
@@ -115,9 +129,13 @@ var MapSet = Class.extend({
 
 		if(this.mapStates[map])
 		{
-			console.log(this.mapStates[map].publicId);
+			// console.log(this.mapStates[map].publicId);
 
-			if(this.mapStates[map].publicId)
+			var loc = window.location.pathname.split('/');
+
+			console.log(loc);
+
+			if(this.mapStates[map].publicId && loc.length > 2)
 			{
 				window.history.replaceState({} ,null, '/clonesNBarrels/map/' + this.mapStates[map].publicId);
 			}
@@ -179,7 +197,7 @@ var MapSet = Class.extend({
 
 					if(addedObjects[o].loadedData.refs.triggers[0])
 					{
-						console.log(addedObjects[o].loadedData.refs.triggers[0]);
+						// console.log(addedObjects[o].loadedData.refs.triggers[0]);
 					}
 
 					for(var t in addedObjects[o].loadedData.refs.triggers)
@@ -232,7 +250,12 @@ var MapSet = Class.extend({
 
 		console.log(mapData.publicId);
 
-		if(mapData.publicId)
+		var loc = window.location.pathname.split('/');
+
+		console.log(loc);
+
+
+		if(mapData.publicId && loc.length > 2)
 		{
 			window.history.replaceState({} ,null, '/clonesNBarrels/map/' + mapData.publicId);
 		}
