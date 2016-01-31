@@ -92,8 +92,11 @@ var Player = DamageableCharacter.extend({
 
 		if(this.invincible = !this.invincible)
 		{
+			this.alterSprite(this.scaleColors(1.2, .6, .5, 1));
+			this.preloadSprite();
 			this.alterSprite(this.invertColors());
-
+			this.preloadSprite();
+			this.alterSprite(this.scanGlitchColors(4,0));
 			this.preloadSprite();
 		}
 	}
@@ -103,7 +106,7 @@ var Player = DamageableCharacter.extend({
 		
 		if(this.ghost)
 		{
-			this.alterSprite(this.whiteColors());
+			this.alterSprite(this.ghostColors());
 		}
 		else
 		{

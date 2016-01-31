@@ -9,20 +9,24 @@ var PlayerClone = Player.extend({
 		colorFunc = this.swapColors(
 			(PlayerClone.cloneCount+0)%3
 			, (PlayerClone.cloneCount+2)%3
-			,(PlayerClone.cloneCount+1)%3
+			, (PlayerClone.cloneCount+1)%3
+			, 3
 		);
 
+		var iv = 0.4, iv2 = 0.5;
+
 		scaleColorFunc = this.scaleColors(
-			1//Math.random()
-			, 1//Math.random()
-			, 1//Math.random()
+			1 + ((Math.random()-iv2)*iv)
+			, 1 + ((Math.random()-iv2)*iv)
+			, 1 + ((Math.random()-iv2)*iv)
+			, 1
 		);
 
 		PlayerClone.cloneCount++;
 
 		this.alterSprite(colorFunc);
 		this.preloadSprite();
-		this.alterSprite(scaleColorFunc);
+		//this.alterSprite(scaleColorFunc);
 		this.preloadSprite();
 
 		this.originalSprite = this.sprite.clone();

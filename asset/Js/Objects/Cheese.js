@@ -40,7 +40,7 @@ var Cheese = Bindable.extend({
 		}
 		if(other instanceof WoodBox && !other.cheesed)
 		{
-			swapColorFunc = this.swapColors(0,0,0);
+			swapColorFunc = this.swapColors(0,0,0,3);
 			other.alterSprite(swapColorFunc);
 			other.setHealth(5);
 		}
@@ -50,11 +50,13 @@ var Cheese = Bindable.extend({
 				2
 				, 1
 				, 0
+				, 3
 			);
 			scaleColorFunc = this.scaleColors(
 				0.1//Math.random()
 				, 0.7//Math.random()
 				, 1//Math.random()
+				, 0
 			);
 			other.alterSprite(swapColorFunc);
 			//other.alterSprite(scaleColorFunc);

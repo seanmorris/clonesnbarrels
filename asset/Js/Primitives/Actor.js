@@ -534,53 +534,75 @@ var Actor = Class.extend({
 			this.i = null;
 		}
 	}
-	, whiteColors: function()
+	, ghostColors: function()
 	{
-		return function(r,g,b)
+		return function(r,g,b,a,x,y)
 		{
+			var average = ((r+b+g)/3);
+			var alpha = average > 150 ? average : 0;
 			return [
-				255
-				, 255
-				, 255
+				(r+average*2)/3
+				, (g+average*2)/3
+				, (b+average*2)/3
+				, a ? alpha : 0
 			];
 		}
 	}
+	, scanGlitchColors: function(scanWidth)
+	{
+		return function(r,g,b,a,x,y)
+		{
+			var offset = Math.floor(Date.now()/1000);
+			if((y+offset)%scanWidth && (r > 60 || g > 70))
+			{
+				return [r,g,b,a];
+			}
+			else
+			{
+				return [g,r,b,a-((r+b+g)/3)];
+			}
+		};
+	}
 	, invertColors: function()
 	{
-		return function(r,g,b)
+		return function(r,g,b,a)
 		{
 			return [
 				255 - r
 				, 255 - g
 				, 255 - b
+				, a
 			];
 		}
 	}
-	, scaleColors: function(iR,iG,iB)
+	, scaleColors: function(iR,iG,iB,iA)
 	{
-		return function(r,g,b)
+		return function(r,g,b,a)
 		{
 			r *= iR;
 			g *= iG;
 			b *= iB;
+			a *= iA;
 
 			//return [r,g,b];
 			return[
 				(r>=0)?(r<256?r:255):0
 				, (g>=0)?(g<256?g:255):0
 				, (b>=0)?(b<256?b:255):0
+				, (a>=0)?(a<256?a:255):0
 			];
 		}
 	}
-	, swapColors: function(rP,gP,bP)
+	, swapColors: function(rP,gP,bP,aP)
 	{
-		//console.log('SWAP:', rP, gP, bP);
+		console.log('SWAP:', rP, gP, bP, aP);
 		return function()
 		{
 			return [
 				arguments[rP]
 				, arguments[gP]
 				, arguments[bP]
+				, arguments[aP]
 			];
 		}
 	}
@@ -617,15 +639,20 @@ var Actor = Class.extend({
 
 								for(var i = 0; i < imageData.data.length; i += 4)
 								{
+									var pix = i/4;
 									var newPixel = pixelFunc(
 										imageData.data[i]
 										, imageData.data[i+1]
 										, imageData.data[i+2]
+										, imageData.data[i+3]
+										, (pix % this.width)
+										, Math.floor(pix / this.width)
 									);
 
 									imageData.data[i] = newPixel[0];
 									imageData.data[i+1] = newPixel[1];
 									imageData.data[i+2] = newPixel[2];
+									imageData.data[i+3] = newPixel[3];
 
 
 									/*
