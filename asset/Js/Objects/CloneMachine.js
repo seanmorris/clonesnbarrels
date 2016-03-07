@@ -25,23 +25,29 @@ var CloneMachine = Actor.extend({
 		{
 			if(this.cloneCount >= this.maxClones)
 			{
-				this.world.game.stackState(
+				this.world.game.message.blit('CloneMachine resources exhausted.');
+
+				/*this.world.game.stackState(
 					'dialog',
 					{text: 'Machine resources exhausted.'},
 					true
-				);
+				);*/
 
 				//console.log('boom!');
 				this.destroy();
 				return;
 			}
 
+			/*
 			this.world.game.stackState(
 				'dialogMenu', {
 					text: "Clone dispensed."
 					, menu: new ContinueMenu(this.world.game)
 				}, true
 			);
+			*/
+
+			this.world.game.message.blit('Clone dispensed.');
 
 			var spawnShift = 0;
 

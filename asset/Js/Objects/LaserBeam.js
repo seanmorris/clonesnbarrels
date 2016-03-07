@@ -128,4 +128,8 @@ var LaserBeam = Triggerable.extend({
 	{
 		return true;
 	}
+	, announceDeath: function()
+	{
+		
+	}
 });

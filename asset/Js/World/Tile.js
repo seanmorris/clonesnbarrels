@@ -38,4 +38,12 @@ function Tile(world, x, y)
 	{
 		return this.world.removeObject(this.x,this.y,i);
 	}
+
+	this.vacuumDamage = function(object)
+	{
+		if(object.vacuumDamage && object.vacuumDamage instanceof Function)
+		{
+			object.vacuumDamage(5);
+		}
+	}
 }

@@ -70,6 +70,11 @@ var PlayerClone = Player.extend({
 			this.resumeControl--;
 		}
 
+		if(this.health < 0)
+		{
+			this.ignoreControl = true;
+		}
+
 		this._super(input, true);
 	}
 	, step: function(speed, masterStep)
@@ -127,9 +132,43 @@ var PlayerClone = Player.extend({
 	{
 		if(this.master)
 		{
-			console.log(this.master.removeParty(this));
+			if(this.corpse && !clean)
+			{
+				// this.master.addParty(this.corpse);
+			}
+			
+			this.master.removeParty(this)
 		}
+		
 		this._super(clean);
+	}
+	, announceDeath: function()
+	{
+		if(this.lastDamagedBy.name)
+		{
+			this.world.game.message.blit('You killed a clone with a ' + this.lastDamagedBy.name, 350);
+		}
+	}
+	, vacuumDamage: function()
+	{
+		for(var i in this.inventory)
+		{
+			if(this.inventory[i].preventVacuumDamage)
+			{
+				return;
+			}
+		}
+
+		if(this.vacuumDamageTimer <= 0)
+		{
+			this.damage(10);
+			this.vacuumDamageTimer = this.vacuumDamageTimerMax;
+			return;
+		}
+
+		this.world
+
+		this.vacuumDamageTimer--;
 	}
 });
 PlayerClone.cloneCount = 0;

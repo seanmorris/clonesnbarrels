@@ -77,6 +77,11 @@ var PolyWall = Triggerable.extend({
 						this.children.splice(i, 1);
 					}
 				}
+
+				if(!this.children.length)
+				{
+					this.world.game.message.blit('Door opened.');
+				}
 			}
 		}
 
@@ -150,7 +155,7 @@ var PolyWall = Triggerable.extend({
 							if(blockers[i].damage
 								&& blockers[i].damage instanceof Function
 							){
-								blockers[i].damage(10000);
+								blockers[i].damage(10000, this);
 							}
 							else
 							{

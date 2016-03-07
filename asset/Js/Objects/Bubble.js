@@ -8,6 +8,7 @@ var Bubble = Actor.extend({
 	{
 		this.name = 'Bubble';
 		this._super(new BubbleSprite());
+		this.preventVacuumDamage = true;
 	}
 	, steppedOn: function(stepper)
 	{

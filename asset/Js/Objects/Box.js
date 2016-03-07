@@ -21,4 +21,8 @@ var Box = Actor.extend({
 	{
 		return false;
 	}
+	, announceDeath: function()
+	{
+		
+	}
 });

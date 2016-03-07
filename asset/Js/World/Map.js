@@ -64,6 +64,10 @@ var Map = Class.extend({
 			, Door
 		];
 
+		this.tileEffectPallet = [
+			null
+			, 'vacuumDamage'
+		];
 
 		this.tiles = [
 			2, 2, 2, 2, 2, 2, 2
@@ -134,6 +138,16 @@ var Map = Class.extend({
 			, null, null, null, null, null, null, null,
 			, null, null, null, null, null, null, null
 		];
+
+		this.tileEffects = [
+			0, 0, 0, 0, 0, 0, 0
+			, 0, 0, 0, 0, 0, 0, 0
+			, 0, 0, 0, 0, 0, 0, 0
+			, 0, 0, 0, 0, 0, 0, 0
+			, 0, 0, 0, 0, 0, 0, 0
+			, 0, 0, 0, 0, 0, 0, 0
+			, 0, 0, 0, 0, 0, 0, 0
+		];
 	}
 	, getData: function()
 	{
@@ -147,6 +161,7 @@ var Map = Class.extend({
 			, objects: this.objects
 			, objectInits: this.objectInits
 			, objectTriggers: this.objectTriggers
+			, tileEffects: this.tileEffects
 		});
 	}
 	, setData: function(string, preventReset)
@@ -162,6 +177,7 @@ var Map = Class.extend({
 		this.objects	=	obj.objects;
 		this.objectInits	= obj.objectInits;
 		this.objectTriggers	= obj.objectTriggers;
+		this.tileEffects	= obj.tileEffects;
 
 		this.world.worldWidth = this.width;
 		this.world.worldHeight = this.height;
@@ -266,6 +282,11 @@ var Map = Class.extend({
 					, this.width - width
 				);
 
+				this.tileEffects.splice(
+					(this.width - (this.width - width)) + (width * i)
+					, this.width - width
+				);
+
 			}
 			else if(this.width < width)
 			{
@@ -301,6 +322,12 @@ var Map = Class.extend({
 						, 0
 						, 0
 					);
+
+					this.tileEffects.splice(
+						this.width + (width * i)
+						, 0
+						, 0
+					);
 				}
 			}
 		}
@@ -322,12 +349,12 @@ var Map = Class.extend({
 			var newTiles = (height - this.height) * this.width;
 			for(var i = 0; i < newTiles; i++)
 			{
-				console.log('h:', newTile);
 				this.tiles.push(newTile);
 				this.objects.push(null);
 				this.objectInits.push(null);
 				this.objectTriggers.push(null);
 				this.walls.push(0);
+				this.tileEffects.push(0);
 			}
 		}
 		else if(this.height > height)
@@ -337,6 +364,7 @@ var Map = Class.extend({
 			this.objectInits = this.objectInits.slice(0, height * this.width);
 			this.objectTriggers = this.objectInits.slice(0, height * this.width);
 			this.walls = this.walls.slice(0, height * this.width);
+			this.tileEffects = this.tileEffects.slice(0, height * this.width);
 		}
 
 		this.height = height;
@@ -347,6 +375,20 @@ var Map = Class.extend({
 		if(this.isTileOnMap(x, y))
 		{
 			return this.tiles[this.coordsToIndex(x, y)];
+		}
+
+		return 0;
+	}
+	, getTileEffect: function(x, y)
+	{
+		if(this.isTileOnMap(x, y))
+		{
+			if(this.tileEffects && this.tileEffects[this.coordsToIndex(x, y)] !== undefined)
+			{
+				return this.tileEffects[this.coordsToIndex(x, y)];
+			}
+			
+			return 0;
 		}
 
 		return 0;

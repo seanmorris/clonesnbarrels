@@ -178,6 +178,14 @@ var Editor = Class.extend({
 			}
 		);
 
+		$('button#tileEffectMode').click(
+			function()
+			{
+				$('tr.editorRow').hide(0);
+				$('tr.tileEffectEditorRow').show(0);
+			}
+		);
+
 		this.selectedTile = [0,0];
 
 		this.tilePalletSelection = null;
@@ -382,7 +390,6 @@ var Editor = Class.extend({
 	}
 	, updateSelection: function()
 	{
-
 		if(!this.selectedTile)
 		{
 			return;

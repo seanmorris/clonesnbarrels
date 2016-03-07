@@ -25,6 +25,7 @@ __halt_compiler(); ?>
 							<button id = "objectMode">Object Mode</button>
 							<button id = "triggerMode">Trigger Mode</button>
 							<button id = "mapMode">Map Mode</button>
+							<button id = "tileEffectMode">Tile Effect Mode</button>
 						</td>
 					</tr>
 					<tr id = "tileEditor" class = "editorRow tileEditorRow">
@@ -89,6 +90,19 @@ __halt_compiler(); ?>
 									</td>
 								</tr>
 							</table>
+						</td>
+					</tr>
+					<tr id = "tileEffectEditor" class = "editorRow tileEffectEditorRow">
+						<td id = "tileEffectEditorSelection">
+							Effect: <select id = "tileEffectSelect" name = "tileEffectSelect">
+								<option value = "0">None</option>
+								<option value = "1">Vacuum Damage</option>
+							</select><br />
+							<button id = "setTileEffect">Set</button>
+							<button id = "clearTileEffect">Clear</button>
+						</td>
+						<td id = "tileEffectEditorCell">
+							
 						</td>
 					</tr>
 				</table>

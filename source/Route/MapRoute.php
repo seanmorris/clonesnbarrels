@@ -5,7 +5,7 @@ class MapRoute extends \SeanMorris\PressKit\Controller
 	protected
 		$title = 'Maps'
 		, $modelClass = '\SeanMorris\ClonesNBarrels\Map'
-		, $formTheme = 'SeanMorris\Form\Theme\Form\Theme'
+		, $formTheme = 'SeanMorris\Form\Theme\Theme'
 	;
 	protected static
 		$forms = [

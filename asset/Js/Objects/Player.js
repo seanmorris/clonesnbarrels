@@ -20,6 +20,8 @@ var Player = DamageableCharacter.extend({
 		this.inventory = [];
 		this.stepSpeed = 6;
 		this.ghost = false;
+		this.vacuumDamageTimer = 0;
+		this.vacuumDamageTimerMax = 60;
 	}
 	, canStep: function(testCall)
 	{
@@ -259,6 +261,11 @@ var Player = DamageableCharacter.extend({
 
 			for(var i in this.party)
 			{
+				if(this.party[i].ignoreControl)
+				{
+					continue;
+				}
+
 				this.party[i].turn(moveInfo.turn);
 			}
 		}
@@ -289,6 +296,11 @@ var Player = DamageableCharacter.extend({
 
 				for(var i in this.party)
 				{
+					if(this.party[i].ignoreControl)
+					{
+						continue;
+					}
+					
 					if(this.party[i].i !== null)
 					{
 						this.party[i].step(this.stepSpeed, true);
@@ -413,19 +425,43 @@ var Player = DamageableCharacter.extend({
 	{
 		if(this == this.world.viewport.actor)
 		{
-
-			//this.deathNoise.play();
-			/*this.world.game.stackState(
-				'dialog',
-				{text: 'Try not to kill yourself.'},
-				true
-			);*/
 			if(this.lastDamagedBy)
 			{
 				this.world.viewport.bindCamera(this.lastDamagedBy);
 			}
+
+		}
+		this._super(clean);
+	}
+	, announceDeath: function()
+	{
+		if(this.lastDamagedBy.name)
+		{
+			this.world.game.message.blit('You were killed by a ' + this.lastDamagedBy.name, 350);
+		}
+	}
+	, vacuumDamage: function()
+	{
+		console.log(this.inventory);
+		for(var i in this.inventory)
+		{
+			if(this.inventory[i].preventVacuumDamage)
+			{
+				return;
+			}
 		}
 
-		this._super(clean);
+		if(this.vacuumDamageTimer <= 0)
+		{
+			this.world.game.message.blit('You can\'t breath out here.', 350);
+
+			this.damage(10);
+			this.vacuumDamageTimer = this.vacuumDamageTimerMax;
+			return;
+		}
+
+		this.world
+
+		this.vacuumDamageTimer--;
 	}
 });

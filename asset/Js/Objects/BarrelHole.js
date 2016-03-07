@@ -69,8 +69,20 @@ var BarrelHole = FloorTrigger.extend({
 			&& !this.barrel.heldBy
 			&& this.barrel.stepTimer < 2
 		){
-			this.barrel.destroy(true);
 			this.barrels++;
+
+			if(this.maxBarrels && this.maxBarrels > 1)
+			{
+				this.world.game.message.blit(
+					'Fuel port '
+					+ this.barrels
+					+ '/'
+					+ this.maxBarrels
+					+ ' filled...'
+				);
+			}
+
+			this.barrel.destroy(true);
 			this.barrel = null;
 			this.state = 'closed';
 			this.frames = this.sprite.closing.south;
@@ -93,6 +105,13 @@ var BarrelHole = FloorTrigger.extend({
 
 		if(this.barrels >= this.maxBarrels)
 		{
+			if(!this.triggered)
+			{
+				this.world.game.message.blit(
+					'Fuel port filled. Activating...'
+				);
+			}
+			
 			this.trigger();
 		}
 

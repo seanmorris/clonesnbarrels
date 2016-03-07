@@ -20,13 +20,7 @@ var Barrel = DamageableBindable.extend({
 
 		if(this.health < this.maxHealth && !Barrel.warned)
 		{
-			/*
-			this.world.game.stackState(
-				'dialog'
-				, {text: 'Don\'t knock those around.'}
-				, true
-			);
-			*/
+			this.world.game.message.blit('Carefule with those barrels.');
 			Barrel.warned = true;
 		}
 
@@ -54,13 +48,13 @@ var Barrel = DamageableBindable.extend({
 						&& tileObjects[j].explosionDamage
 						&& tileObjects[j].explosionDamage instanceof Function
 					){
-						tileObjects[j].explosionDamage(this.doDamage);
+						tileObjects[j].explosionDamage(this.doDamage, this);
 					}
 					else if(tileObjects[j]
 						&& tileObjects[j].damage
 						&& tileObjects[j].damage instanceof Function
 					){
-						tileObjects[j].damage(this.doDamage);
+						tileObjects[j].damage(this.doDamage, this);
 					}
 				}
 			}
@@ -68,12 +62,7 @@ var Barrel = DamageableBindable.extend({
 	}
 	, destroy: function(peaceful)
 	{
-		//console.log('Barrel explosion', this.x, this.y);
-		this._super();
-		if(this.lastCollide)
-		{
-			this.lastCollide.destroy();
-		}
+		this._super(peaceful);
 		if(!peaceful)
 		{
 			this.world.addObject(
@@ -88,14 +77,14 @@ var Barrel = DamageableBindable.extend({
 		this._super(other);
 		if(other instanceof Projectile && this.cheesed)
 		{
-			this.lastCollide = other;
+			other.destroy();
 		}
 	}
 	, crush: function(other)
 	{
 		//console.log('crush', other);
 		this._super(other);
-		this.damage(25);
+		this.damage(25, other);
 	}
 	, onStep: function()
 	{
@@ -106,8 +95,15 @@ var Barrel = DamageableBindable.extend({
 
 		return this._super();
 	}
-	, fireDamage: function(amount)
+	, fireDamage: function(amount, other)
 	{
-		this.damage(amount*8);
+		this.damage(amount*8, other);
+	}
+	, announceDeath: function(peaceful)
+	{
+		if(!peaceful)
+		{
+			this._super(peaceful);
+		}
 	}
 });

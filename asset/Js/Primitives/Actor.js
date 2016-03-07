@@ -311,6 +311,20 @@ var Actor = Class.extend({
 		}
 
 		this.requestedStep = false;
+
+		if(this.world)
+		{
+			var tileEffect = this.world.map.getTileEffect(
+				this.x, this.y
+			);
+
+			tileEffect = this.world.map.tileEffectPallet[tileEffect];
+
+			if(tileEffect && this[tileEffect] && typeof(this[tileEffect]) === 'function')
+			{	
+				this[tileEffect]();
+			}
+		}
 	}
 
 	, getOffsetX: function(size)
@@ -511,7 +525,7 @@ var Actor = Class.extend({
 			this.holding.direction = this.direction;
 		}
 	}
-	, destroy: function()
+	, destroy: function(peaceful)
 	{
 		if(this.i !== null)
 		{
@@ -532,6 +546,8 @@ var Actor = Class.extend({
 			this.world.removeObject(this.x, this.y, this.i);
 
 			this.i = null;
+
+			this.announceDeath(peaceful);
 		}
 	}
 	, ghostColors: function()
@@ -714,5 +730,19 @@ var Actor = Class.extend({
 		);
 
 		this.world.addObject(jumper, x, y);
+	}
+	, announceDeath: function(peaceful)
+	{
+		if(this.name && !peaceful)
+		{
+			if(this.lastDamagedBy)
+			{
+				this.world.game.message.blit(this.name + ' destroyed by ' + this.lastDamagedBy.name + '.', 350);
+			}
+			else
+			{
+				this.world.game.message.blit(this.name + ' destroyed.', 350);
+			}
+		}
 	}
 });

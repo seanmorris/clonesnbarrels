@@ -31,6 +31,8 @@ canvas{
 	padding:1px;
 	margin-left:auto;
 	margin-right:auto;
+	outline: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 #outer{

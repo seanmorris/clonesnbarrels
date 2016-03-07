@@ -15,6 +15,7 @@ function PauseMenu(game)
 	this.options['new game']	= function()
 	{
 		game.flushStates();
+		game.message.blit('Welcome back.', 350);
 		game.changeState('main', {}, true);
 	};
 
@@ -26,6 +27,8 @@ function PauseMenu(game)
 		console.log(world);
 		
 		saveState.load(world);
+		
+		game.message.blit('Welcome back.', 350);
 
 		game.restoreState();
 	};
@@ -40,10 +43,21 @@ function PauseMenu(game)
 		JSON.stringify(game.stateStack[0].world.getState());
 		
 		game.restoreState();
+
+		game.message.blit('Saved.', 350);
 	};
 
 	this.options['music']		= MusicSubmenu;
-	this.options['mute']		= MuteSubmenu;
+	this.options['mute']		= function()
+	{
+		var muted = parseInt(localStorage.getItem('muted'));
+
+		game.message.blit(muted ? 'Sound muted.' : 'Sound on.');
+
+		game.bgm.play(muted);
+
+		localStorage.setItem('muted', muted ? "0" : "1");
+	};
 
 	/*
 

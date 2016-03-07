@@ -29,6 +29,8 @@ function Game(canvas)
 	this.dev = false;
 
 	this.editor = new Editor(this);
+	this.message = new Message(this);
+	this.bgm = new Bgm(this);
 
 	this.restoreState = function()
 	{
@@ -95,7 +97,7 @@ function Game(canvas)
 		window.oRequestAnimationFrame  ||
 		window.msRequestAnimationFrame  ||
 		function(/* function */ callback, /* DOMElement */ element){
-			window.setTimeout(callback, 1000 / 60);
+			window.setTimeout(callback, 1000 / 30);
 		};
 	})();
 	var fps = 0;
@@ -313,6 +315,9 @@ function Game(canvas)
 							, game.canvas.height() - 40
 						);
 					}
+
+					game.message.update();
+
 
 					//console.log('!-----|Main Game Func End|-----!');
 				}

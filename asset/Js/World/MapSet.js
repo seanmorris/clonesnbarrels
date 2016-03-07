@@ -116,7 +116,10 @@ var MapSet = Class.extend({
 				});
 			}
 
-			console.log(this.currentMap);
+			if(!this.mapStates[this.currentMap])
+			{
+				this.mapStates[this.currentMap] = [];
+			}
 
 			this.mapStates[this.currentMap].push(objectCopy);
 		}}}
@@ -312,6 +315,8 @@ var MapSet = Class.extend({
 		{
 			this.world.viewport.bindCamera(mainActor);
 		}
+
+		this.world.game.message.blit('Map: ' + mapData.title + '.');
 
 		this.currentMap = map;
 	}

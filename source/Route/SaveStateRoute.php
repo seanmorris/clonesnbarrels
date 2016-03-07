@@ -5,7 +5,7 @@ class SaveStateRoute extends \SeanMorris\PressKit\Controller
 	protected
 		$title = 'Saves'
 		, $modelClass = '\SeanMorris\ClonesNBarrels\SaveState'
-		, $formTheme = 'SeanMorris\Form\Theme\Form\Theme'
+		, $formTheme = 'SeanMorris\Form\Theme\Theme'
 	;
 	protected static
 		$forms = [
