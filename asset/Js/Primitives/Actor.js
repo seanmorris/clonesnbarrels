@@ -64,6 +64,7 @@ var Actor = Class.extend({
 
 		this.pushed		= false;
 		this.pusher		= null;
+		this.crusher 	= null;
 
 		this.stateVars = [
 			'x',
@@ -329,7 +330,7 @@ var Actor = Class.extend({
 
 	, getOffsetX: function(size)
 	{
-		if(this.stepTime)
+		if(this.stepTimer)
 		{
 			return this.drawOffsetX
 				* size
@@ -341,7 +342,7 @@ var Actor = Class.extend({
 
 	, getOffsetY: function(size)
 	{
-		if(this.stepTime)
+		if(this.stepTimer)
 		{
 			return this.drawOffsetY
 				* size
@@ -518,12 +519,12 @@ var Actor = Class.extend({
 		this.stepTime = speed;
 		this.stepTimer = speed;
 		this.stepping = true;
-		this.requestedStep = true;
-		this.world.requestStep(this, this.direction);
 		if(this.holding)
 		{
 			this.holding.direction = this.direction;
 		}
+		this.requestedStep = true;
+		this.world.requestStep(this, this.direction);
 	}
 	, destroy: function(peaceful)
 	{
@@ -737,12 +738,16 @@ var Actor = Class.extend({
 		{
 			if(this.lastDamagedBy)
 			{
-				this.world.game.message.blit(this.name + ' destroyed by ' + this.lastDamagedBy.name + '.', 350);
+				this.world.game.message.blit(this.name + ' destroyed by ' + this.lastDamagedBy.name + '.');
 			}
 			else
 			{
-				this.world.game.message.blit(this.name + ' destroyed.', 350);
+				this.world.game.message.blit(this.name + ' destroyed.');
 			}
 		}
+	}
+	, crush: function(crusher)
+	{
+		this.crusher = crusher;
 	}
 });

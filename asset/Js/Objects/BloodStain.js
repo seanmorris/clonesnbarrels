@@ -1,4 +1,4 @@
-var BloodStain = FloorActor.extend({
+var BloodStain = FloorActor.extend(Corpse).extend({
 	init: function()
 	{
 		this.reinit();

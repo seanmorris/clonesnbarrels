@@ -687,7 +687,7 @@ function Viewport(game, x, y, size)
 
 		for(var i in notMoved)
 		{
-			if(notMoved[i].pusher && notMoved[i].crush)
+			if(notMoved[i].pusher)
 			{
 				notMoved[i].crush(notMoved[i].pusher);
 			}

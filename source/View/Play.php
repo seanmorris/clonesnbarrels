@@ -94,9 +94,8 @@ __halt_compiler(); ?>
 					</tr>
 					<tr id = "tileEffectEditor" class = "editorRow tileEffectEditorRow">
 						<td id = "tileEffectEditorSelection">
-							Effect: <select id = "tileEffectSelect" name = "tileEffectSelect">
-								<option value = "0">None</option>
-								<option value = "1">Vacuum Damage</option>
+							Effect: <select id = "tileEffectPallet" name = "tileEffectSelect">
+								
 							</select><br />
 							<button id = "setTileEffect">Set</button>
 							<button id = "clearTileEffect">Clear</button>

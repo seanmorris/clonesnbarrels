@@ -15,7 +15,7 @@ function PauseMenu(game)
 	this.options['new game']	= function()
 	{
 		game.flushStates();
-		game.message.blit('Welcome back.', 350);
+		game.message.blit('Welcome back.');
 		game.changeState('main', {}, true);
 	};
 
@@ -28,7 +28,7 @@ function PauseMenu(game)
 		
 		saveState.load(world);
 		
-		game.message.blit('Welcome back.', 350);
+		game.message.blit('Welcome back.');
 
 		game.restoreState();
 	};
@@ -44,7 +44,7 @@ function PauseMenu(game)
 		
 		game.restoreState();
 
-		game.message.blit('Saved.', 350);
+		game.message.blit('Saved.');
 	};
 
 	this.options['music']		= MusicSubmenu;

@@ -11,7 +11,7 @@ function MainMenu(game)
 	this.options['new game']	= function()
 	{
 		game.flushStates();
-		game.message.blit('Welcome.', 350);
+		game.message.blit('Welcome.');
 		game.changeState('main', {}, true);
 	};
 

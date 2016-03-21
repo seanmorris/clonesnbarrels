@@ -79,8 +79,6 @@ var PlayerClone = Player.extend({
 	}
 	, step: function(speed, masterStep)
 	{
-		// console.log(masterStep);
-
 		if(!this.ignoreControl)
 		{
 			return this._super(speed);
@@ -105,9 +103,10 @@ var PlayerClone = Player.extend({
 			for(var i in stepper.party)
 			{
 				stepper.party[i].ignoreControl = true;
-				stepper.party[i].resumeControl = stepper.party[i].stepSpeed+1;
+				stepper.party[i].resumeControl = stepper.party[i].stepSpeed;
 			}
 		}
+		this._super(stepper);
 	}
 	, steppedOn: function(stepper)
 	{
@@ -120,8 +119,12 @@ var PlayerClone = Player.extend({
 			this.ignoreControl = false;
 		}
 	}
-	, canBeSteppedOn: function()
+	, canBeSteppedOn: function(stepper)
 	{
+		if(!(stepper instanceof Player))
+		{
+			return false;
+		}
 		return this.hollow;
 	}
 	, canSpawn: function()
@@ -134,7 +137,7 @@ var PlayerClone = Player.extend({
 		{
 			if(this.corpse && !clean)
 			{
-				// this.master.addParty(this.corpse);
+				this.master.addParty(this.corpse);
 			}
 			
 			this.master.removeParty(this)
@@ -162,6 +165,11 @@ var PlayerClone = Player.extend({
 		if(this.vacuumDamageTimer <= 0)
 		{
 			this.damage(10);
+			if(this.health <= 0)
+			{
+				this.world.game.message.blit('A clone suffocated.', 350);
+			}
+			
 			this.vacuumDamageTimer = this.vacuumDamageTimerMax;
 			return;
 		}

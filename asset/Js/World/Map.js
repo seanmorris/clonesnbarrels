@@ -393,6 +393,16 @@ var Map = Class.extend({
 
 		return 0;
 	}
+	, setTileEffect: function(effect, x, y)
+	{
+		if(this.isTileOnMap(x, y))
+		{
+			if(this.tileEffects && this.tileEffects[this.coordsToIndex(x, y)] !== undefined)
+			{
+				this.tileEffects[this.coordsToIndex(x, y)] = effect;
+			}
+		}
+	}
 	, setTile: function(t, x, y)
 	{
 		if(this.isTileOnMap(x, y))

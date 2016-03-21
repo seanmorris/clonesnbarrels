@@ -25,8 +25,6 @@ var Player = DamageableCharacter.extend({
 	}
 	, canStep: function(testCall)
 	{
-		console.log(this.ghost);
-
 		if(this.ghost)
 		{
 			return true;
@@ -116,8 +114,6 @@ var Player = DamageableCharacter.extend({
 		}
 
 		this.preloadSprite();
-
-		console.log(this.ghost);
 	}
 	, turn: function(direction)
 	{
@@ -261,11 +257,6 @@ var Player = DamageableCharacter.extend({
 
 			for(var i in this.party)
 			{
-				if(this.party[i].ignoreControl)
-				{
-					continue;
-				}
-
 				this.party[i].turn(moveInfo.turn);
 			}
 		}
@@ -296,12 +287,14 @@ var Player = DamageableCharacter.extend({
 
 				for(var i in this.party)
 				{
-					if(this.party[i].ignoreControl)
+					console.log(this.party[i].name);
+
+					if(this.party[i].ignoreControl || this.party[i] instanceof Corpse)
 					{
 						continue;
 					}
-					
-					if(this.party[i].i !== null)
+
+					if(this.party[i].stepTimer === 0)
 					{
 						this.party[i].step(this.stepSpeed, true);
 					}
@@ -337,6 +330,11 @@ var Player = DamageableCharacter.extend({
 
 		for(var i in this.party)
 		{
+			if(this.party[i].heldBy)
+			{
+				continue;
+			}
+			
 			this.party[i].update(input);
 		}
 	}
@@ -442,7 +440,6 @@ var Player = DamageableCharacter.extend({
 	}
 	, vacuumDamage: function()
 	{
-		console.log(this.inventory);
 		for(var i in this.inventory)
 		{
 			if(this.inventory[i].preventVacuumDamage)
@@ -453,7 +450,7 @@ var Player = DamageableCharacter.extend({
 
 		if(this.vacuumDamageTimer <= 0)
 		{
-			this.world.game.message.blit('You can\'t breath out here.', 350);
+			this.world.game.message.blit('You can\'t breath out here.');
 
 			this.damage(10);
 			this.vacuumDamageTimer = this.vacuumDamageTimerMax;

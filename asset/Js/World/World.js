@@ -423,10 +423,6 @@ var World = Class.extend({
 					obj.holding.stepSpeed = obj.stepSpeed;
 					this.requestStep(obj.holding, obj.direction);
 				}
-				else if(obj.holding)
-				{
-					//obj.stopHolding();
-				}
 
 				if(obj.direction == obj.RIGHT)
 				{

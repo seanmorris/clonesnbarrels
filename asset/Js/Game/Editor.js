@@ -33,7 +33,22 @@ var Editor = Class.extend({
 
 		this.nextSelectCallBack = null;
 
+		this.effectPalletBox = $('select#tileEffectPallet');
+
+		this.setTileEffect = $('#setTileEffect');
+		this.clearTileEffect = $('#clearTileEffect');
+
 		var _this = this;
+
+		this.setTileEffect.click(function(){
+			_this.applyToSelectedTiles(function(x,y){
+				_this.game.currentState.world.map.setTileEffect(
+					_this.effectPalletBox.val()
+					, x
+					, y
+				);
+			});
+		});
 
 		// this.game.currentState.world.map.setData();
 		console.log();
@@ -197,10 +212,40 @@ var Editor = Class.extend({
 	{
 		this.nextSelectCallBack = callBack;
 	}
+	, applyToSelectedTiles: function(callback)
+	{
+		var selected = [];
+		if(this.selectedTile && this.startSelectedTile)
+		{
+			var iInc = 1;
+			var jInc = 1;
+
+			if(this.selectedTile[0] < this.startSelectedTile[0])
+			{
+				iInc = -1;
+			}
+
+			if(this.selectedTile[1] < this.startSelectedTile[1])
+			{
+				jInc = -1;
+			}
+
+			for(var i = this.startSelectedTile[0]; i != this.selectedTile[0] + iInc; i += iInc){
+			for(var j = this.startSelectedTile[1]; j != this.selectedTile[1] + jInc; j += jInc){
+				callback(i, j);
+			}}
+		}
+		else if(this.selectedTile)
+		{
+			callback(this.selectedTile[0], this.selectedTile[1]);
+		}
+	}
 	, populatePallet: function()
 	{
 		var tilePallet = this.game.currentState.world.map.tilePallet;
 		var objectPallet = this.game.currentState.world.map.objectPallet;
+		var effectPallet = this.game.currentState.world.map.tileEffectPallet;
+
 		var _this = this;
 
 		for(var i in tilePallet)
@@ -386,6 +431,20 @@ var Editor = Class.extend({
 						}
 					)
 			);
+		}
+
+		var effectValue;
+
+		for(var i in effectPallet)
+		{
+			effectValue = i;
+
+			if(i == null)
+			{
+				effectValue = 'None';
+			}
+
+			this.effectPalletBox.append('<option value = "'+i+'">'+effectPallet[i]+'</option>');
 		}
 	}
 	, updateSelection: function()
