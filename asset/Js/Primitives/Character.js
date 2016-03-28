@@ -30,6 +30,11 @@ var Character = Actor.extend({
 		}
 		else if(direction == 1)
 		{
+			if(!this.sprite)
+			{
+				console.log(this.name);
+			}
+
 			this.frames = this.sprite.standing.south;
 
 			if(this.stepping || requestedStep)

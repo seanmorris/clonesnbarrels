@@ -10,6 +10,8 @@ var World = Class.extend({
 		this.objects                = [];
 		this.stepMatrix				= [];
 		this.addedTiles				= [];
+		this.saveStateId			= null;
+		this.saveStateTitle			= null;
 	}
 
 	, bindGameObject: function(game)

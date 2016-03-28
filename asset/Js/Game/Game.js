@@ -4,7 +4,11 @@ function Game(canvas)
 	this.context	= canvas[0].getContext('2d');
 	this.debug		= {};
 
+	this.deadZone	= 0.25;
+
 	this.keyStates	= [];
+	this.padStates	= [];
+	this.padAxes	= [];
 	this.mouseStates= [];
 	this.scrollStates=[];
 	this.clickVectors=[];
@@ -12,7 +16,8 @@ function Game(canvas)
 	this.clickVector = null;
 
 	this.lastMouseStates = [];
-	this.lastKeyStates	= [];
+	this.lastKeyStates	 = [];
+	this.lastPadStates	 = [];
 
 	this.states		= {
 		init:		TitleState
@@ -203,6 +208,7 @@ function Game(canvas)
 
 					if(
 						game.keyStates[81] === 0
+						||  game.padStates[7] === 0
 						|| ( game.mouseStates[2]
 							&&  game.mouseStates[2][2] === 0
 						)
@@ -232,6 +238,42 @@ function Game(canvas)
 					if(game.keyStates[192] === 0)
 					{
 						game.dev = !game.dev;
+					}
+
+					if('getGamepads' in navigator)
+					{
+						var gamepad = navigator.getGamepads()[0];
+
+						if(gamepad && 'buttons' in gamepad && 'axes' in gamepad)
+						{
+							for(var i in gamepad.buttons)
+							{
+								if(gamepad.buttons[i].pressed)
+								{
+									if(game.padStates[i] !== undefined)
+									{
+										game.padStates[i]++;
+									}
+									else
+									{
+										game.padStates[i] = 1;
+									}
+								}
+								else
+								{
+									if(game.padStates[i] !== undefined && game.padStates[i])
+									{
+										game.padStates[i] = 0;
+									}
+									else if(game.padStates[i] === 0)
+									{
+										delete game.padStates[i]
+									}
+								}
+							}
+
+							game.padAxes = gamepad.axes;
+						}
 					}
 
 					/*if(game.keyStates[109] === 0)
@@ -275,7 +317,7 @@ function Game(canvas)
 
 							console.log(state);
 
-							localStorage.setItem('saveState', JSON.stringify(state));
+							//localStorage.setItem('saveState', JSON.stringify(state));
 						}
 					}
 

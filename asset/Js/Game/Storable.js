@@ -42,7 +42,17 @@ var Storable = Class.extend({
 			{
 				console.log(data);
 
-				localStorage.setItem(_this._key, data.publicId);
+				for(var i in _this)
+				{
+					if(!i.match(/^_/)
+						&& data[i] !== undefined
+						&& !(_this[i] instanceof Function)
+					){
+						_this[i] = data[i];
+					}
+				}
+
+				// localStorage.setItem(_this._key, data.publicId);
 			}
 		});
 	}

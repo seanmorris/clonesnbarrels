@@ -5,6 +5,7 @@ var CloneMachine = Actor.extend({
 		this.coolDownTime	= 15;
 		this.coolDown		= 0;
 		this.cloneCount		= 0;
+		this.fire           = 0;
 		this.maxClones		= 3;
 		this.col			= 0;
 		this.frameTime		= 1;
@@ -25,8 +26,6 @@ var CloneMachine = Actor.extend({
 		{
 			if(this.cloneCount >= this.maxClones)
 			{
-				this.world.game.message.blit('CloneMachine resources exhausted.');
-
 				/*this.world.game.stackState(
 					'dialog',
 					{text: 'Machine resources exhausted.'},
@@ -34,7 +33,7 @@ var CloneMachine = Actor.extend({
 				);*/
 
 				//console.log('boom!');
-				this.destroy();
+				//this.destroy();
 				return;
 			}
 
@@ -112,6 +111,12 @@ var CloneMachine = Actor.extend({
 	{
 		if(this.coolDown == 0)
 		{
+			if(this.cloneCount >= this.maxClones)
+			{
+				this.world.game.message.blit('Clone Machine resources exhausted.');
+				return;
+			}
+
 			this.cloningNoise.play();
 			this.coolDown = this.coolDownTime;
 			this.user = user;

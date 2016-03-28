@@ -18,7 +18,7 @@ function PauseMenu(game)
 		game.message.blit('Welcome back.');
 		game.changeState('main', {}, true);
 	};
-
+	/*
 	this.options['load game']	= function()
 	{
 		var saveState = new SaveState();
@@ -32,6 +32,9 @@ function PauseMenu(game)
 
 		game.restoreState();
 	};
+	*/
+
+	this.options['load game']	= SaveSubmenu;
 
 	this.options['save game']	= function()
 	{
@@ -44,19 +47,16 @@ function PauseMenu(game)
 		
 		game.restoreState();
 
-		game.message.blit('Saved.');
+		game.message.blit('Saved "' + world.saveStateTitle + '".', 300);
 	};
 
 	this.options['music']		= MusicSubmenu;
 	this.options['mute']		= function()
 	{
 		var muted = parseInt(localStorage.getItem('muted'));
-
-		game.message.blit(muted ? 'Sound muted.' : 'Sound on.');
-
 		game.bgm.play(muted);
-
 		localStorage.setItem('muted', muted ? "0" : "1");
+		game.message.blit(!muted ? 'Sound muted.' : 'Sound on.');
 	};
 
 	/*

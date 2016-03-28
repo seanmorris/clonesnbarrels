@@ -13,6 +13,7 @@ var BarrelHole = FloorTrigger.extend({
 		this.frameTimer	= 1;
 		this._super(new BarrelHoleSprite());
 		this.reinit();
+		this.justFilled = 0;
 	}
 	, reinit: function()
 	{
@@ -105,11 +106,16 @@ var BarrelHole = FloorTrigger.extend({
 
 		if(this.barrels >= this.maxBarrels)
 		{
-			if(!this.triggered)
+			if(this.justFilled == 0)
 			{
 				this.world.game.message.blit(
 					'Fuel port filled. Activating...'
 				);
+			}
+
+			if(!this.justFilled)
+			{
+				this.justFilled++;		
 			}
 			
 			this.trigger();

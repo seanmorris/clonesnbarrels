@@ -20,6 +20,7 @@ class SaveState extends \SeanMorris\PressKit\Model
 		, $createColumns = [
 			'publicId' => 'UNHEX(REPLACE(UUID(), "-", ""))'
 			, 'created' => 'UNIX_TIMESTAMP()'
+			, 'updated' => 'UNIX_TIMESTAMP()'
 		]
 		, $readColumns = [
 			'publicId' => 'HEX(%s)'
@@ -29,7 +30,18 @@ class SaveState extends \SeanMorris\PressKit\Model
 			, 'updated' => 'UNIX_TIMESTAMP()'
 		]
 		, $hasOne = [
-			'state' => 'SeanMorris\PressKit\State'
+			'state' => '\SeanMorris\ClonesNBarrels\State\SaveStateState'
 		]
-	;
+		, $byOwner = [
+			'join' => [
+				'SeanMorris\PressKit\State' => [
+					'on' => 'state'
+					, 'by' => 'owner'
+					, 'type' => 'INNER'
+				]
+			]
+			, 'order' => [
+				'updated' => 'DESC'
+			]
+		];
 }

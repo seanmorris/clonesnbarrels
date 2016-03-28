@@ -812,8 +812,9 @@ var Editor = Class.extend({
 
 		var startText = '';
 
-		if(this.startSelectedTile.toString() === this.selectedTile.toString())
-		{
+		if(this.startSelectedTile.toString()
+			&& this.startSelectedTile.toString() === this.selectedTile.toString()
+		){
 			this.startSelectedTile = null;
 		}
 

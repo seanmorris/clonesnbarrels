@@ -315,6 +315,28 @@
             <filename>wood_box.png</filename>
             <filename>portal_blue.png</filename>
             <filename>portal_orange.png</filename>
+            <filename>rock_3.png</filename>
+            <filename>rock_4.png</filename>
+            <filename>rock_tall_1.png</filename>
+            <filename>health.png</filename>
+            <filename>rock_1_surface.png</filename>
+            <filename>rock_2_surface.png</filename>
+            <filename>rock_3_surface.png</filename>
+            <filename>rock_4_surface.png</filename>
+            <filename>sentinel_standing_east.png</filename>
+            <filename>sentinel_standing_north.png</filename>
+            <filename>sentinel_standing_south.png</filename>
+            <filename>sentinel_standing_west.png</filename>
+            <filename>sentinel_walking_east_2.png</filename>
+            <filename>sentinel_walking_east.png</filename>
+            <filename>sentinel_walking_north_2.png</filename>
+            <filename>sentinel_walking_north.png</filename>
+            <filename>sentinel_walking_south_2.png</filename>
+            <filename>sentinel_walking_south.png</filename>
+            <filename>sentinel_walking_west_2.png</filename>
+            <filename>sentinel_walking_west.png</filename>
+            <filename>sentinel_walkinging_east.png</filename>
+            <filename>sentinel_dead.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

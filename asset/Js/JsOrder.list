@@ -8,6 +8,7 @@ Js/Menu/Dialog.js
 Js/Menu/PauseMenu.js
 Js/Menu/DialogMenu.js
 Js/Menu/ContinueMenu.js
+Js/Menu/SaveSubmenu.js
 Js/Primitives/Actor.js
 Js/Primitives/Bindable.js
 Js/Primitives/Character.js
@@ -46,7 +47,11 @@ Js/Sprites/Free/DoorSprite.js
 Js/Sprites/Free/BubbleSprite.js
 Js/Sprites/Free/WarpSprite.js
 Js/Sprites/Free/BoxesSprite.js
+Js/Sprites/Free/RockSprite.js
+Js/Sprites/Free/HealthSprite.js
 Js/Sprites/Pokemon/ComputerSprite.js
+Js/Sprites/Pokemon/SentinelSprite.js
+Js/Sprites/Pokemon/SentinelCorpseSprite.js
 Js/Game/Bgm.js
 Js/Game/MenuState.js
 Js/Game/TitleState.js
@@ -100,6 +105,9 @@ Js/Objects/Barrel.js
 Js/Objects/Door.js
 Js/Objects/PlayerClone.js
 Js/Objects/LaserBeam.js
+Js/Objects/Rock.js
+Js/Objects/Health.js
+Js/Objects/Wanderer.js
 Js/World/World.js
 Js/World/NumberWorld/NumberWorld.js
 Js/World/MapSet.js

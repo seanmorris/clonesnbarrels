@@ -1,7 +1,7 @@
 var PlasmaBall = Projectile.extend({
 	init: function()
 	{
-		this._super(new FireSprite(), 100, 2, 4);
+		this._super(new FireSprite(), 250, 2, 6);
 		this.reinit();
 	}
 	, reinit: function()

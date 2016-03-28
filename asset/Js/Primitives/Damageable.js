@@ -9,8 +9,8 @@ var DamageableDef = {
 	, setHealth: function(health)
 	{
 		this.maxHealth			= health;
-		this.health				= this.maxHealth;
-		this.displayHealth		= this.health;
+		this.health				= health;
+		this.displayHealth		= health;
 		this.displayHealthBar	= 0;
 	}
 	, update: function()
@@ -54,28 +54,36 @@ var DamageableDef = {
 				, (size - 10)
 				, 3
 			);
-			context.globalAlpha = 0.6;
-			context.fillStyle = "#944";
+			context.globalAlpha = 0.7;
+			context.fillStyle = "#F00";
 			context.fillRect(
 				xPos + this.getOffsetX(size) +10
 				, yPos + this.getOffsetY(size) -10
 				, (size - 10)
 				, 3
 			);
-			context.fillStyle = "#0F0";
+			context.fillStyle = "#010";
 			context.fillRect(
 				xPos + this.getOffsetX(size) +10
 				, yPos + this.getOffsetY(size)-10
 				, (size - 10) * (this.displayHealth / this.maxHealth)
 				, 3
 			);
-			context.font = 'bold 11pt monospace';
+			context.fillStyle = "#0F0";
+			context.fillRect(
+				xPos + this.getOffsetX(size) +10
+				, yPos + this.getOffsetY(size)-10
+				, (size - 10) * (this.health / this.maxHealth)
+				, 3
+			);
+			context.fillStyle = '#0F0';
+			context.font = 'bold 13pt monospace';
 			context.fillText(
 				Math.floor(this.displayHealth)
 				, xPos + this.getOffsetX(size) + 10
 				, yPos + this.getOffsetY(size) - 20
 			);
-			context.strokeStyle = '#000';
+			context.strokeStyle = '#040';
 			context.lineWidth = 1;
 			context.strokeText(
 				Math.floor(this.displayHealth)
@@ -92,14 +100,24 @@ var DamageableDef = {
 	, _damage: function(amount, other)
 	{
 		this.bumpNoise.play();
-		this.displayHealth = this.health;
+		// this.displayHealth = this.health;
 		this.health -= amount;
 		this.displayHealthBar = 50;
 		this.lastDamagedBy = other;
+
+		var healthDiff = this.displayHealth - this.health;
+
+		if(healthDiff > 100)
+		{
+			healthDiff = 100;
+		}
+
+		this.displayHealth = this.health + healthDiff;
+
+		console.log(this.name + ' damaged by ' + amount + '/' + this.maxHealth + ' points.');
 	}
 	, destroy: function(clean)
 	{
-		////console.log('Died with health ' + this.health, this);
 		if(this.corpse && !clean)
 		{
 			this.world.addObject(

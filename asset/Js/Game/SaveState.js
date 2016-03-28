@@ -1,34 +1,42 @@
 var SaveState = Storable.extend({
 	init: function()
 	{
+		this.title = null;
 		this.savedata = null;
-		
 		this._endpoint = '/clonesNBarrels/saveState';
 		this._key = 'ClonesNBarrelsSaveStateId';
 	}
 	, save: function(world)
 	{
-		if(!this.publicId)
+		if(world.saveStateId)
 		{
-			this.publicId = localStorage.getItem(this._key);
+			this.publicId = world.saveStateId;
+			this.title = world.saveStateTitle;
 		}
 
 		this.savedata = JSON.stringify(world.getState());
+
+		if(!this.title)
+		{
+			this.title = 'Save #' + Date.now();
+		}
 
 		this._super();
 	}
 	, load: function(world)
 	{
-		if(!this.publicId)
+		if(world.saveStateId)
 		{
-			this.publicId = localStorage.getItem(this._key);
+			this._super(world.saveStateId);
 		}
-
-		this._super();
+		else
+		{
+			this._super();
+		}
 
 		this.savedata = JSON.parse(this.savedata);
 
-		console.log(this.savedata);
+		console.log(this);
 
 		for(var map in this.savedata.state)
 		{
@@ -58,7 +66,11 @@ var SaveState = Storable.extend({
 				world.viewport.actor.addParty(clone);
 			}
 		}
+
+		world.saveStateId = this.publicId;
+		world.saveStateTitle = this.title;
 	}
+	/*
 	, update: function(world, ignore, id)
 	{
 		this._super(world, ignore, id);
@@ -79,4 +91,5 @@ var SaveState = Storable.extend({
 			, savedata.playerState.y
 		);
 	}
+	*/
 });

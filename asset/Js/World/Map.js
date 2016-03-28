@@ -34,6 +34,10 @@ var Map = Class.extend({
 			, 'sprite:stairs_down_top_right.png'
 			, 'sprite:stairs_down_bottom_left.png'
 			, 'sprite:stairs_down_bottom_right.png'
+			, 'sprite:rock_1_surface.png'
+			, 'sprite:rock_2_surface.png'
+			, 'sprite:rock_3_surface.png'
+			, 'sprite:rock_4_surface.png'
 		];
 
 		this.objectPallet = [
@@ -62,6 +66,10 @@ var Map = Class.extend({
 			, IceBlock
 			, Portal
 			, Door
+			, Rock
+			, Health
+			, Sentinel
+			, Explosion
 		];
 
 		this.tileEffectPallet = [

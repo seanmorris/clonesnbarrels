@@ -3,33 +3,37 @@ var Bgm = Class.extend({
 	{
 		this.game = game;
 		this.playlist = [
-			'/SeanMorris/ClonesNBarrels/Sound/645536_-Pixelated-.mp3'
+			'/SeanMorris/ClonesNBarrels/Sound/533768_Bytestep.mp3'
+			, '/SeanMorris/ClonesNBarrels/Sound/645536_-Pixelated-.mp3'
+			, '/SeanMorris/ClonesNBarrels/Sound/621144_TheFatRat---Infinite-Power.mp3'
 			, '/SeanMorris/ClonesNBarrels/Sound/613426_Destractor.mp3'
 			, '/SeanMorris/ClonesNBarrels/Sound/649164_Cybernetic-Lifeform.mp3'
 			//, '/SeanMorris/ClonesNBarrels/Sound/530471_Coins-8Bit.mp3'
-			, '/SeanMorris/ClonesNBarrels/Sound/631905_Somuchfun.mp3'
+			//, '/SeanMorris/ClonesNBarrels/Sound/631905_Somuchfun.mp3'
 			, '/SeanMorris/ClonesNBarrels/Sound/642215_Return-to-Warp.mp3'
-			, '/SeanMorris/ClonesNBarrels/Sound/533768_Bytestep.mp3'
 			, '/SeanMorris/ClonesNBarrels/Sound/514068_N3Z-3---8-bit-crush.mp3'
 			, '/SeanMorris/ClonesNBarrels/Sound/651983_Motions.mp3'
 			, '/SeanMorris/ClonesNBarrels/Sound/648035_Milky-Ways-Redux.mp3'
 			, '/SeanMorris/ClonesNBarrels/Sound/557827_Retro-Hearts-8th-Sense-Rem.mp3'
 			//, '/SeanMorris/ClonesNBarrels/Sound/632595_Astronomixel.mp3'
+			, '/SeanMorris/ClonesNBarrels/Sound/658572_Gods-of-Chipstep.mp3'
 		];
 
 		this.playlistMeta = [
-			'-Pixelated- by Spitfire5570'
+			'Bytestep by conorstrejcek'
+			, '-Pixelated- by Spitfire5570'
+			, 'Infinite Power by TheFatRat'
 			, 'Destractor by neocrey'
 			, 'Cybernetic Lifeform by MaliciousWyvern'
 			//, '530471_Coins-8Bit'
-			, '631905_Somuchfun'
+			//, '631905_Somuchfun'
 			, 'Return To Warp by CherryBerryGangsta'
-			, 'Bytestep by conorstrejcek'
 			, '8-Bit Crush by NZ3'
 			, 'Motions by midimachine'
 			, 'Milky Ways Redux by Holyyeah'
 			, 'Retro Hearts (8th Sense Remix) by Skullbeatz'
 			//, '632595_Astronomixel'
+			, 'Gods of Chipstep by wandschrank and AliceMako'
 		];
 
 		this.playheader = localStorage.getItem('playHeader') || -1;

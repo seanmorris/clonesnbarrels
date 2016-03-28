@@ -12,25 +12,33 @@ var Projectile = Character.extend({
 
 		var blocking = this.whyCantStep();
 
-		if(!this.stepping && !this.canStep())
+		if(this.canStep())
+		{
+			if(!this.stepping)
+			{
+				this.step(this.speed);
+			}
+		}
+		else
 		{
 			for(var i in blocking)
 			{
-				if(blocking[i] && blocking[i].collide)
-				{
-					this.collide(blocking[i]);
-					blocking[i].collide(this);
-					blocking[i].push(this);
+				if(blocking[i]) {
+
+					if(!blocking[i].canBePushed(this))
+					{
+						this.collide(blocking[i]);
+						blocking[i].collide(this);
+					}
+					else
+					{
+						blocking[i].push(this);
+					}
 				}
 			}
 
 			this.direction +=2;
 			this.direction %=4;
-		}
-
-		if(!this.stepping)
-		{
-			this.step(this.speed);
 		}
 	}
 	, collide: function(other)
@@ -46,7 +54,7 @@ var Projectile = Character.extend({
 		   && other.damage
 		   && other.damage instanceof Function
 		){
-			other.damage(this.damage, this)
+			other.damage(this.damage, this);
 		}
 	}
 	, canBeSteppedOn: function()

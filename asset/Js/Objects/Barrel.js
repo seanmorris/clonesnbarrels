@@ -27,7 +27,7 @@ var Barrel = DamageableBindable.extend({
 		if(this.health <= 0)
 		{
 			this.world.viewport.overlay('#FFF', 1);
-			this.world.viewport.fadeOverlay(32);
+			this.world.viewport.fadeOverlay(8);
 			this.explosionNoise.play();
 			this.bumpNoise.play();
 

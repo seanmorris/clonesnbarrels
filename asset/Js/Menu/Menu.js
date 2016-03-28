@@ -2,7 +2,7 @@ function Menu(game)
 {
 	this.cacheBg				= null;
 	this.ignoreInput			= 0;
-	this.ignoreInputTime		= 2;
+	this.ignoreInputTime		= 5;
 	this.options				= [];
 
 	this.selected = 0;
@@ -17,7 +17,7 @@ function Menu(game)
 	this.selectedTextColor		= '#F8435C';
 	this.selectedBoxColor		= '#652931';
 
-	this.leftMargin				= 180;
+	this.leftMargin				= -180;
 	this.leftTextMargin			= 10;
 
 	this.topMargin				= 250;
@@ -39,6 +39,14 @@ function Menu(game)
 		if(this.ignoreInput < 0)
 		{
 			this.ignoreInput = 0;
+		}
+
+		for (var i in game.keyStates)
+		{
+			if(game.keyStates[i] === 0)
+			{
+				this.ignoreInput = 0;
+			}
 		}
 
 		if(!this.ignoreInput || game.scrollStates[0] || game.scrollStates[1])
@@ -71,6 +79,7 @@ function Menu(game)
 
 			if(
 			   game.keyStates[38]
+			   || game.padAxes[1] < -0.25
 			   || game.keyStates[87]
 			   || game.scrollStates[1]
 			   || (game.clickVectors[0]
@@ -85,6 +94,7 @@ function Menu(game)
 			else if(
 				game.keyStates[40]
 				|| game.keyStates[83]
+			   	|| game.padAxes[1] > 0.25
 				|| game.scrollStates[0]
 				|| (game.clickVectors[0]
 					&& game.clickVectors[0].active()
@@ -98,6 +108,7 @@ function Menu(game)
 			else if(
 				game.keyStates[32] === 0
 				|| game.keyStates[13] === 0
+			   	|| game.padStates[0] === 0
 				|| (game.clickVectors[0]
 					&& game.clickVectors[0].undragged
 					&& game.clickVectors[0].released
@@ -251,7 +262,13 @@ function Menu(game)
 				);
 
 				this.context.fillStyle = this.selectedTextColor;
+				this.context.strokeStyle = '#000';
 
+				this.context.strokeText(
+					showText
+					, center[0]+this.leftTextMargin+this.leftMargin
+					,  offset + this.topMargin + this.selectedMargins
+				);
 				this.context.fillText(
 					showText
 					, center[0]+this.leftTextMargin+this.leftMargin
@@ -269,7 +286,13 @@ function Menu(game)
 				);
 
 				this.context.fillStyle = this.textColor;
-
+				this.context.strokeStyle = '#000';
+				
+				this.context.strokeText(
+					showText
+					, center[0]+this.leftTextMargin+this.leftMargin
+					, offset + this.topMargin + (this.margins + this.selectedMargins)
+				);
 				this.context.fillText(
 					showText
 					, center[0]+this.leftTextMargin+this.leftMargin

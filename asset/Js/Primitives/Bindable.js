@@ -13,20 +13,14 @@ var BindableDef = {
 	}
 	, push: function(pusher)
 	{
-		if(!this.canBePushed(pusher))
-		{
-			return false;
-		}
-		
-		this.collide(pusher);
-
-		pusher.collide(this);
-
 		if(!this.heldBy)
 		{
 			this.direction = pusher.direction;
 			this.step(pusher.stepSpeed);
 		}
+
+		this.collide(pusher);
+		pusher.collide(this);
 
 		this._super(pusher);
 

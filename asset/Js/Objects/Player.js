@@ -136,8 +136,9 @@ var Player = DamageableCharacter.extend({
 					&& input.clickVectors[0].active()
 					&& input.clickVectors[0].cardinal() == this.LEFT
 				)
+				|| input.axes[0] < -0.75
 			)
-			&& ! moveAccs[ this.DOWN]
+			&& ! moveAccs[ this.DOWN ]
 			&& ! moveAccs[ this.RIGHT ]
 			&& ! moveAccs[ this.UP ]
 		){
@@ -159,6 +160,7 @@ var Player = DamageableCharacter.extend({
 					&& input.clickVectors[0].active()
 					&& input.clickVectors[0].cardinal() == this.RIGHT
 				)
+				|| input.axes[0] > 0.75
 			)
 			&& ! moveAccs[ this.LEFT ]
 			&& ! moveAccs[ this.UP ]
@@ -182,6 +184,7 @@ var Player = DamageableCharacter.extend({
 					&& input.clickVectors[0].active()
 					&& input.clickVectors[0].cardinal() == this.DOWN
 				)
+				|| input.axes[1] > 0.75
 			)
 			&& ! moveAccs[ this.UP ]
 			&& ! moveAccs[ this.LEFT ]
@@ -209,6 +212,7 @@ var Player = DamageableCharacter.extend({
 					&& input.clickVectors[0].active()
 					&& input.clickVectors[0].cardinal() == this.UP
 				)
+				|| input.axes[1] < -0.75
 			)
 			&& !moveAccs[ this.LEFT ]
 			&& !moveAccs[ this.RIGHT ]
@@ -287,8 +291,6 @@ var Player = DamageableCharacter.extend({
 
 				for(var i in this.party)
 				{
-					console.log(this.party[i].name);
-
 					if(this.party[i].ignoreControl || this.party[i] instanceof Corpse)
 					{
 						continue;
@@ -306,6 +308,7 @@ var Player = DamageableCharacter.extend({
 				&& input.clickVectors[0].released
 				&& input.clickVectors[0].undragged
 			)
+			|| input.buttons[0] === 0
 		){
 			this.use();
 			this.wasHeld = null;
@@ -334,7 +337,7 @@ var Player = DamageableCharacter.extend({
 			{
 				continue;
 			}
-			
+
 			this.party[i].update(input);
 		}
 	}

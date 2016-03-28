@@ -39,6 +39,11 @@ class SaveStateForm extends \SeanMorris\Form\Form
 			, 'type' => 'text'
 		];
 
+		$skeleton['submit'] = [
+			'_title' => 'submit'
+			, 'type' => 'submit'
+		];
+
 		parent::__construct($skeleton);
 	}
 }

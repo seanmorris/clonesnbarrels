@@ -313,7 +313,7 @@ var Actor = Class.extend({
 
 		this.requestedStep = false;
 
-		if(this.world)
+		if(this.world && this.i !== null)
 		{
 			var tileEffect = this.world.map.getTileEffect(
 				this.x, this.y
@@ -630,14 +630,14 @@ var Actor = Class.extend({
 
 		this.preloadSprite();
 
+		var sprite = this.sprite;
+
 		for(var animation in this.sprite)
 		{
 			for(var direction in this.sprite[animation])
 			{
 				for(var frame in this.sprite[animation][direction])
 				{
-					var sprite = this.sprite;
-
 					if(animation !== 'standard')
 					{
 						imageCache.loadImage(
@@ -679,6 +679,8 @@ var Actor = Class.extend({
 								}
 
 								virtualContext.putImageData(imageData, 0, 0);
+
+								console.log(animation, direction, frame);
 
 								sprite[animation][direction][frame] = virtualCanvas.toDataURL();
 							}

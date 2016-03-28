@@ -46,9 +46,6 @@ function MainState(game)
 		this.viewport.bindWorld(this.world);
 		this.world.bindGameObject(game);
 
-		this.bgm = new Audio('/SeanMorris/ClonesNBarrels/Sound/514068_N3Z-3---8-bit-crush.mp3');
-		//this.bgm.play();
-
 		this.player		= new Player(new PlayerSprite());
 
 		if(this.world.map && this.world.map.start)
@@ -92,7 +89,13 @@ function MainState(game)
 		}
 		else
 		{
-			this.world.mapSet.switchMap(this.world.mapSet.startingMap);
+			this.world.mapSet.switchMap(
+				this.world.mapSet.startingMap
+				, undefined
+				, undefined
+				, undefined
+				, true
+			);
 		}
 	}
 
@@ -106,6 +109,8 @@ function MainState(game)
 				, 'mouseStates'	: game.mouseStates
 				, 'scrollStates': game.scrollStates
 				, 'clickVectors': game.clickVectors
+				, 'buttons'		: game.padStates
+				, 'axes'		: game.padAxes
 			});
 
 			this.viewport.render();

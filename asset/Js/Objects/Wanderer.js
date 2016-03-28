@@ -1,8 +1,7 @@
 var Wanderer = DamageableCharacter.extend({
-	init: function(sprite, backward)
+	init: function(sprite, maxHealth)
 	{
-		this._super(sprite);
-		this.backward = backward;
+		this._super(sprite, maxHealth);
 		this.corpse = new Corpse(
 			new PlayerCorpseSprite()
 			, 250
@@ -20,17 +19,25 @@ var Wanderer = DamageableCharacter.extend({
 			{
 				if(this.backward)
 				{
-					this.turn((this.direction-- % 4));
+					this.turn(((this.direction-1) % 4));
 				}
 				else
 				{
-					this.turn((this.direction++ % 4));
+					this.turn(((this.direction+1) % 4));
 				}
+
+				if(!this.canStep())
+				{
+					this.turn(((this.direction+2) % 4));
+					this.backward = 1;
+				}
+
+				return;
 			}
 
-			if(!this.step(this.stepSpeed))
+			if(!this.step(this.stepSpeed) || Math.random() < 0.2)
 			{
-				this.turn((this.direction++ % 4));
+				this.turn((this.direction+1 % 4));
 			}
 		}
 	}

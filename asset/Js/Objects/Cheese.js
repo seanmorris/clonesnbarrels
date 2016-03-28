@@ -19,11 +19,14 @@ var Cheese = Bindable.extend({
 				0.2//Math.random()
 				, 1.25//Math.random()
 				, 1.75//Math.random()
+				, 1
 			);
 			other.speed = 2;
+			
 			var stepRatio = other.stepTimer/other.stepTime;
-			other.stepTimer = other.speed * stepRatio;
-			other.stepTime = other.speed;
+			other.damage *= 4;
+			//other.stepTimer = other.speed * stepRatio;
+			//other.stepTime = other.speed;
 
 			other.alterSprite(scaleColorFunc);
 		}
@@ -33,6 +36,7 @@ var Cheese = Bindable.extend({
 				1.5//Math.random()
 				, 0.75//Math.random()
 				, 0.75//Math.random()
+				, 1
 			);
 			other.speed = 4;
 			other.alterSprite(scaleColorFunc);
@@ -56,7 +60,7 @@ var Cheese = Bindable.extend({
 				0.1//Math.random()
 				, 0.7//Math.random()
 				, 1//Math.random()
-				, 0
+				, 1
 			);
 			other.alterSprite(swapColorFunc);
 			//other.alterSprite(scaleColorFunc);
