@@ -4,23 +4,25 @@ class MapRoute extends \SeanMorris\PressKit\Controller
 {
 	protected
 		$title = 'Maps'
-		, $modelClass = '\SeanMorris\ClonesNBarrels\Map'
+		, $modelClass = 'SeanMorris\ClonesNBarrels\Map'
 		, $formTheme = 'SeanMorris\Form\Theme\Theme'
 	;
 	protected static
-		$forms = [
+		$list = [
+			'myMaps' => [
+				'function' => 'byOwner'
+				, 'params' => 'myMapsParams'
+			]
+		]
+		, $forms = [
 			'edit' => 'SeanMorris\ClonesNBarrels\Form\MapForm'
 		]
 	;
-
-	public function _dynamic($router)
+	
+	protected function myMapsParams()
 	{
-		if(array_key_exists('api', $_GET) || $router->path()->remaining() > 1)
-		{
-			return parent::_dynamic($router);
-		}
+		$user = \SeanMorris\Access\Route\AccessRoute::_currentUser();
 
-		return new \SeanMorris\ClonesNBarrels\View\Play;
-		die();
+		return [$user->id];
 	}
 }

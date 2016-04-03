@@ -2,6 +2,8 @@
 namespace SeanMorris\ClonesNBarrels\Route;
 class SaveStateRoute extends \SeanMorris\PressKit\Controller
 {
+	public
+		$alias = ['index' => 'mySaves'];
 	protected
 		$title = 'Saves'
 		, $modelClass = '\SeanMorris\ClonesNBarrels\SaveState'
@@ -62,6 +64,8 @@ class SaveStateRoute extends \SeanMorris\PressKit\Controller
 				'content'	=> $saves
 				, 'path'	=> $router->path()->pathString()
 				, 'columns'	=> ['id', 'title']
+				, '_controller'	=> $this
+				, '_router'	=> $router
 			]);
 		}
 	}

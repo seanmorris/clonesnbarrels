@@ -43,5 +43,18 @@ class SaveState extends \SeanMorris\PressKit\Model
 			, 'order' => [
 				'updated' => 'DESC'
 			]
-		];
+		]
+		, $list = [
+			'myStates' => [
+				'function' => 'byOwner'
+				, 'params' => 'myStateParams'
+			]
+		]
+	;
+	protected function myStateParams()
+	{
+		$user = \SeanMorris\Access\Route\AccessRoute::_currentUser();
+
+		return [$user->id];
+	}
 }
