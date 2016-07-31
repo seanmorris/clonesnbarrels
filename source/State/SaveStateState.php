@@ -6,22 +6,23 @@ class SaveStateState extends \SeanMorris\PressKit\State
 		$states	= [
 			0 => [
 				'create'	=> 'SeanMorris\Access\Role\User'
-				, 'read'	 => 1
-				, 'update'	 => [1, 'SeanMorris\Access\Role\Moderator']
-				, 'delete'	 => [1, 'SeanMorris\Access\Role\Administrator']
-				
+				, 'read'	 => TRUE
+				, 'update'	 => [TRUE, 'SeanMorris\Access\Role\User']
+				, 'delete'	 => [TRUE, 'SeanMorris\Access\Role\Administrator']
+
 				, '$class'	=> [
-					'write'  => 0
-					, 'read' => 1
+					'write'  => FALSE
+					, 'read' => TRUE
 				]
 
 				, '$title'	=> [
-					'write'  => [1, 'SeanMorris\Access\Role\Moderator']
-					, 'read' => 1
+					'write'  => [TRUE, 'SeanMorris\Access\Role\Administrator']
+					, 'read' => TRUE
 				]
+
 				, '$savedata'	=> [
-					'write'  => [1, 'SeanMorris\Access\Role\Moderator']
-					, 'read' => 1
+					'write'  => [TRUE, 'SeanMorris\Access\Role\Administrator']
+					, 'read' => TRUE
 				]
 			]
 		];

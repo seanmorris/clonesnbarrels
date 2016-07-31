@@ -3,6 +3,7 @@ var SaveSubmenu = function(game)
 	var dynMenu = new Menu(game);
 
 	var endpoint = '/clonesNBarrels/saveState/mySaves';
+	
 	var data = JSON.parse($.ajax({
 		url: endpoint
 		, dataType: 'json'
@@ -17,7 +18,7 @@ var SaveSubmenu = function(game)
 			var stateId = data[i]['id'];
 
 			return function()
-			{				
+			{
 				game.changeState('main', {}, true);
 
 				var saveState = new SaveState();
@@ -54,7 +55,7 @@ var SaveSubmenu = function(game)
 
 	var dynMenu = new Menu(game);
 
-	
+
 
 	game.stackState(
 		'menu'

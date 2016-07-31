@@ -13,18 +13,19 @@ var Storable = Class.extend({
 
 		for(var i in this)
 		{
-			if(!i.match(/^_/) && !(this[i] instanceof Function))
+			if(i.match(/^_/) || (this[i] instanceof Function))
 			{
-				data[i] = this[i];
+				continue;
 			}
 
-			console.log(i, data);
+			data[i] = this[i];
+			console.log(i, data[i]);
 
 		}
 		var endpoint = this._endpoint
 			+ '/'
 			+ this.publicId
-			+ '/edit';
+			+ '/edit?api';
 
 		if(!this.publicId)
 		{
@@ -38,6 +39,7 @@ var Storable = Class.extend({
 			, method: 'POST'
 			, data: data
 			, dataType: 'JSON'
+			, async: false
 			, success: function(data)
 			{
 				console.log(data);
@@ -45,10 +47,10 @@ var Storable = Class.extend({
 				for(var i in _this)
 				{
 					if(!i.match(/^_/)
-						&& data[i] !== undefined
+						&& data.body[i] !== undefined
 						&& !(_this[i] instanceof Function)
 					){
-						_this[i] = data[i];
+						_this[i] = data.body[i];
 					}
 				}
 
@@ -61,7 +63,7 @@ var Storable = Class.extend({
 		if(id)
 		{
 			this.publicId = id;
-		}		
+		}
 
 		var endpoint = this._endpoint
 			+ '/'
@@ -79,10 +81,10 @@ var Storable = Class.extend({
 		for(var i in this)
 		{
 			if(!i.match(/^_/)
-				&& data[i] !== undefined
+				&& data.body[i] !== undefined
 				&& !(this[i] instanceof Function)
 			){
-				this[i] = data[i];
+				this[i] = data.body[i];
 			}
 		}
 	}

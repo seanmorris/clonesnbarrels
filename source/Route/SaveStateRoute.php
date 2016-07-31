@@ -1,12 +1,11 @@
-<?php 
+<?php
 namespace SeanMorris\ClonesNBarrels\Route;
 class SaveStateRoute extends \SeanMorris\PressKit\Controller
 {
-	public
-		$alias = ['index' => 'mySaves'];
+	public $alias = ['index' => 'mySaves'];
 	protected
 		$title = 'Saves'
-		, $modelClass = '\SeanMorris\ClonesNBarrels\SaveState'
+		, $modelClass = 'SeanMorris\ClonesNBarrels\SaveState'
 		, $formTheme = 'SeanMorris\Form\Theme\Theme'
 	;
 	protected static
@@ -23,14 +22,15 @@ class SaveStateRoute extends \SeanMorris\PressKit\Controller
 
 			if($router->request()->params('api'))
 			{
+				\SeanMorris\Ids\Log::debug($save);
 				echo json_encode($save->unconsume(), JSON_PRETTY_PRINT);
 				die;
 			}
-			
+
 			if($theme = $this->_getTheme($router))
 			{
 				$viewClass = $theme::resolveFirst($this->modelClass);
-				
+
 				return new $viewClass(['object' => $save]);
 			}
 		}
@@ -59,7 +59,7 @@ class SaveStateRoute extends \SeanMorris\PressKit\Controller
 		if($theme = $this->_getTheme($router))
 		{
 			$listViewClass = $theme::resolveFirst($this->modelClass, NULL, 'list');
-			
+
 			return new $listViewClass([
 				'content'	=> $saves
 				, 'path'	=> $router->path()->pathString()

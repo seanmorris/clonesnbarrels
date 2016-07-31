@@ -109,7 +109,6 @@ Js/Objects/Rock.js
 Js/Objects/Health.js
 Js/Objects/Wanderer.js
 Js/World/World.js
-Js/World/NumberWorld/NumberWorld.js
 Js/World/MapSet.js
 Js/World/Maps/basement_001.js
 Js/World/Maps/surface_001.js

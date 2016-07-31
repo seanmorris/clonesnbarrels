@@ -18,7 +18,12 @@ var MapSet = Class.extend({
 	}
 	, storeState: function()
 	{
-		console.log('STORING STATE');
+		if(!this.currentMap)
+		{
+			return this.mapStates;
+		}
+
+		console.log('STORING STATE FOR MAP', this.currentMap);
 		var mainActor = this.world.viewport.actor;
 
 		if(!mainActor || !mainActor instanceof Player)
@@ -104,7 +109,7 @@ var MapSet = Class.extend({
 				if(
 					object instanceof this.world.map.objectPallet[c]
 				){
-					objectCopy.constructor = c;	
+					objectCopy.constructor = c;
 				}
 			}
 
@@ -160,7 +165,7 @@ var MapSet = Class.extend({
 				if(newObject)
 				{
 					newObject.loadedData = this.mapStates[map][object];
-					
+
 					addedObjects.push(newObject);
 
 					for(var p in newObject.loadedData.data)
@@ -168,7 +173,7 @@ var MapSet = Class.extend({
 						// console.log(p, newObject[p], newObject.loadedData.data[p]);
 						newObject[p] = newObject.loadedData.data[p];
 					}
-					
+
 					/*
 					console.log(
 						newObject.name
@@ -196,7 +201,7 @@ var MapSet = Class.extend({
 					if(addedObjects[o] instanceof Projectile
 						|| addedObjects[o] instanceof Angle
 					){
-						//console.log(addedObjects[o]);
+						console.log(addedObjects[o]);
 					}
 
 					if(addedObjects[o].loadedData.refs.triggers[0])
@@ -231,7 +236,7 @@ var MapSet = Class.extend({
 		}
 
 		var mapData = this.maps[map];
-		
+
 		if(typeof mapData !== 'object')
 		{
 			var loadMap = new MapStorable();
@@ -249,10 +254,10 @@ var MapSet = Class.extend({
 
 		this.world.map.setData(
 			JSON.stringify(mapData)
-			//, ignoreState	
+			//, ignoreState
 		);
 
-		console.log(mapData.publicId);
+		console.log('SWITCHING TO MAP ', mapData.publicId);
 
 		var loc = window.location.pathname.split('/');
 

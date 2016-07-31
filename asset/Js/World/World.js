@@ -45,7 +45,7 @@ var World = Class.extend({
 
 		if(object)
 		{
-			object.bindWorld(this);	
+			object.bindWorld(this);
 			var i = this.objects[x][y].length - 1;
 			object.setPosition(x, y, i);
 		}
@@ -601,21 +601,34 @@ var World = Class.extend({
 	}
 	, getState: function()
 	{
+		this.mapSet.storeState();
+
 		return {
-			state: this.mapSet.storeState()
+			state: this.mapSet.mapStates
 			, playerState: this.mapSet.playerState
 			, partyState: this.mapSet.partyState
 		};
 	}
 	, setState: function(state)
 	{
+		console.log("FULLSTATE", state);
 		this.mapSet.mapStates = state.state;
-		this.mapSet.playerState = state.playerState;
 
 		for(var map in this.mapSet.maps)
 		{
+			if(typeof this.mapSet.maps[map] !== 'string')
+			{
+				continue;
+			}
+
+			console.log('Setting map state for', map, this.mapSet.maps[map], this.mapSet.mapStates[map]);
+
 			this.mapSet.loadState(map);
 		}
+
+		this.mapSet.loadState(this.mapSet.currentMap);
+
+		this.mapSet.playerState = state.playerState;
 
 		if(!this.viewport.actor)
 		{

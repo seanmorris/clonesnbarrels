@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace SeanMorris\ClonesNBarrels;
 class SaveState extends \SeanMorris\PressKit\Model
 {
@@ -30,7 +30,7 @@ class SaveState extends \SeanMorris\PressKit\Model
 			, 'updated' => 'UNIX_TIMESTAMP()'
 		]
 		, $hasOne = [
-			'state' => '\SeanMorris\ClonesNBarrels\State\SaveStateState'
+			'state' => 'SeanMorris\ClonesNBarrels\State\SaveStateState'
 		]
 		, $byOwner = [
 			'join' => [

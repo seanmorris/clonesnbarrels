@@ -2,7 +2,7 @@
 namespace SeanMorris\ClonesNBarrels\View;
 class Play extends \SeanMorris\Theme\View
 {
-	
+
 }
 __halt_compiler(); ?>
 <!doctype HTML>
@@ -11,7 +11,7 @@ __halt_compiler(); ?>
 		<title>Sean Morris - Clones N Barrels</title>
 		<meta name="viewport" content="width=device-width" />
 		<link rel = "stylesheet" href = "/SeanMorris/ClonesNBarrels/min.css" />
-		<script type = "text/javascript" src = "/SeanMorris/Portfolio/jquery-1.11.2.min.js"></script>
+		<script type = "text/javascript" src = "/SeanMorris/PortfolioSite/jquery-1.11.2.min.js"></script>
 		<script src = "/SeanMorris/ClonesNBarrels/min.js"></script>
 	</head>
 	<body>
@@ -95,13 +95,13 @@ __halt_compiler(); ?>
 					<tr id = "tileEffectEditor" class = "editorRow tileEffectEditorRow">
 						<td id = "tileEffectEditorSelection">
 							Effect: <select id = "tileEffectPallet" name = "tileEffectSelect">
-								
+
 							</select><br />
 							<button id = "setTileEffect">Set</button>
 							<button id = "clearTileEffect">Clear</button>
 						</td>
 						<td id = "tileEffectEditorCell">
-							
+
 						</td>
 					</tr>
 				</table>
@@ -109,4 +109,3 @@ __halt_compiler(); ?>
 		</div>
 	</body>
 </html>
-

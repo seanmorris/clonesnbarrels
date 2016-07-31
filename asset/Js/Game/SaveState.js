@@ -36,11 +36,13 @@ var SaveState = Storable.extend({
 
 		this.savedata = JSON.parse(this.savedata);
 
-		console.log(this);
+		console.log("FULLSTATE", this.savedata);
+
+		world.setState(this.savedata);
 
 		for(var map in this.savedata.state)
 		{
-			world.mapSet.loadState(map);
+			//world.mapSet.loadState(map);
 		}
 
 		world.mapSet.switchMap(
@@ -80,7 +82,7 @@ var SaveState = Storable.extend({
 			return;
 		}
 
-		var savedata = JSON.parse(data.savedata); 
+		var savedata = JSON.parse(data.savedata);
 
 		world.mapSet.mapStates = savedata.state;
 		world.mapSet.playerState = savedata.playerState;

@@ -538,8 +538,6 @@ function Game(canvas)
 		}
 	);
 
-
-
 	$(document).bind(
 		'mousewheel DOMMouseScroll'
 		, function(e)
