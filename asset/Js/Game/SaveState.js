@@ -21,7 +21,7 @@ var SaveState = Storable.extend({
 			this.title = 'Save #' + Date.now();
 		}
 
-		this._super();
+		return this._super();
 	}
 	, load: function(world)
 	{
@@ -36,8 +36,6 @@ var SaveState = Storable.extend({
 
 		this.savedata = JSON.parse(this.savedata);
 
-		console.log("FULLSTATE", this.savedata);
-
 		world.setState(this.savedata);
 
 		for(var map in this.savedata.state)
@@ -50,8 +48,6 @@ var SaveState = Storable.extend({
 			, this.savedata.playerState.x
 			, this.savedata.playerState.y
 		);
-
-		console.log(this.savedata.partyState);
 
 		if(this.savedata.partyState)
 		{

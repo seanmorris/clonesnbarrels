@@ -6,6 +6,7 @@ var Storable = Class.extend({
 		this.title = null;
 		this.created = null;
 		this.updated = null;
+		this.messages = [];
 	}
 	, save: function()
 	{
@@ -19,9 +20,8 @@ var Storable = Class.extend({
 			}
 
 			data[i] = this[i];
-			console.log(i, data[i]);
-
 		}
+
 		var endpoint = this._endpoint
 			+ '/'
 			+ this.publicId
@@ -33,6 +33,7 @@ var Storable = Class.extend({
 		}
 
 		var _this = this;
+		var success = false;
 
 		$.ajax({
 			url: endpoint
@@ -42,7 +43,11 @@ var Storable = Class.extend({
 			, async: false
 			, success: function(data)
 			{
-				console.log(data);
+				if(data.body !== undefined || !data.body)
+				{
+					_this.messages = data.messages;
+					return;
+				}
 
 				for(var i in _this)
 				{
@@ -54,9 +59,11 @@ var Storable = Class.extend({
 					}
 				}
 
-				// localStorage.setItem(_this._key, data.publicId);
+				success = true;
 			}
 		});
+
+		return success;
 	}
 	, load: function(id)
 	{
@@ -87,5 +94,11 @@ var Storable = Class.extend({
 				this[i] = data.body[i];
 			}
 		}
+	},
+	getMessages: function()
+	{
+		var m = this.messages;
+		this.messages = [];
+		return m;
 	}
 });

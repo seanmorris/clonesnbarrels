@@ -13,7 +13,6 @@ class RootRoute extends \SeanMorris\PressKit\Controller
 	
 	public function index($router)
 	{
-		echo new \SeanMorris\ClonesNBarrels\View\Play;
-		die();
+		throw new \SeanMorris\Ids\Http\HttpDocument(new \SeanMorris\ClonesNBarrels\View\Play);
 	}
 }

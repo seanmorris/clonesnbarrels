@@ -1,0 +1,8 @@
+{
+	"tables": {
+		"main": [
+			"ClonesNBarrelsMap"
+			, "ClonesNBarrelsSaveState"
+		]
+	}
+}

@@ -1,9 +1,8 @@
 var SaveSubmenu = function(game)
 {
 	var dynMenu = new Menu(game);
-
 	var endpoint = '/clonesNBarrels/saveState/mySaves';
-	
+
 	var data = JSON.parse($.ajax({
 		url: endpoint
 		, dataType: 'json'
@@ -11,11 +10,11 @@ var SaveSubmenu = function(game)
 		, data:{api: 'json'}
 	}).responseText);
 
-	for(var i in data)
+	for(var i in data.body)
 	{
-		dynMenu.options[data[i]['title']] = (function()
+		dynMenu.options[data.body[i]['title']] = (function()
 		{
-			var stateId = data[i]['id'];
+			var stateId = data.body[i]['id'];
 
 			return function()
 			{
@@ -30,6 +29,11 @@ var SaveSubmenu = function(game)
 				saveState.load(world);
 			}
 		})();
+	}
+
+	for(var i in data.messages)
+	{
+		game.message.blit(data.messages[i]);
 	}
 
 	if(!dynMenu.options)
@@ -54,8 +58,6 @@ var SaveSubmenu = function(game)
 	return;
 
 	var dynMenu = new Menu(game);
-
-
 
 	game.stackState(
 		'menu'

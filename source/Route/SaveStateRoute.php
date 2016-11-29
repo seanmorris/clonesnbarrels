@@ -14,6 +14,41 @@ class SaveStateRoute extends \SeanMorris\PressKit\Controller
 		]
 	;
 
+	public function create($router)
+	{
+		$user = \SeanMorris\Access\Route\AccessRoute::_currentUser();
+
+		if(!$user->id)
+		{
+			$messages = \SeanMorris\Message\MessageHandler::get();
+
+			$messages->addFlash(
+				new \SeanMorris\Message\ErrorMessage(
+					'You must be logged in to save.'
+				)
+			);
+
+			if($router->request()->params('api'))
+			{
+				$messages->addFlash(
+					new \SeanMorris\Message\ErrorMessage(
+						'Leave the game paused and log in on another tab.'
+					)
+				);
+				$messages->addFlash(
+					new \SeanMorris\Message\ErrorMessage(
+						'We\'ll wait.'
+					)
+				);
+			}
+		}
+
+		$resource = new \SeanMorris\PressKit\Api\Resource($router);
+
+		echo $resource->toJson();
+		die;
+	}
+
 	public function mySaves($router)
 	{
 		if($node = $router->path()->consumeNode())
@@ -37,9 +72,29 @@ class SaveStateRoute extends \SeanMorris\PressKit\Controller
 
 		$user = \SeanMorris\Access\Route\AccessRoute::_currentUser();
 		$saves = \SeanMorris\ClonesNBarrels\SaveState::getByOwner($user->id);
+		$messages = \SeanMorris\Message\MessageHandler::get();
+		
+		if(!$user->id)
+		{
+			$messages->addFlash(
+				new \SeanMorris\Message\ErrorMessage(
+					'You must be logged in to view your saves.'
+				)
+			);
+		}
 
 		if($router->request()->params('api'))
 		{
+			$messages->addFlash(
+				new \SeanMorris\Message\ErrorMessage(
+					'Leave the game paused and log in on another tab.'
+				)
+			);
+			$messages->addFlash(
+				new \SeanMorris\Message\ErrorMessage(
+					'We\'ll wait.'
+				)
+			);
 			$links = [];
 
 			foreach($saves as $save)
@@ -52,7 +107,13 @@ class SaveStateRoute extends \SeanMorris\PressKit\Controller
 				];
 			}
 
-			echo json_encode($links, JSON_PRETTY_PRINT);
+			$resource = new \SeanMorris\PressKit\Api\Resource(
+				$router
+				, ['body' => $links]
+			);
+
+			echo $resource->toJson();
+			//echo json_encode($links, JSON_PRETTY_PRINT);
 			die;
 		}
 

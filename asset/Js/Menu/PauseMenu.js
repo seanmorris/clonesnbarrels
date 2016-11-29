@@ -18,21 +18,6 @@ function PauseMenu(game)
 		game.message.blit('Welcome back.');
 		game.changeState('main', {}, true);
 	};
-	/*
-	this.options['load game']	= function()
-	{
-		var saveState = new SaveState();
-		var world = game.stateStack[0].world;
-
-		console.log(world);
-		
-		saveState.load(world);
-		
-		game.message.blit('Welcome back.');
-
-		game.restoreState();
-	};
-	*/
 
 	this.options['load game']	= SaveSubmenu;
 
@@ -41,13 +26,21 @@ function PauseMenu(game)
 		var saveState = new SaveState();
 		var world = game.stateStack[0].world;
 
-		saveState.save(world);
+		if(saveState.save(world))
+		{
+			game.message.blit('Saved "' + world.saveStateTitle + '".', 300);
+		}
+		else
+		{
+			var messages = saveState.getMessages();
+			for(var i in messages)
+			{
+				game.message.blit(messages[i], 300);
+			}
+		}
 
-		JSON.stringify(game.stateStack[0].world.getState());
-		
+
 		game.restoreState();
-
-		game.message.blit('Saved "' + world.saveStateTitle + '".', 300);
 	};
 
 	this.options['music']		= MusicSubmenu;

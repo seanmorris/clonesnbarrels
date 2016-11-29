@@ -246,10 +246,12 @@ function Menu(game)
 
 			var showText = i;
 
+			/*
 			if(this.options[i].name)
 			{
 				showText = this.options[i].name;
 			}
+			*/
 
 			if(j == this.selected)
 			{
