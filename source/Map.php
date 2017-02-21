@@ -30,7 +30,7 @@ class Map extends \SeanMorris\PressKit\Model
 			, 'updated' => 'UNIX_TIMESTAMP()'
 		]
 		, $hasOne = [
-			//'state' => '\SeanMorris\ClonesNBarrels\State\MapState'
+			'state' => '\SeanMorris\ClonesNBarrels\State\MapState'
 		]
 		, $byOwner = [
 			'join' => [

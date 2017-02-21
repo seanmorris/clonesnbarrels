@@ -235,7 +235,18 @@ var MapSet = Class.extend({
 			this.storeState();
 		}
 
-		var mapData = this.maps[map];
+		var mapData;
+
+		if(typeof this.maps[map] !== 'undefined')
+		{
+			mapData = this.maps[map];
+		}
+		else
+		{
+			mapData = map;
+		}
+
+		console.log('Switching to map', mapData);
 
 		if(typeof mapData !== 'object')
 		{

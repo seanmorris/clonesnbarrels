@@ -6,10 +6,13 @@ function MainState(game)
 	this.inst = ++MainState.instanceCount;
 	this.mapStorable = null;
 
+	var vXSize;
+	var vYSize;
+
 	//*
 	//1767 tiles
-	var vXSize	= 57;
-	var vYSize	= 31;
+	vXSize	= 57;
+	vYSize	= 31;
 	/*/
 	//1025 tiles
 	var vXSize	= 41;
@@ -17,9 +20,12 @@ function MainState(game)
 	//*/
 	//*/
 	//*/
-	var vXSize	= 25;
-	var vYSize	= 19;
+	vXSize	= 25;
+	vYSize	= 19;
 	//*/
+
+	vXSize	= 36;
+	vYSize	= 24;
 
 	if(typeof window.orientation !== 'undefined')
 	{
@@ -36,7 +42,7 @@ function MainState(game)
 
 	this.onEnter = function()
 	{
-		//console.log('enter');
+		console.log('enter');
 		this.viewport	= new Viewport(game, vXSize, vYSize, tileSize);
 		this.viewport.resize();
 		$(window).on('resize', this.viewport.resize);

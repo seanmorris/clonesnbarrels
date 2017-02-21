@@ -41,8 +41,8 @@ function Viewport(game, x, y, size)
 
 	this.panes = [];
 	this.panesXY = [];
-	this.paneSize	= 15;
-	this.maxPanes	= 8;
+	this.paneSize	= 9;
+	this.maxPanes	= 9;
 
 	this.panesToEdgeX = Math.floor((this.x/2)/this.paneSize)+1;
 	this.panesToEdgeY = Math.floor((this.y/2)/this.paneSize)+1;

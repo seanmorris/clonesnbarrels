@@ -9,17 +9,15 @@ class MapState extends \SeanMorris\PressKit\State
 				, 'read'	 => 1
 				, 'update'	 => [1, 'SeanMorris\Access\Role\Moderator']
 				, 'delete'	 => [1, 'SeanMorris\Access\Role\Administrator']
-				
 				, '$class'	=> [
 					'write'  => 0
 					, 'read' => 1
 				]
-
 				, '$title'	=> [
 					'write'  => [1, 'SeanMorris\Access\Role\Moderator']
 					, 'read' => 1
 				]
-				, '$savedata'	=> [
+				, '$mapdata' => [
 					'write'  => [1, 'SeanMorris\Access\Role\Moderator']
 					, 'read' => 1
 				]

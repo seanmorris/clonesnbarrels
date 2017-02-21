@@ -36,16 +36,21 @@ canvas{
 }
 
 #outer{
+	position: absolute;
+	z-index: 9999999999999999;
+	top:0px;
+	left:0px;
 	width:100%;
-	display: table;
 	height: 100%;
-	overflow: hidden;
+	overflow-y: auto;
+	background: #000;
 }
+
 #inner{
-	width:100%;
-	display:table-cell;
-	vertical-align:
-	middle;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
 }
 
 /*----Editor Specific----*/
@@ -111,4 +116,8 @@ td#tileEditorSelection
 
 input[type="text"]{
 	width:100px;
+}
+
+html, body {
+	overflow: hidden;
 }

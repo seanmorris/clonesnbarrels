@@ -21,7 +21,12 @@ var SaveState = Storable.extend({
 			this.title = 'Save #' + Date.now();
 		}
 
-		return this._super();
+		var result = this._super();
+
+		world.saveStateId    = this.publicId;
+		world.saveStateTitle = this.title;
+
+		return result;
 	}
 	, load: function(world)
 	{

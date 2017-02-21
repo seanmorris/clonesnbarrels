@@ -20,7 +20,7 @@ var Barrel = DamageableBindable.extend({
 
 		if(this.health < this.maxHealth && !Barrel.warned)
 		{
-			this.world.game.message.blit('Carefule with those barrels.');
+			this.world.game.message.blit('Careful with those barrels...');
 			Barrel.warned = true;
 		}
 

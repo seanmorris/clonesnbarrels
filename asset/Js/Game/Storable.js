@@ -43,7 +43,7 @@ var Storable = Class.extend({
 			, async: false
 			, success: function(data)
 			{
-				if(data.body !== undefined || !data.body)
+				if(typeof data.body == 'undefined' || !data.body)
 				{
 					_this.messages = data.messages;
 					return;

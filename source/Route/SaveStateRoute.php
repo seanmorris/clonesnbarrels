@@ -41,12 +41,11 @@ class SaveStateRoute extends \SeanMorris\PressKit\Controller
 					)
 				);
 			}
+
+			return;
 		}
 
-		$resource = new \SeanMorris\PressKit\Api\Resource($router);
-
-		echo $resource->toJson();
-		die;
+		$save = parent::create($router);
 	}
 
 	public function mySaves($router)
@@ -81,20 +80,24 @@ class SaveStateRoute extends \SeanMorris\PressKit\Controller
 					'You must be logged in to view your saves.'
 				)
 			);
+
+			if($router->request()->params('api'))
+			{
+				$messages->addFlash(
+					new \SeanMorris\Message\ErrorMessage(
+						'Leave the game paused and log in on another tab.'
+					)
+				);
+				$messages->addFlash(
+					new \SeanMorris\Message\ErrorMessage(
+						'We\'ll wait.'
+					)
+				);
+			}
 		}
 
 		if($router->request()->params('api'))
 		{
-			$messages->addFlash(
-				new \SeanMorris\Message\ErrorMessage(
-					'Leave the game paused and log in on another tab.'
-				)
-			);
-			$messages->addFlash(
-				new \SeanMorris\Message\ErrorMessage(
-					'We\'ll wait.'
-				)
-			);
 			$links = [];
 
 			foreach($saves as $save)
