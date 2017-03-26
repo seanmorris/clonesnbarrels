@@ -2,6 +2,7 @@
 namespace SeanMorris\ClonesNBarrels\Route;
 class RootRoute extends \SeanMorris\PressKit\Controller
 {
+	public $top = TRUE;
 	public $theme = 'SeanMorris\ClonesNBarrels\Theme\Theme';
 	public $routes = [
 		'map' => 'SeanMorris\ClonesNBarrels\Route\MapRoute'

@@ -440,6 +440,18 @@ var Player = DamageableCharacter.extend({
 		{
 			this.world.game.message.blit('You were killed by a ' + this.lastDamagedBy.name, 350);
 		}
+
+		var _this = this;
+
+		setTimeout(
+			function()
+			{
+				_this.world.game.flushStates();
+				_this.world.game.message.blit('Welcome back.');
+				_this.world.game.changeState('main', {}, true);
+			}
+			, 2500
+		);
 	}
 	, vacuumDamage: function()
 	{
