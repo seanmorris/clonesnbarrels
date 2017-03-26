@@ -1,3 +1,4 @@
+var autoMenu;
 function TitleState(game)
 {
 	var state		= new State();
@@ -7,16 +8,14 @@ function TitleState(game)
 		this[i]		= state[i];
 	}
 
-	var autoMenu;
-
 	this.onEnter = function(params)
 	{
 		var muted = parseInt(localStorage.getItem('muted'));
 
 		game.message.blit(muted ? 'Sound muted.' : 'Sound on.');
-
+		/*
 		game.message.blit('Space, click or tap to begin.');
-
+		*/
 		muted || game.bgm.play();
 		this.titleScreen = new TitleScreen(game);
 		// this.titleBGM = new Audio('/SeanMorris/ClonesNBarrels/Sound/530471_Coins-8Bit.mp3');

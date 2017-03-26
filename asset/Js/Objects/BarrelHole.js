@@ -109,7 +109,9 @@ var BarrelHole = FloorTrigger.extend({
 			if(this.justFilled == 0)
 			{
 				this.world.game.message.blit(
-					'Fuel port filled. Activating...'
+					'Fuel port filled. Activating!'
+					, 250
+					, 'good'
 				);
 			}
 

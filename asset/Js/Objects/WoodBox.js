@@ -3,6 +3,7 @@ var WoodBox = DamageableBindable.extend({
 	{
 		this.reinit();
 		this._super(new WoodBoxSprite(), 200);
+		this.deathNoteColor = 'better';
 	}
 	, reinit: function()
 	{

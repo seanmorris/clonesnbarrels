@@ -80,7 +80,7 @@ var PolyWall = Triggerable.extend({
 
 				if(!this.children.length)
 				{
-					this.world.game.message.blit('Door opened.');
+					this.world.game.message.blit('Door opened.', 250, 'better');
 				}
 			}
 		}

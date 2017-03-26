@@ -114,7 +114,9 @@ var DamageableDef = {
 
 		this.displayHealth = this.health + healthDiff;
 
-		console.log(this.name + ' damaged by ' + amount + '/' + this.maxHealth + ' points.');
+		console.log(
+			this.name + ' damaged by ' + amount + '/' + this.maxHealth + ' points.'
+		);
 	}
 	, destroy: function(clean)
 	{

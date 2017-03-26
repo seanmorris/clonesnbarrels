@@ -438,15 +438,57 @@ var Player = DamageableCharacter.extend({
 	{
 		if(this.lastDamagedBy && this.lastDamagedBy.name)
 		{
-			this.world.game.message.blit('You were killed by a ' + this.lastDamagedBy.name, 350);
+			this.world.game.message.blit(
+				'You were killed by a ' + this.lastDamagedBy.name
+				, 350
+				, '25,25,25'
+			);
 		}
+
+		this.world.game.message.blit(
+			'Respawning in 3...',
+			150,
+			this.deathNoteColor
+		);
 
 		var _this = this;
 
 		setTimeout(
 			function()
 			{
-				_this.world.game.message.blit('Try not to die again.', 350);
+				_this.world.game.message.blit(
+					'2...',
+					150,
+					this.deathNoteColor
+				);
+			}
+			, 1000
+		);
+		
+		setTimeout(
+			function()
+			{
+				_this.world.game.message.blit(
+					'1...',
+					150,
+					this.deathNoteColor
+				);
+			}
+			, 2000
+		);
+
+		setTimeout(
+			function()
+			{
+				Player.deaths++
+				if(Player.deaths > 2)
+				{
+					_this.world.game.message.blit('Try not to die again.', 850, '120,120,120');
+					if(Player.deaths > 4)
+					{
+						_this.world.game.message.blit('Like, actually try.', 850, '120,120,120');
+					}
+				}
 
 				mainActor = new Player();
 
@@ -461,7 +503,7 @@ var Player = DamageableCharacter.extend({
 
 				mainActor.direction = 1;
 			}
-			, 2500
+			, 2800
 		);
 	}
 	, vacuumDamage: function()
@@ -476,7 +518,7 @@ var Player = DamageableCharacter.extend({
 
 		if(this.vacuumDamageTimer <= 0)
 		{
-			this.world.game.message.blit('You can\'t breath out here.');
+			this.world.game.message.blit('You can\'t breath out here.', 250, 'damage');
 
 			this.damage(10);
 			this.vacuumDamageTimer = this.vacuumDamageTimerMax;
@@ -488,3 +530,4 @@ var Player = DamageableCharacter.extend({
 		this.vacuumDamageTimer--;
 	}
 });
+Player.deaths = 0;

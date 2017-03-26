@@ -46,7 +46,7 @@ var CloneMachine = Actor.extend({
 			);
 			*/
 
-			this.world.game.message.blit('Clone dispensed.');
+			this.world.game.message.blit('Clone dispensed.', 150, this.cloneCount ? 'good' : 'better');
 
 			var spawnShift = 0;
 

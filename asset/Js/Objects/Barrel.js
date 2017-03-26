@@ -18,12 +18,6 @@ var Barrel = DamageableBindable.extend({
 	{
 		this._super();
 
-		if(this.health < this.maxHealth && !Barrel.warned)
-		{
-			this.world.game.message.blit('Careful with those barrels...');
-			Barrel.warned = true;
-		}
-
 		if(this.health <= 0)
 		{
 			this.world.viewport.overlay('#FFF', 1);
@@ -82,9 +76,15 @@ var Barrel = DamageableBindable.extend({
 	}
 	, crush: function(other)
 	{
+		if(this.health < this.maxHealth && Barrel.warned < 3)
+		{
+			this.world.game.message.blit('Careful with those barrels...', 500, 'warning');
+			Barrel.warned++;
+		}
+		
 		//console.log('crush', other);
 		this._super(other);
-		this.damage(25, other);
+		this.damage(20, other);
 	}
 	, onStep: function()
 	{
@@ -107,3 +107,4 @@ var Barrel = DamageableBindable.extend({
 		}
 	}
 });
+Barrel.warned = 0;

@@ -4,6 +4,7 @@ var Actor = Class.extend({
 	{
 		this.sprite = sprite;
 		this.originalSprite = new (Class.extend(sprite));
+		this.deathNoteColor = null;
 
 		this.preloadSprite();
 
@@ -740,11 +741,19 @@ var Actor = Class.extend({
 		{
 			if(this.lastDamagedBy)
 			{
-				this.world.game.message.blit(this.name + ' destroyed by ' + this.lastDamagedBy.name + '.');
+				this.world.game.message.blit(
+					this.name + ' destroyed by ' + this.lastDamagedBy.name + '.',
+					150,
+					this.deathNoteColor
+				);
 			}
 			else
 			{
-				this.world.game.message.blit(this.name + ' destroyed.');
+				this.world.game.message.blit(
+					this.name + ' destroyed.',
+					150,
+					this.deathNoteColor
+				);
 			}
 		}
 	}
