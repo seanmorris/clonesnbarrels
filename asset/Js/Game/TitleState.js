@@ -1,7 +1,7 @@
-var autoMenu;
 function TitleState(game)
 {
 	var state		= new State();
+	var opened      = true;
 
 	for(var i in state)
 	{
@@ -21,9 +21,13 @@ function TitleState(game)
 		// this.titleBGM = new Audio('/SeanMorris/ClonesNBarrels/Sound/530471_Coins-8Bit.mp3');
 		//this.titleBGM.play();
 
-		autoMenu = setTimeout(
+		window.autoMenu = setTimeout(
 			function()
 			{
+				if(opened)
+				{
+					return;
+				}
 				game.stackState(
 					'menu'
 					, {menu: new MainMenu(game)}
@@ -43,7 +47,7 @@ function TitleState(game)
 			&& game.clickVectors[0].released)
 			|| game.keyStates[32] === 0
 		){
-			clearTimeout(autoMenu);
+			opened = true;
 			game.stackState(
 				'menu'
 				, {menu: new MainMenu(game)}
