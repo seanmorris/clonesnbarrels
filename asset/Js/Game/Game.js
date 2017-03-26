@@ -62,7 +62,7 @@ function Game(canvas)
 		if(this.stateStack.length)
 		{
 			this.currentState = this.stateStack.pop();
-			return true;
+			//return true;
 		}
 		this.stateStack = [];
 	}

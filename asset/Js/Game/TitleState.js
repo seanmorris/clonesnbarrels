@@ -41,10 +41,11 @@ function TitleState(game)
 			{
 				return;
 			}
-			game.flushStates();
-			game.message.blit('Welcome.');
-			game.changeState('main', {}, true);
-			
+			game.stackState(
+				'menu'
+				, {menu: new MainMenu(game)}
+				, true
+			);			
 		}
 		, 6500
 	);
