@@ -436,7 +436,7 @@ var Player = DamageableCharacter.extend({
 	}
 	, announceDeath: function()
 	{
-		if(this.lastDamagedBy.name)
+		if(this.lastDamagedBy && this.lastDamagedBy.name)
 		{
 			this.world.game.message.blit('You were killed by a ' + this.lastDamagedBy.name, 350);
 		}
@@ -446,6 +446,8 @@ var Player = DamageableCharacter.extend({
 		setTimeout(
 			function()
 			{
+				_this.world.game.message.blit('Try not to die again.', 350);
+
 				mainActor = new Player();
 
 				_this.world.game.currentState.world.addObject(

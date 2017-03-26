@@ -7,6 +7,8 @@ function TitleState(game)
 		this[i]		= state[i];
 	}
 
+	var autoMenu;
+
 	this.onEnter = function(params)
 	{
 		var muted = parseInt(localStorage.getItem('muted'));
@@ -19,6 +21,18 @@ function TitleState(game)
 		this.titleScreen = new TitleScreen(game);
 		// this.titleBGM = new Audio('/SeanMorris/ClonesNBarrels/Sound/530471_Coins-8Bit.mp3');
 		//this.titleBGM.play();
+
+		autoMenu = setTimeout(
+			function()
+			{
+				game.stackState(
+					'menu'
+					, {menu: new MainMenu(game)}
+					, true
+				);
+			}
+			, 4500
+		);
 	}
 
 	this._update = this.update;
@@ -30,6 +44,7 @@ function TitleState(game)
 			&& game.clickVectors[0].released)
 			|| game.keyStates[32] === 0
 		){
+			clearTimeout(autoMenu);
 			game.stackState(
 				'menu'
 				, {menu: new MainMenu(game)}
