@@ -9,7 +9,7 @@ function Menu(game)
 	this.selectedOption;
 
 	this.bgColor				= '#111';
-	this.bgAlpha				= 0.6;
+	this.bgAlpha				= 0.75;
 
 	this.textColor				= '#A65560';
 	this.boxColor				= '#280212';

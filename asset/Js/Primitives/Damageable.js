@@ -99,7 +99,10 @@ var DamageableDef = {
 	}
 	, _damage: function(amount, other)
 	{
-		this.bumpNoise.play();
+		if(!parseInt(localStorage.getItem('muted')))
+		{	
+			this.bumpNoise.play();
+		}
 		// this.displayHealth = this.health;
 		this.health -= amount;
 		this.displayHealthBar = 50;

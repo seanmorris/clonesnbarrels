@@ -1,8 +1,7 @@
 function TitleState(game)
 {
 	var state		= new State();
-	var opened      = true;
-
+	
 	for(var i in state)
 	{
 		this[i]		= state[i];
@@ -12,33 +11,12 @@ function TitleState(game)
 	{
 		var muted = parseInt(localStorage.getItem('muted'));
 
-		game.message.blit(muted ? 'Sound muted.' : 'Sound on.');
-		/*
-		game.message.blit('Space, click or tap to begin.');
-		*/
 		muted || game.bgm.play();
 		this.titleScreen = new TitleScreen(game);
-		// this.titleBGM = new Audio('/SeanMorris/ClonesNBarrels/Sound/530471_Coins-8Bit.mp3');
-		//this.titleBGM.play();
-
-		window.autoMenu = setTimeout(
-			function()
-			{
-				if(opened)
-				{
-					return;
-				}
-				game.stackState(
-					'menu'
-					, {menu: new MainMenu(game)}
-					, true
-				);
-			}
-			, 4500
-		);
 	}
 
-	this._update = this.update;
+	var used = false;
+
 	this.update = function()
 	{
 		this.titleScreen.render();
@@ -47,7 +25,7 @@ function TitleState(game)
 			&& game.clickVectors[0].released)
 			|| game.keyStates[32] === 0
 		){
-			opened = true;
+			used = true;
 			game.stackState(
 				'menu'
 				, {menu: new MainMenu(game)}
@@ -56,8 +34,24 @@ function TitleState(game)
 		}
 	}
 
+	var autoForward = setTimeout(
+		function()
+		{
+			if(used)
+			{
+				return;
+			}
+			game.flushStates();
+			game.message.blit('Welcome.');
+			game.changeState('main', {}, true);
+			
+		}
+		, 6500
+	);
+
 	this.onExit = function()
 	{
+		clearTimeout(autoForward);
 		//this.titleBGM.pause();
 	}
 }

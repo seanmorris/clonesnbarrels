@@ -22,8 +22,11 @@ var Barrel = DamageableBindable.extend({
 		{
 			this.world.viewport.overlay('#FFF', 1);
 			this.world.viewport.fadeOverlay(8);
-			this.explosionNoise.play();
-			this.bumpNoise.play();
+			if(!parseInt(localStorage.getItem('muted')))
+			{
+				this.explosionNoise.play();
+				this.bumpNoise.play();
+			}
 
 			var tile = this.world.getTile(this.x, this.y);
 			var tiles = [tile, tile.up(), tile.down()
