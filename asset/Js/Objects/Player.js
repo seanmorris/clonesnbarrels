@@ -456,6 +456,8 @@ var Player = DamageableCharacter.extend({
 
 				_this.world.game.currentState.viewport.bindCamera(mainActor);
 				_this.world.game.currentState.world.map.refreshObjects();
+
+				mainActor.direction = 1;
 			}
 			, 2500
 		);
