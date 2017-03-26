@@ -6,6 +6,7 @@ var FloorActor = Actor.extend({
 		this.lastSprite = null;
 		this.tileSet = false;
 		this.refresh = false;
+		this.persistent = false;
 	}
 	, canBeSteppedOn: function()
 	{
@@ -44,7 +45,10 @@ var FloorActor = Actor.extend({
 	}
 	, destroy: function(peaceful)
 	{
-		this.clearTile();
+		if(!this.persistent)
+		{
+			this.clearTile();
+		}
 
 		this._super(peaceful);
 	}

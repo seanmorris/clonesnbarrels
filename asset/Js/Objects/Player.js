@@ -446,9 +446,16 @@ var Player = DamageableCharacter.extend({
 		setTimeout(
 			function()
 			{
-				_this.world.game.flushStates();
-				_this.world.game.message.blit('Welcome back.');
-				_this.world.game.changeState('main', {}, true);
+				mainActor = new Player();
+
+				_this.world.game.currentState.world.addObject(
+					mainActor
+					, _this.world.game.currentState.world.map.start[0]
+						, _this.world.game.currentState.world.map.start[1]
+				);
+
+				_this.world.game.currentState.viewport.bindCamera(mainActor);
+				_this.world.game.currentState.world.map.refreshObjects();
 			}
 			, 2500
 		);

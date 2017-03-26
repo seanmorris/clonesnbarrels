@@ -3,6 +3,7 @@ var BlastMark = FloorActor.extend({
 	{
 		this.reinit();
 		this._super(new BlastMarkSprite());
+		this.persistent = true;
 	}
 	, reinit: function()
 	{

@@ -3,6 +3,7 @@ var BloodStain = FloorActor.extend(Corpse).extend({
 	{
 		this.reinit();
 		this._super(new BloodStainSprite());
+		this.persistent = true;
 	}
 	, reinit: function()
 	{

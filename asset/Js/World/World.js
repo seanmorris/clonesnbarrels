@@ -197,7 +197,7 @@ var World = Class.extend({
 		}
 	}
 
-	, flushObjects: function()
+	, flushObjects: function(ignore)
 	{
 		for(var x in this.objects){
 		for(var y in this.objects[x]){
@@ -205,8 +205,20 @@ var World = Class.extend({
 			var obj = this.removeObject(x, y, i);
 			if(obj)
 			{
-				obj.destroy(true);
-				obj.world = undefined;
+				var ignored = false;
+				for(var i in ignore)
+				{
+					if(obj.name == ignore[i])
+					{
+						ignored = TRUE;
+					}
+				}
+
+				if(!ignored)
+				{
+					obj.destroy(true);
+					obj.world = undefined;
+				}
 			}
 		}}}
 

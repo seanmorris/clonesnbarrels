@@ -239,7 +239,7 @@ var Map = Class.extend({
 		this.world.flushObjects();
 		this.world.populateObjects();
 
-		this.world.viewport.forceBgUpdate();
+		//this.world.viewport.forceBgUpdate();
 
 		this.world.addObject(
 			mainActor
@@ -251,7 +251,7 @@ var Map = Class.extend({
 		this.world.worldWidth = this.width;
 		this.world.worldHeight = this.height;
 
-		this.world.viewport.forceBgUpdate();
+		//this.world.viewport.forceBgUpdate();
 	}
 	, setWidth: function(width, newTile)
 	{
