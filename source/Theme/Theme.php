@@ -10,9 +10,10 @@ class Theme extends \SeanMorris\Theme\Theme
 			, 'SeanMorris\ClonesNBarrels\Map' => [
 				'single' => 'SeanMorris\ClonesNBarrels\View\Play'
 			]
+			, 'stack' => 'SeanMorris\PressKit\Theme\Austere\Page'
 			, 'css' => ['SeanMorris/ClonesNBarrels/Css/main.css']
 			, 'js' =>[
-				'SeanMorris/PortfolioSite/jquery-1.11.2.min.js'
+				'SeanMorris/ClonesNBarrels/Js/jquery-1.11.2.min.js'
 				, 'SeanMorris/ClonesNBarrels/Js/ThirdParty/Class.js'
 				, 'SeanMorris/ClonesNBarrels/Js/ThirdParty/FileSaver.js'
 				, 'SeanMorris/ClonesNBarrels/Js/ThirdParty/Cookie.js'
@@ -132,5 +133,9 @@ class Theme extends \SeanMorris\Theme\Theme
 				, 'SeanMorris/ClonesNBarrels/Js/World/Map.js'
 				, 'SeanMorris/ClonesNBarrels/Js/Init.js'
 			]
-		];
+		],
+		$themes = [
+			'SeanMorris\PressKit\Theme\Austere\Theme'
+		]
+	;
 }
