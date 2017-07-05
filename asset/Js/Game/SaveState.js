@@ -3,7 +3,7 @@ var SaveState = Storable.extend({
 	{
 		this.title = null;
 		this.savedata = null;
-		this._endpoint = '/clonesNBarrels/saveState';
+		this._endpoint = '/saveState';
 		this._key = 'ClonesNBarrelsSaveStateId';
 	}
 	, save: function(world)

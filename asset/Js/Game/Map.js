@@ -3,6 +3,6 @@ var MapStorable = Storable.extend({
 	{
 		this.mapdata = null;
 		
-		this._endpoint = '/clonesNBarrels/map';
+		this._endpoint = '/map';
 	}
 });
