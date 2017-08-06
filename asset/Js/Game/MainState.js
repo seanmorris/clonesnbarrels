@@ -32,16 +32,12 @@ function MainState(game)
 
 	this.viewport	= new Viewport(game, vXSize, vYSize, tileSize);
 	this.viewport.resize();
-	$(window).on('resize', function(){ _this.viewport.resize() });
+	$(window).on('orientationchange', function(){ _this.viewport.resize() });
 
 	this.onEnter = function()
 	{
 		console.log('enter');
 		this.viewport	= new Viewport(game, vXSize, vYSize, tileSize);
-		this.viewport.resize();
-		var _this = this;
-		$(window).on('resize', function(){ _this.viewport.resize() });
-
 		this.world		= new World();
 
 		this.viewport.bindWorld(this.world);
