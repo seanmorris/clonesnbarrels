@@ -134,7 +134,7 @@ function Viewport(game, x, y, size)
 
 		if(this.maxX * this.size > docWidth)
 		{
-			this.x = Math.floor(docWidth / this.size) + 1;
+			this.x = Math.floor(docWidth / this.size) - 1;
 		}
 		else
 		{
@@ -143,7 +143,7 @@ function Viewport(game, x, y, size)
 
 		if(this.maxY * this.size > docHeight)
 		{
-			this.y = Math.floor(docHeight / this.size) + 1;
+			this.y = Math.floor(docHeight / this.size) - 1;
 		}
 		else
 		{
