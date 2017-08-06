@@ -47,6 +47,8 @@ function Viewport(game, x, y, size)
 	this.paneSize	= 9;
 	this.maxPanes	= 9;
 
+	this.orientation = false;
+
 	this.panesToEdgeX = Math.floor((this.x/2)/this.paneSize)+1;
 	this.panesToEdgeY = Math.floor((this.y/2)/this.paneSize)+1;
 
@@ -118,6 +120,14 @@ function Viewport(game, x, y, size)
 
 	this.resize		= function()
 	{
+		if(typeof window.orientation !== 'undefined'
+			&& this.orientation === window.orientation
+		){
+			return;
+		}
+
+		this.orientation = window.orientation;
+
 		var docWidth  =  $(document).width();
 		var docHeight =  $(document).height();
 		var newX;
