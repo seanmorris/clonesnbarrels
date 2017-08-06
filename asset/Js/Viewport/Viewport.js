@@ -44,7 +44,7 @@ function Viewport(game, x, y, size)
 
 	this.panes = [];
 	this.panesXY = [];
-	this.paneSize	= 9;
+	this.paneSize	= 12;
 	this.maxPanes	= 9;
 
 	this.orientation = false;
@@ -161,11 +161,11 @@ function Viewport(game, x, y, size)
 			{
 				if(this.x < this.y)
 				{
-					this.y -= 2;
+					this.paneSize = Math.ceil(this.y/3);
 				}
 				else
 				{
-					this.x -= 1;
+					this.paneSize = Math.ceil(this.x/3);
 				}
 			}
 		}
