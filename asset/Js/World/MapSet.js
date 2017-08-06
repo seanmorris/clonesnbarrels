@@ -146,11 +146,11 @@ var MapSet = Class.extend({
 
 			if(this.mapStates[map].publicId && loc.length > 2)
 			{
-				window.history.replaceState({} ,null, '/clonesNBarrels/map/' + this.mapStates[map].publicId);
+				window.history.replaceState({} ,null, '/map/' + this.mapStates[map].publicId);
 			}
 			else
 			{
-				window.history.replaceState({} ,null, '/clonesNBarrels');
+				window.history.replaceState({} ,null, '/');
 			}
 
 			this.world.flushObjects();
@@ -274,14 +274,13 @@ var MapSet = Class.extend({
 
 		console.log(loc);
 
-
 		if(mapData.publicId && loc.length > 2)
 		{
-			window.history.replaceState({} ,null, '/clonesNBarrels/map/' + mapData.publicId);
+			window.history.replaceState({} ,null, '/map/' + mapData.publicId);
 		}
 		else
 		{
-			window.history.replaceState({} ,null, '/clonesNBarrels');
+			window.history.replaceState({} ,null, '/');
 		}
 
 		if(ignoreState)

@@ -207,7 +207,8 @@ function Game(canvas)
 					}
 
 					if(
-						game.keyStates[81] === 0
+						game.keyStates[27] === 0
+						|| game.keyStates[81] === 0
 						||  game.padStates[7] === 0
 						|| ( game.mouseStates[2]
 							&&  game.mouseStates[2][2] === 0

@@ -8,6 +8,9 @@ function Viewport(game, x, y, size)
 	this.y          = y     || 5;
 	this.size       = size  || 16;
 
+	this.maxX       = x;
+	this.maxY       = y;
+
 	this.updateRadius = 5;
 
 	this.paused		= false;
@@ -46,6 +49,11 @@ function Viewport(game, x, y, size)
 
 	this.panesToEdgeX = Math.floor((this.x/2)/this.paneSize)+1;
 	this.panesToEdgeY = Math.floor((this.y/2)/this.paneSize)+1;
+
+	var center	= [
+		Math.ceil(this.x/2)
+		, Math.ceil(this.y/2)
+	];
 
 	this.updateEarly = function(object)
 	{
@@ -110,6 +118,38 @@ function Viewport(game, x, y, size)
 
 	this.resize		= function()
 	{
+		var docWidth  =  $(document).width();
+		var docHeight =  $(document).height();
+		var newX;
+
+		if(this.maxX * this.size > docWidth)
+		{
+			this.x = Math.floor(docWidth / this.size) + 1;
+		}
+		else
+		{
+			this.x = this.maxX;
+		}
+
+		if(this.maxY * this.size > docHeight)
+		{
+			this.y = Math.floor(docHeight / this.size) + 1;
+		}
+		else
+		{
+			this.y = this.maxY;
+		}
+
+		center	= [
+			Math.ceil(this.x/2)
+			, Math.ceil(this.y/2)
+		];
+
+		this.bindCamera(this.actor);
+		
+		this.panesToEdgeX = Math.floor((this.x/2)/this.paneSize)+1;
+		this.panesToEdgeY = Math.floor((this.y/2)/this.paneSize)+1;
+
 		if(this.canvas)
 		{
 			this.canvas[0].setAttribute('width', this.x * this.size);
@@ -122,7 +162,7 @@ function Viewport(game, x, y, size)
 		this.renderCenter	= [this.renderWidth/2,this.renderHeight/2];
 
 		this.renderBreadth    = [
-			Math.round((this.x) * this.size / 2)
+			Math.round(this.x * this.size / 2)
 			, Math.round(this.y * this.size / 2)
 		];
 
@@ -587,10 +627,7 @@ function Viewport(game, x, y, size)
 		context.restore();
 	}
 
-	var center	= [
-		Math.ceil(this.x/2)
-		, Math.ceil(this.y/2)
-	];
+	
 
 	this.update     = function(input)
 	{

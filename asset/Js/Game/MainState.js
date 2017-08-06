@@ -27,25 +27,20 @@ function MainState(game)
 	vXSize	= 36;
 	vYSize	= 24;
 
-	if(typeof window.orientation !== 'undefined')
-	{
-		vXSize	= 15;
-		vYSize	= 9;
-	}
-
 	var tileSize = 32;
 	var _this = this;
 
 	this.viewport	= new Viewport(game, vXSize, vYSize, tileSize);
 	this.viewport.resize();
-	$(window).on('resize', this.viewport.resize);
+	$(window).on('resize', function(){ _this.viewport.resize() });
 
 	this.onEnter = function()
 	{
 		console.log('enter');
 		this.viewport	= new Viewport(game, vXSize, vYSize, tileSize);
 		this.viewport.resize();
-		$(window).on('resize', this.viewport.resize);
+		var _this = this;
+		$(window).on('resize', function(){ _this.viewport.resize() });
 
 		this.world		= new World();
 

@@ -15,7 +15,7 @@ function MainMenu(game)
 		game.message.blit('Welcome.');
 		game.changeState('main', {}, true);
 	};
-
+	/*
 	this.options['load game']	= function()
 	{
 		game.changeState('main', {}, true);
@@ -29,7 +29,7 @@ function MainMenu(game)
 	};
 
 	this.options['load game']	= SaveSubmenu;
-
+	*/
 	this.options['music']		= MusicSubmenu;
 	this.options['mute']		= function()
 	{
