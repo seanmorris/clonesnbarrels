@@ -48,6 +48,7 @@ function Viewport(game, x, y, size)
 	this.maxPanes	= 9;
 
 	this.orientation = false;
+	this.lastResize = false;
 
 	this.panesToEdgeX = Math.floor((this.x/2)/this.paneSize)+1;
 	this.panesToEdgeY = Math.floor((this.y/2)/this.paneSize)+1;
@@ -120,6 +121,17 @@ function Viewport(game, x, y, size)
 
 	this.resize		= function()
 	{
+		var sinceLast = Date.now() - this.lastResize;
+
+		if(sinceLast < 1500)
+		{
+			return;
+		}
+
+		console.log(sinceLast);
+
+		this.lastResize = Date.now();
+
 		if(typeof window.orientation !== 'undefined'
 			&& this.orientation === window.orientation
 		){
@@ -143,7 +155,7 @@ function Viewport(game, x, y, size)
 
 		if(this.maxY * this.size > docHeight)
 		{
-			this.y = Math.floor(docHeight / this.size) - 1;
+			this.y = Math.floor(docHeight / this.size) - 3;
 		}
 		else
 		{
