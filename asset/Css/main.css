@@ -25,7 +25,9 @@ html, body{
 	height:100%;
 	overflow:hidden;
 }
-
+body {
+  position: relative
+}
 canvas{
 	display:block;
 	padding:1px;
