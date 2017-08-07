@@ -7,6 +7,7 @@ class RootRoute extends \SeanMorris\PressKit\Controller
 	public $routes = [
 		'map' => 'SeanMorris\ClonesNBarrels\Route\MapRoute'
 		, 'saveState' => 'SeanMorris\ClonesNBarrels\Route\SaveStateRoute'
+		, 'user' => 'SeanMorris\Access\Route\AccessRoute'
 	];
 
 	protected 
