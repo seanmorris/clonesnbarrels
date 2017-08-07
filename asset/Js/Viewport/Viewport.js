@@ -137,18 +137,6 @@ function Viewport(game, x, y, size)
 		if(this.maxY * this.size > docHeight)
 		{
 			this.y = Math.floor(docHeight / this.size) + 1;
-
-			if(this.x < this.maxX)
-			{
-				if(this.x < this.y)
-				{
-					this.paneSize = Math.ceil(this.y/3);
-				}
-				else
-				{
-					this.paneSize = Math.ceil(this.x/3);
-				}
-			}
 		}
 		else
 		{
