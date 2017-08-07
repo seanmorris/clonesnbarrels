@@ -416,6 +416,7 @@ function Game(canvas)
 		"touchstart"
 		, function(e)
 		{
+			e.preventDefault();
 			var touches = e.originalEvent.changedTouches;
 			var i = 0;
 			while(i < touches.length)
@@ -445,6 +446,7 @@ function Game(canvas)
 
 				i++;
 			}
+			return false;
 		}
 	);
 
