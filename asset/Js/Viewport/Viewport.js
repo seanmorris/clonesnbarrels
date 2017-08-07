@@ -121,25 +121,6 @@ function Viewport(game, x, y, size)
 
 	this.resize		= function()
 	{
-		var sinceLast = Date.now() - this.lastResize;
-
-		if(sinceLast < 1500)
-		{
-			return;
-		}
-
-		console.log(sinceLast);
-
-		this.lastResize = Date.now();
-
-		if(typeof window.orientation !== 'undefined'
-			&& this.orientation === window.orientation
-		){
-			return;
-		}
-
-		this.orientation = window.orientation;
-
 		var docWidth  =  $(document).width();
 		var docHeight =  $(document).height();
 		var newX;
