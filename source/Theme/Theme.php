@@ -2,7 +2,16 @@
 namespace SeanMorris\ClonesNBarrels\Theme;
 class Theme extends \SeanMorris\Theme\Theme
 {
-	public static $view = [
+	public static
+		$contextView = [
+			'SeanMorris\ClonesNBarrels\Route\RootRoute' => [
+				'stack' => 'SeanMorris\PressKit\Theme\Austere\Page'
+			]
+			, 'SeanMorris\PressKit\Controller' => [
+				'stack' => 'SeanMorris\PressKit\Theme\Austere\Stack'
+			]
+		]
+		, $view = [
 			'SeanMorris\Ids\Model' => [
 				'single' => 'SeanMorris\PressKit\Theme\Austere\Model'
 				, 'list' => 'SeanMorris\PressKit\Theme\Austere\ModelGrid'
@@ -10,7 +19,6 @@ class Theme extends \SeanMorris\Theme\Theme
 			, 'SeanMorris\ClonesNBarrels\Map' => [
 				'single' => 'SeanMorris\ClonesNBarrels\View\Play'
 			]
-			, 'stack' => 'SeanMorris\PressKit\Theme\Austere\Page'
 			, 'css' => ['SeanMorris/ClonesNBarrels/Css/main.css']
 			, 'js' =>[
 				'SeanMorris/ClonesNBarrels/Js/jquery-1.11.2.min.js'
@@ -115,6 +123,7 @@ class Theme extends \SeanMorris\Theme\Theme
 				, 'SeanMorris/ClonesNBarrels/Js/Objects/GasTrap.js'
 				, 'SeanMorris/ClonesNBarrels/Js/Objects/Button.js'
 				, 'SeanMorris/ClonesNBarrels/Js/Objects/Corpse.js'
+				, 'SeanMorris/ClonesNBarrels/Js/Objects/PlayerCorpse.js'
 				, 'SeanMorris/ClonesNBarrels/Js/Objects/BarrelHole.js'
 				, 'SeanMorris/ClonesNBarrels/Js/Objects/Barrel.js'
 				, 'SeanMorris/ClonesNBarrels/Js/Objects/Door.js'

@@ -111,56 +111,60 @@ function Menu(game)
 			   	|| game.padStates[0] === 0
 				|| (game.clickVectors[0]
 					&& game.clickVectors[0].undragged
-					&& game.clickVectors[0].released
 					&& game.clickVectors[0].startX > center[0]
 						+ this.leftMargin
 						+ $(this.context.canvas).offset().left
 						- this.selectedBoxSize
 				)
 			){
-				selectOffset = 0;
+				var selectOffset = 0;
+				var yClick = 0;
 
 				if(game.clickVectors[0])
 				{
-					var yClick = game.clickVectors[0].startY
-						 - $(this.context.canvas).offset().top
-						 - this.topMargin
-						 - this.boxSize
-						 - this.margins;
+					yClick = game.clickVectors[0].startY
+						- $(this.context.canvas).offset().top
+						- this.topMargin
+						- this.boxSize
+						- this.margins;
+				}
 
-					var interval = this.boxSize + this.margins;
+				var interval = this.boxSize + this.margins;
 
-					if(yClick >= 0 && yClick < (this.selectedBoxSize + this.margins))
+				if(yClick >= 0 && yClick < (this.selectedBoxSize + this.margins))
+				{
+					if((game.clickVectors[0] && game.clickVectors[0].released))
 					{
 						this.select(this.selected);
 					}
 					else
 					{
-						var selectOffset = parseInt(yClick/interval);
-
-						if(yClick < 0)
-						{
-							selectOffset--;
-						}
-
-						console.log(this.selected, selectOffset, this.options)
-
-						if(this.option(this.selected+selectOffset))
-						{
-							this.select(this.selected+selectOffset);
-						}
+						this.preselect(this.selected);
 					}
 				}
 				else
 				{
-					this.select(this.selected);
+					var selectOffset = parseInt(yClick/interval);
+
+					if(yClick < 0)
+					{
+						selectOffset--;
+					}
+
+					console.log(this.selected, selectOffset, this.options)
+
+					if(this.option(this.selected+selectOffset))
+					{
+						if((game.clickVectors[0] && game.clickVectors[0].released))
+						{
+							this.select(this.selected+selectOffset);
+						}
+						else
+						{
+							this.preselect(this.selected+selectOffset);
+						}
+					}
 				}
-
-				// @todo Add or subtract x from this.selected 
-				// based on mouse position from
-				// game.clickVectors[0]
-
-				// 
 			}
 
 			var opLen = 0;
@@ -345,6 +349,17 @@ function Menu(game)
 			{
 				//console.log(i);
 				this.used = this.options[i];
+			}
+		}
+	}
+
+	this.preselect	= function(option)
+	{
+		for(var i in this.options)
+		{
+			if(!option-- && this.options[i].preselect)
+			{
+				this.options[i].preselect();
 			}
 		}
 	}

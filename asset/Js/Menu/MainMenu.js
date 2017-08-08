@@ -15,21 +15,86 @@ function MainMenu(game)
 		game.message.blit('Welcome.');
 		game.changeState('main', {}, true);
 	};
-	/*
-	this.options['load game']	= function()
+
+	var whoAmI = JSON.parse($.ajax({
+		url: 'user/current'
+		, dataType: 'json'
+		, async: false
+		, data:{api: 'json'}
+	}).responseText);
+
+	var _this = this;
+
+	console.log(_this);
+
+	var nextPopped = focusPopped = false;
+
+	if(whoAmI.body.id)
 	{
-		game.changeState('main', {}, true);
+		this.options['load game']   = SaveSubmenu;
 
-		var saveState = new SaveState();
-		var world = game.currentState.world;
+		this.options['log out']     = function()
+		{
+			
+		};
 
-		console.log(world);
-		
-		saveState.load(world);
-	};
+		this.options['log out'].preselect = function()
+		{
+			if(!nextPopped)
+			{
+				game.onNextUp(function()
+				{
+					window.open('/user/logout?page=close', '_blank');
+					nextPopped = false;
+				});
+			}
+			if(!focusPopped)
+			{
+				game.onNextFocus(function()
+				{
+					game.changeState(
+						'menu'
+						, {menu: MainMenu(game)}
+						, true
+					);
+					focusPopped = false;
+				});
+			}
+			nextPopped = focusPopped = true;
+		}
+	}
+	else
+	{
+		this.options['login via facebook'] = function()
+		{
+		};
 
-	this.options['load game']	= SaveSubmenu;
-	*/
+		this.options['login via facebook'].preselect = function()
+		{
+			if(!nextPopped)
+			{
+				game.onNextUp(function()
+				{
+					window.open('/user/facebookConnect', '_blank');
+					nextPopped = false;
+				});
+			}
+			if(!focusPopped)
+			{
+				game.onNextFocus(function()
+				{
+					game.changeState(
+						'menu'
+						, {menu: MainMenu(game)}
+						, true
+					);
+					focusPopped = false;
+				});
+			}
+			nextPopped = focusPopped = true;
+		};
+	}
+
 	this.options['music']		= MusicSubmenu;
 	this.options['mute']		= function()
 	{

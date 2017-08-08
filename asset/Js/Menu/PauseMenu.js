@@ -18,31 +18,120 @@ function PauseMenu(game)
 		game.message.blit('Welcome back.');
 		game.changeState('main', {}, true);
 	};
-	/*
-	this.options['load game']	= SaveSubmenu;
 
-	this.options['save game']	= function()
+	var whoAmI = JSON.parse($.ajax({
+		url: 'user/current'
+		, dataType: 'json'
+		, async: false
+		, data:{api: 'json'}
+	}).responseText);
+
+	var nextPopped = focusPopped = false;
+	
+	if(whoAmI.body.id)
 	{
-		var saveState = new SaveState();
-		var world = game.stateStack[0].world;
+		this.options['load game']   = SaveSubmenu;
 
-		if(saveState.save(world))
+		this.options['save game']	= function()
 		{
-			game.message.blit('Saved "' + world.saveStateTitle + '".', 300);
-		}
-		else
-		{
-			var messages = saveState.getMessages();
-			for(var i in messages)
+			var saveState = new SaveState();
+			var world = game.stateStack[0].world;
+
+			if(saveState.save(world))
 			{
-				game.message.blit(messages[i], 300);
+				game.message.blit('Saved "' + world.saveStateTitle + '".', 300);
 			}
+			else
+			{
+				var messages = saveState.getMessages();
+				for(var i in messages)
+				{
+					game.message.blit(messages[i], 300);
+				}
+			}
+
+
+			game.restoreState();
+		};
+		
+		this.options['log out']     = function()
+		{
+			
+		};
+
+		var _this = this;
+
+		this.options['log out'].preselect = function()
+		{
+			game.onNextUp(function()
+			{
+				window.open('/user/logout?page=close', '_blank');
+				game.restoreState();
+			});
 		}
 
+		this.options['log out']     = function()
+		{
+			
+		};
 
-		game.restoreState();
-	};
-	*/
+		this.options['log out'].preselect = function()
+		{
+			if(!nextPopped)
+			{
+				game.onNextUp(function()
+				{
+					window.open('/user/logout?page=close', '_blank');
+					nextPopped = false;
+				});
+			}
+			if(!focusPopped)
+			{
+				game.onNextFocus(function()
+				{
+					game.flushStates();
+					game.stackState(
+						'menu'
+						, {menu: new PauseMenu(game)}
+					);
+					focusPopped = false;
+				});
+			}
+			nextPopped = focusPopped = true;
+		}
+	}
+	else
+	{
+		this.options['login via facebook'] = function()
+		{
+		};
+
+		this.options['login via facebook'].preselect = function()
+		{
+			if(!nextPopped)
+			{
+				game.onNextUp(function()
+				{
+					window.open('/user/facebookConnect', '_blank');
+					nextPopped = false;
+				});
+			}
+			if(!focusPopped)
+			{
+				game.onNextFocus(function()
+				{
+					game.flushStates();
+					game.stackState(
+						'menu'
+						, {menu: new PauseMenu(game)}
+						, false
+					);
+					focusPopped = false;
+				});
+			}
+			nextPopped = focusPopped = true;
+		};
+	}
 
 	this.options['music']		= MusicSubmenu;
 	this.options['mute']		= function()

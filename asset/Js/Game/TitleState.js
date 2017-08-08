@@ -1,21 +1,50 @@
 function TitleState(game)
 {
-	var state		= new State();
-	
+	var state = new State();
+	var used = false;
+
 	for(var i in state)
 	{
 		this[i]		= state[i];
+	}
+
+	var autoForward;
+	var setAutoForward = function()
+	{
+		clearTimeout(autoForward);
+		autoForward = setTimeout(
+			function()
+			{
+				if(used)
+				{
+					return;
+				}
+				game.stackState(
+					'menu'
+					, {menu: new MainMenu(game)}
+					, true
+				);
+			}
+			, 3750
+		);
 	}
 
 	this.onEnter = function(params)
 	{
 		var muted = parseInt(localStorage.getItem('muted'));
 
+		var used = false;
+
 		muted || game.bgm.play();
 		this.titleScreen = new TitleScreen(game);
+
+		//setAutoForward();
 	}
 
-	var used = false;
+	this.onRestore = function()
+	{
+		//setAutoForward();
+	}
 
 	this.update = function()
 	{
@@ -33,22 +62,6 @@ function TitleState(game)
 			);
 		}
 	}
-
-	var autoForward = setTimeout(
-		function()
-		{
-			if(used)
-			{
-				return;
-			}
-			game.stackState(
-				'menu'
-				, {menu: new MainMenu(game)}
-				, true
-			);			
-		}
-		, 6500
-	);
 
 	this.onExit = function()
 	{

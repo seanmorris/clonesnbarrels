@@ -5,9 +5,9 @@ var Player = DamageableCharacter.extend({
 		this.moveThreshold	= 3;
 		this.moveAccs		= [];
 		this._super(new PlayerSprite(), 100);
-		this.corpse = new Corpse(
+		this.corpse = new PlayerCorpse(
 			new PlayerCorpseSprite()
-			, 1
+			, 100
 			, new BloodStain()
 		);
 		this.frameTime = 3;

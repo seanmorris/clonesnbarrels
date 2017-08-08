@@ -1,7 +1,7 @@
 var SaveSubmenu = function(game)
 {
 	var dynMenu = new Menu(game);
-	var endpoint = '/clonesNBarrels/saveState/mySaves';
+	var endpoint = 'saveState/mySaves';
 
 	var data = JSON.parse($.ajax({
 		url: endpoint
@@ -31,12 +31,41 @@ var SaveSubmenu = function(game)
 		})();
 	}
 
+	var whoAmI = JSON.parse($.ajax({
+		url: 'user/current'
+		, dataType: 'json'
+		, async: false
+		, data:{api: 'json'}
+	}).responseText);
+
 	for(var i in data.messages)
 	{
 		game.message.blit(data.messages[i]);
 	}
 
-	if(!dynMenu.options)
+	if(!whoAmI.body.id)
+	{
+		dynMenu.options['login via facebook'] = function()
+		{			
+			
+		};
+
+		dynMenu.options['login via facebook'].preselect = function()
+		{
+			game.onNextUp(function()
+			{
+				window.open('/user/facebookConnect', '_blank');
+			});
+			game.onNextFocus(function(){
+				game.stackState(
+					'menu'
+					, {menu: new dynMenu}
+					, true
+				);
+			});
+		};
+	}
+	else if(!dynMenu.options)
 	{
 		dynMenu.options['no saves found. return?'] = function(){
 			game.restoreState();

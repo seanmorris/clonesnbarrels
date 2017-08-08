@@ -5,9 +5,9 @@ class RootRoute extends \SeanMorris\PressKit\Controller
 	public $top = TRUE;
 	public $theme = 'SeanMorris\ClonesNBarrels\Theme\Theme';
 	public $routes = [
-		'map' => 'SeanMorris\ClonesNBarrels\Route\MapRoute'
+		'map'         => 'SeanMorris\ClonesNBarrels\Route\MapRoute'
 		, 'saveState' => 'SeanMorris\ClonesNBarrels\Route\SaveStateRoute'
-		, 'user' => 'SeanMorris\Access\Route\AccessRoute'
+		, 'user'      => 'SeanMorris\Access\Route\AccessRoute'
 	];
 
 	protected 
@@ -17,5 +17,10 @@ class RootRoute extends \SeanMorris\PressKit\Controller
 	public function index($router)
 	{
 		return new \SeanMorris\ClonesNBarrels\View\Play;
+	}
+
+	public function close()
+	{
+    	return "<script>window.close();</script>";
 	}
 }

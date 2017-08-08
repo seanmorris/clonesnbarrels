@@ -37,11 +37,62 @@ function Game(canvas)
 	this.message = new Message(this);
 	this.bgm = new Bgm(this);
 
+	this.nextUp = [];
+	this.nextFocus = [];
+
+	var focused = true;
+
+	var _this = this;
+
+	window.onfocus = function() {
+		focused = true;
+		_this.doNextFocusAction();
+	};
+	window.onblur = function() {
+		focused = false;
+	};
+
+	this.onNextUp = function(action)
+	{
+		this.nextUp.push(action);
+	}
+
+	this.doNextUpAction = function()
+	{
+		if(this.nextUp.length)
+		{
+			this.clickVectors = [];
+			this.KeyStates = [];
+		}
+		while(next = this.nextUp.shift())
+		{
+			next();
+		}
+	}
+
+	this.onNextFocus = function(action)
+	{
+		console.log(this.nextFocus)
+		this.nextFocus.push(action);
+	}
+
+	this.doNextFocusAction = function()
+	{
+		while(next = this.nextFocus.shift())
+		{
+			next();
+		}
+	}
+
 	this.restoreState = function()
 	{
 		if(this.stateStack.length)
 		{
 			this.currentState = this.stateStack.pop();
+			if(this.currentState.onRestore)
+			{
+				this.currentState.onRestore();
+			}
 			return true;
 		}
 
@@ -126,6 +177,11 @@ function Game(canvas)
 					/*/
 					setTimeout(gameLoopFunc, 15);
 					//*/
+
+					if(!focused)
+					{
+						//return;
+					}
 
 					//console.log('Start taking input');
 
@@ -401,6 +457,8 @@ function Game(canvas)
 			}
 
 			_this.keyStates[ e.keyCode || e.which] = 0;
+
+			_this.doNextUpAction();
 		}
 	);
 
@@ -502,6 +560,8 @@ function Game(canvas)
 			{
 				e.preventDefault();
 			}
+
+			_this.doNextUpAction();
 		}
 	);
 
