@@ -112,7 +112,7 @@ function PauseMenu(game)
 			{
 				game.onNextUp(function()
 				{
-					window.open('/user/facebookConnect', '_blank');
+					window.open('/user/facebookConnect?page=close', '_blank');
 					nextPopped = false;
 				});
 			}
