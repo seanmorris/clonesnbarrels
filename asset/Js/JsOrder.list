@@ -49,9 +49,9 @@ Js/Sprites/Free/WarpSprite.js
 Js/Sprites/Free/BoxesSprite.js
 Js/Sprites/Free/RockSprite.js
 Js/Sprites/Free/HealthSprite.js
+Js/Sprites/Free/SentinelSprite.js
+Js/Sprites/Free/SentinelCorpseSprite.js
 Js/Sprites/Pokemon/ComputerSprite.js
-Js/Sprites/Pokemon/SentinelSprite.js
-Js/Sprites/Pokemon/SentinelCorpseSprite.js
 Js/Game/Bgm.js
 Js/Game/MenuState.js
 Js/Game/TitleState.js
@@ -91,9 +91,12 @@ Js/Objects/Portal.js
 Js/Objects/Item.js
 Js/Objects/Warp.js
 Js/Objects/PlasmaBall.js
+Js/Objects/Explosion.js
 Js/Objects/Wanderer.js
 Js/Objects/Bubble.js
 Js/Objects/Player.js
+Js/Objects/Corpse.js
+Js/Objects/PlayerCorpse.js
 Js/Objects/Lava.js
 Js/Objects/AbstractTriggerableAllAtOnce.js
 Js/Objects/PolyWall.js
@@ -108,6 +111,7 @@ Js/Objects/LaserBeam.js
 Js/Objects/Rock.js
 Js/Objects/Health.js
 Js/Objects/Wanderer.js
+Js/Objects/Sentinel.js
 Js/World/World.js
 Js/World/MapSet.js
 Js/World/Maps/basement_001.js
