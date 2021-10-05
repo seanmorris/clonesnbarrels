@@ -16,12 +16,12 @@ function MainMenu(game)
 		game.changeState('main', {}, true);
 	};
 
-	var whoAmI = JSON.parse($.ajax({
-		url: 'user/current'
-		, dataType: 'json'
-		, async: false
-		, data:{api: 'json'}
-	}).responseText);
+	// var whoAmI = JSON.parse($.ajax({
+	// 	url: 'user/current'
+	// 	, dataType: 'json'
+	// 	, async: false
+	// 	, data:{api: 'json'}
+	// }).responseText);
 
 	var _this = this;
 
@@ -29,8 +29,8 @@ function MainMenu(game)
 
 	var nextPopped = focusPopped = false;
 
-	if(whoAmI.body.id)
-	{
+	if(0 /*whoAmI.body.id*/)
+	{1
 		this.options['load game']   = SaveSubmenu;
 
 		this.options['log out']     = function()
@@ -65,34 +65,34 @@ function MainMenu(game)
 	}
 	else
 	{
-		this.options['login via facebook'] = function()
-		{
-		};
+		// this.options['login via facebook'] = function()
+		// {
+		// };
 
-		this.options['login via facebook'].preselect = function()
-		{
-			if(!nextPopped)
-			{
-				game.onNextUp(function()
-				{
-					window.open('/user/facebookConnect?page=close', '_blank');
-					nextPopped = false;
-				});
-			}
-			if(!focusPopped)
-			{
-				game.onNextFocus(function()
-				{
-					game.changeState(
-						'menu'
-						, {menu: MainMenu(game)}
-						, true
-					);
-					focusPopped = false;
-				});
-			}
-			nextPopped = focusPopped = true;
-		};
+		// this.options['login via facebook'].preselect = function()
+		// {
+		// 	if(!nextPopped)
+		// 	{
+		// 		game.onNextUp(function()
+		// 		{
+		// 			window.open('/user/facebookConnect?page=close', '_blank');
+		// 			nextPopped = false;
+		// 		});
+		// 	}
+		// 	if(!focusPopped)
+		// 	{
+		// 		game.onNextFocus(function()
+		// 		{
+		// 			game.changeState(
+		// 				'menu'
+		// 				, {menu: MainMenu(game)}
+		// 				, true
+		// 			);
+		// 			focusPopped = false;
+		// 		});
+		// 	}
+		// 	nextPopped = focusPopped = true;
+		// };
 	}
 
 	this.options['music']		= MusicSubmenu;

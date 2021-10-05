@@ -4,10 +4,15 @@ var MapSet = Class.extend({
 		this.world = world;
 		this.maps = {
 			//basement: Basement001
-			basement: '8B962905BE7511E5AAAA40167E9DAEB6'
-			, subBasement: '764C62D2C2C711E5B97E40167E9DAEB6'
-			, surface: '291E1412C2C711E5B97E40167E9DAEB6'
-			, 'Testing Ground A': '9E0AB0DCEFDC11E5A47640167E9DAEB6'
+			// basement: ''
+			// , subBasement: '764C62D2C2C711E5B97E40167E9DAEB6'
+			// , surface: '291E1412C2C711E5B97E40167E9DAEB6'
+			// , 'Testing Ground A': '9E0AB0DCEFDC11E5A47640167E9DAEB6'
+
+			'Testing Ground A': 'testing-ground-a.json' 
+			, subBasement:      'sub-basement.json' 
+			, basement:         'basement.json' 
+			, surface:          'surface.json' 
 		};
 
 		this.mapStates = {};
